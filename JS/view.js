@@ -1,4 +1,5 @@
 const view = {};
+
 view.setActiveScreen = (screenName, fromCreateConversation = false) => {
     switch (screenName) {
         case 'registerPage':
@@ -19,6 +20,8 @@ view.setActiveScreen = (screenName, fromCreateConversation = false) => {
                 };
                 controller.register(data);
             });
+            console.log(model.currentUser);
+            // đoạn này điều hướng tới trang login
             document.getElementById('redirect-login').addEventListener('click', () => {
                 view.setActiveScreen('loginPage')
             });
@@ -46,14 +49,30 @@ view.setActiveScreen = (screenName, fromCreateConversation = false) => {
             });
             break;
 
-        case 'adminPage':
-            document.getElementById('app').innerHTML = component.adminPage;
-            const logOutBtn = document.getElementById('logOutBtn');
+        case 'home':
+            document.getElementById('app').innerHTML = component.home;
+            var logOutBtn = document.getElementById('logOutBtn');
             logOutBtn.addEventListener('click', () => {
                 firebase.auth().signOut();
+                model.currentUser = {};
+                localStorage.removeItem('currentRole');
             });
             console.log(model.currentUser);
-            view.setWelcomeMessage('welcome-header', `Welcome Back Admin Page, ${model.currentUser.displayName}`)
+            console.log(model.currentRole);
+            view.setWelcomeMessage('welcome-header', `Welcome eCommerce Project ,${model.currentUser.displayName} `);
+            break;
+        case 'admin':
+            document.getElementById('app').innerHTML = component.admin;
+            console.log(model.currentUser);
+            console.log(model.currentRole);
+            logOutBtn = document.getElementById('logOutBtn');
+            logOutBtn.addEventListener('click', () => {
+                firebase.auth().signOut();
+                model.currentUser = {};
+                localStorage.removeItem('currentRole');
+            });
+
+            view.setWelcomeMessage('welcome-header', `Welcome Back Admin,${model.currentUser.displayName}`);
             break;
     }
 };

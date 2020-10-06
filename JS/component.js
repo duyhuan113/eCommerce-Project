@@ -73,9 +73,14 @@ component.loginPage = `
     </form>
 </div>`;
 
-component.adminPage = `
-<div class="register-container">
+component.home = `
+<div class="home-container">
     <div id="welcome-header"></div>
     <button class="btn cursor-pointer" id="logOutBtn" type="submit">log out</button>
+</div>`;
 
+component.admin = `
+<div class="home-container">
+    <div id="welcome-header"></div>
+    <button class="btn cursor-pointer" id="logOutBtn" type="submit">log out</button>
 </div>`;

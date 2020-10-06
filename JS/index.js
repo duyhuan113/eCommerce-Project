@@ -12,14 +12,19 @@ window.onload = () => {
     firebase.initializeApp(firebaseConfig);
 
     firebase.auth().onAuthStateChanged((user) => {
-        //console.log(user);
         if (user) {
             model.currentUser = {
                 displayName: user.displayName,
-                email: user.email
+                email: user.email,
             }
             if (user.emailVerified) {
-                view.setActiveScreen('adminPage');
+                console.log(model.currentRole);
+
+                if (model.currentRole == 'admin') {
+                    view.setActiveScreen('admin');
+                } else if (model.currentRole == 'user') {
+                    view.setActiveScreen('home');
+                }
             } else {
                 alert('Please Verified Your Email');
                 firebase.auth().signOut();
@@ -30,4 +35,18 @@ window.onload = () => {
         }
     });
 
+};
+
+const getManyDocment = (response) => {
+    const listData = [];
+    for (const doc of response.docs) {
+        listData.push(getOneDocument(doc));
+    }
+    return listData;
+};
+
+const getOneDocument = (response) => {
+    const data = response.data();
+    data.id = response.id;
+    return data;
 };

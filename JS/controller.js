@@ -37,7 +37,7 @@ controller.register = (data) => {
 
     if (data.firstName !== '' && data.lastName !== '' && data.email !== '' && data.password !== '' && data.confirmPassword === data.password) {
         model.register(data);
-        model.newUser(data);
+
     };
 };
 
@@ -55,6 +55,7 @@ controller.login = (data) => {
     }
     if (data.email !== '' && data.password !== '') {
         model.login(data);
+        model.checkRole(data.email);
     };
 };
 
