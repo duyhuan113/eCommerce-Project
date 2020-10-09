@@ -2,9 +2,11 @@ const model = {};
 
 model.currentRole = localStorage.getItem('currentRole');
 model.currentUser = undefined;
-model.listAdminAccount = [];
+
+model.productData = [];
 
 
+// function này tạo tài khoản cho ng dùng mới
 model.register = async(data) => {
     try {
         const response = await firebase.auth().createUserWithEmailAndPassword(data.email, data.password);
@@ -33,7 +35,7 @@ model.newUser = (data) => {
     firebase.firestore().collection('users').doc(data.email).set(dataToCreate);
 };
 
-
+// function này check login bằng email và pw
 model.login = (data) => {
     try {
         firebase.auth().signInWithEmailAndPassword(data.email, data.password);
@@ -45,6 +47,7 @@ model.login = (data) => {
     }
 };
 
+// function này check login bằng tk liên kết với google
 model.loginGoogleAccount = () => {
     baseProvider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(baseProvider).then(function(result) {
@@ -54,6 +57,8 @@ model.loginGoogleAccount = () => {
         console.log(error);
     })
 }
+
+//function này check Role tài khoản
 model.checkRole = async(email) => {
     const docRef = firebase.firestore().collection("admins").doc(email);
     let data = undefined;
@@ -68,10 +73,28 @@ model.checkRole = async(email) => {
             data = 'user';
             model.currentRole = data;
         }
-        //đoạn này lưu role lên localstoragr, tẹo lấy xuống
+        //đoạn này lưu role lên localstorage, tẹo lấy xuống
         localStorage.setItem('currentRole', data);
     }).catch(function(error) {
         console.log("Error getting document:", error);
     });
-
 }
+
+//function này lấy Product data về từ firebase
+model.getProductData = async() => {
+    //đoạn này bóc tách dữ liệu từ db trả về
+    const response = await firebase.firestore().collection("products").get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            const data = {
+                id: doc.id,
+                ...doc.data()
+            }
+            model.productData.push(data);
+            view.showListProduct();
+        });
+    });
+
+
+
+};

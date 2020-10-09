@@ -80,7 +80,31 @@ component.home = `
 </div>`;
 
 component.admin = `
-<div class="home-container">
-    <div id="welcome-header"></div>
-    <button class="btn cursor-pointer" id="logOutBtn" type="submit">log out</button>
-</div>`;
+<div class="admin-container">
+        <div id="header"></div>
+        <button class="btn cursor-pointer" id="logOutBtn" type="submit">log out</button>
+
+        <div class="function">
+            <button class="btn cursor-pointer" id="btnProduct" type="button">Manage Products</button>
+            <button class="btn cursor-pointer" id="btnOrder" type="button">Manage Orders</button>
+            <button class="btn cursor-pointer" id="btnAccount" type="button">Manage Accounts</button>
+        </div>
+        <div class="main">
+            <h2>List of product</h2><br>
+            <table id="table-product" style="border: 1px solid;">
+                <tr>
+                    <th>Product ID</th>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    
+                    <th>Available</th>
+                    <th>Information</th>
+                </tr>
+                <tbody id="tbody">
+                
+                    <!-- js Code -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+`;

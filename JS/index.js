@@ -18,8 +18,6 @@ window.onload = () => {
                 email: user.email,
             }
             if (user.emailVerified) {
-                console.log(model.currentRole);
-
                 if (model.currentRole == 'admin') {
                     view.setActiveScreen('admin');
                 } else if (model.currentRole == 'user') {
@@ -35,18 +33,4 @@ window.onload = () => {
         }
     });
 
-};
-
-const getManyDocment = (response) => {
-    const listData = [];
-    for (const doc of response.docs) {
-        listData.push(getOneDocument(doc));
-    }
-    return listData;
-};
-
-const getOneDocument = (response) => {
-    const data = response.data();
-    data.id = response.id;
-    return data;
 };

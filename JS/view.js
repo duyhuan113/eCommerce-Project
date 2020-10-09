@@ -1,6 +1,6 @@
 const view = {};
 
-view.setActiveScreen = (screenName, fromCreateConversation = false) => {
+view.setActiveScreen = (screenName) => {
     switch (screenName) {
         case 'registerPage':
             document.getElementById('app').innerHTML = component.registerPage;
@@ -57,22 +57,21 @@ view.setActiveScreen = (screenName, fromCreateConversation = false) => {
                 model.currentUser = {};
                 localStorage.removeItem('currentRole');
             });
-            console.log(model.currentUser);
+            console.log(model.currentUser.displayName);
             console.log(model.currentRole);
             view.setWelcomeMessage('welcome-header', `Welcome eCommerce Project ,${model.currentUser.displayName} `);
             break;
         case 'admin':
             document.getElementById('app').innerHTML = component.admin;
-            console.log(model.currentUser);
-            console.log(model.currentRole);
             logOutBtn = document.getElementById('logOutBtn');
             logOutBtn.addEventListener('click', () => {
                 firebase.auth().signOut();
                 model.currentUser = {};
                 localStorage.removeItem('currentRole');
             });
+            model.getProductData();
 
-            view.setWelcomeMessage('welcome-header', `Welcome Back Admin,${model.currentUser.displayName}`);
+
             break;
     }
 };
@@ -80,7 +79,30 @@ view.setActiveScreen = (screenName, fromCreateConversation = false) => {
 view.setErrorMessage = (elementId, content) => {
     document.getElementById(elementId).innerText = content;
 };
-
+// function này thuộc Admin
 view.setWelcomeMessage = (elementId, content) => {
     document.getElementById(elementId).innerText = content;
 };
+
+// function này thuộc Admin, đoạn này show bảng sản phẩm
+view.showListProduct = () => {
+
+    const tbody = document.getElementById('tbody');
+    tbody.innerHTML = '';
+    for (let data of model.productData) {
+
+        tbody.insertAdjacentHTML('beforeend', `
+
+        <th>${data.id}</th>
+        <th><img class="img" src="${data.img[0]}" alt=""></th>
+        <th>${data.name}</th>
+        <th>${data.availableQuantity}</th>
+        <th><button id="btnDetail" class="btn">Detail</button></br>
+        <button id="btnDelete" class="btn">Delete</button></br>
+        <button id="btnUpdate" class="btn">Update</button>
+        
+        </th>
+        `);
+    }
+
+}
