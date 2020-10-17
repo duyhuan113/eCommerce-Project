@@ -1,0 +1,381 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+html {
+    font-family: 'Lato', 'san-serif';
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    background-color: #ecf0f1;
+}
+
+
+/* -------------------------------------------------------- */
+
+
+/* -------------------------code tai su dung------------------------- */
+
+
+/* -------------------------------------------------------- */
+
+.clearfix::after {
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+.row {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+
+/* ---------------------------------------------------- */
+
+
+/* --------------------------top header-------------------------- */
+
+#header {
+    float: left;
+    height: 133px;
+    width: 100%;
+    background-color: #1e1f29;
+}
+
+.top_header {
+    float: left;
+    height: 30px;
+    width: 100%;
+    background-color: #1e1f29;
+}
+
+.header_links_pull_left {
+    float: left;
+    line-height: 30px;
+    margin-left: 170px;
+}
+
+.header_links_pull_left li {
+    list-style: none;
+    float: left;
+    line-height: 30px;
+    margin-left: 20px;
+}
+
+.header_links_pull_left li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 10px;
+    transition: all 0.5s;
+}
+
+.header_links_pull_left li a:hover {
+    color: red;
+}
+
+.header_links_pull_right {
+    float: right;
+    margin-right: 161.5px;
+}
+
+.header_links_pull_right li {
+    float: right;
+    list-style: none;
+    line-height: 30px;
+    margin-right: 30px;
+}
+
+.header_links_pull_right li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 10px;
+    transition: all 0.5s;
+}
+
+.header_links_pull_right li a:hover {
+    color: red;
+}
+
+
+/* --------------------------end top header-------------------------- */
+
+.main_header {
+    float: left;
+    width: 100%;
+    height: 100px;
+    background: #000000;
+}
+
+.main_header img {
+    margin-top: 14px;
+    width: 210px;
+    height: 80px;
+    float: left;
+    margin-left: 170px;
+}
+
+.function_login {
+    float: right;
+    margin-right: 165px;
+    margin-top: 4px;
+}
+
+.function_login li {
+    float: left;
+    line-height: 100px;
+    margin-right: 30px;
+}
+
+.function_login li a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.5s;
+}
+
+.function_login li a:hover {
+    color: red;
+}
+
+
+/* --------------------------search-------------------------- */
+
+.search_box {
+    float: left;
+    width: 547px;
+    height: 40px;
+    margin-top: 30px;
+    margin-left: 142px;
+    background-color: black;
+    border: 2px solid white;
+}
+
+.search_txt {
+    float: left;
+    width: 505px;
+    height: 38px;
+    padding-left: 10px;
+    border: none;
+    outline: none;
+}
+
+.search_btn {
+    float: left;
+    padding: 3px 3.5px;
+    color: white;
+    margin-top: 3px;
+    margin-left: 7px;
+    transition: all 0.3s;
+    font-size: 20px;
+}
+
+.search_btn:hover {
+    color: #fdcb6e;
+}
+
+
+/* --------------------------main_item-------------------------- */
+
+.list {
+    float: left;
+    height: 50px;
+    width: 100%;
+    border-top: 2px solid red;
+    border-bottom: 3px solid #E4E7ED
+}
+
+.main_nav {
+    float: left;
+    /* margin-left: 470px; */
+    line-height: 50px;
+    margin-left: 164px;
+}
+
+.main_nav li {
+    list-style: none;
+    float: left;
+    margin-left: 30px;
+    position: relative;
+}
+
+.main_nav li a {
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.main_nav li a:hover {
+    color: red;
+    border-bottom: 1px solid red;
+}
+
+.sub_menu {
+    position: absolute;
+    box-shadow: 0 8px 8px 0 rgba(103, 151, 255, .11), 0 12px 18px 0 rgba(103, 151, 255, .11);
+    display: none;
+}
+
+.drop_down:hover .sub_menu,
+.drop_down:active .sub_menu {
+    display: block;
+}
+
+.sub_menu li {
+    background-color: #ecf0f1;
+    width: 120px;
+    text-align: center;
+    margin-left: -13px;
+    border-bottom: 1px solid black;
+}
+
+.hot_item {
+    float: left;
+    width: 80%;
+    margin-left: 10%;
+    background-color: #f1f2f6;
+}
+
+.title {
+    float: left;
+    margin-left: 12.5%;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    font-size: 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-bottom: 2px solid black;
+}
+
+.item {
+    height: 380px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.item:hover {
+    box-shadow: 0 8px 8px 0 rgba(103, 151, 255, .11), 0 12px 18px 0 rgba(103, 151, 255, .11);
+}
+
+.item_img img {
+    height:240px;
+    
+    border-radius: 8px 8px 0px 0px;
+}
+
+.item_title {
+    width: 100%;
+    margin-bottom: 5px;
+    margin-left: 30px;
+}
+
+.item_title a {
+    margin-left: 5px;
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.item_title a:hover {
+    color: blue;
+}
+
+.item_price {
+    width: 100%;
+    background-color: white;
+    margin-left: 10px;
+    border-radius: 20px;
+}
+
+.item_price p {
+    float: left;
+    font-size: 18px;
+    width: 100px;
+    color: #c0392b;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.buy_now {
+    float: left;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.buy_now p {
+    width: 90%;
+    padding: 10px 0;
+    margin-left: 5%;
+    background-color: #e55039;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    text-transform: uppercase;
+    transition: all 0.5s;
+}
+
+.buy_now p:hover {
+    background-color: #b71540;
+}
+
+
+/* --------------------------mess-------------------------- */
+
+
+/*.mess {
+    float: left;
+    position: fixed;
+    top: 70%;
+    left: 95%;
+}
+.mess img {
+    float: left;
+    height: 55px;
+    padding: 10px 10px;
+    background-color: white;
+    border-radius: 50%;
+}
+/* --------------------------footer-------------------------- */
+
+.footer {
+    float: left;
+    width: 100%;
+    margin-top: 50px;
+    background-color: black;
+    color: white;
+}
+
+.footer h3 {
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.footer ul li:hover {
+    color: crimson;
+}
+
+.footer ul li a {
+    color: white;
+}
+
+.footer ul li a:hover {
+    color: crimson;
+}
+
+.footer ul li img {
+    width: 150px;
+    margin-left: -10px;
+}

@@ -91,10 +91,27 @@ model.getProductData = async() => {
                 ...doc.data()
             }
             model.productData.push(data);
-            view.showListProduct();
         });
+        if(model.currentRole =='admin' ){
+            view.showListProductAdmin();    
+        }else if(model.currentRole =='user' ){
+            view.showListProductHome();
+        }
     });
+};
 
+//function này dùng để delete product
+
+model.deleteProduct = (data) => {
+    firebase.firestore().collection("products").doc(data.id).delete().then(function() {
+        console.log("Document successfully deleted!");
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    });
+};
+
+
+model.addProduct = (data) => {
 
 
 };
