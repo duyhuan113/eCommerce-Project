@@ -1,6 +1,6 @@
 const component = {};
 component.registerPage = `
-<div class="register-container">
+    <div class="register-container">
         <form id="register-form">
             <div class="register-header">MindX Chat</div>
             <div class="name-wrapper">
@@ -50,33 +50,35 @@ component.registerPage = `
 `;
 
 component.loginPage = `
-<div class="login-container">
-    <form id="login-form">
-        <div class="login-header">MindX Chat</div>
+    <div class="login-container">
+        <form id="login-form">
+            <div class="login-header">MindX Chat</div>
 
-        <div class="input-wrapper">
-            <input type="text" placeholder="Email..." name="email">
-            <div class="error" id="email-error"></div>
-        </div>
-        <div class="input-wrapper">
-            <input type="password" placeholder="Password..." name="password">
-            <div class="error" id="password-error"></div>
-        </div>
-        <div class="form-action">
-            <div>Don't have Account?<span id="redirect-register" class="cursor-pointer"> Create Account </span></div>
-            <button class="btn cursor-pointer" type="submit">Login</button>
-        </div>
-        <div class="login-link">
-            <button id="googleAccountBtn" class="btn cursor-pointer" type="submit">Google Sign In</button>
-        </div>
-        
-    </form>
-</div>`;
+            <div class="input-wrapper">
+                <input type="text" placeholder="Email..." name="email">
+                <div class="error" id="email-error"></div>
+            </div>
+            <div class="input-wrapper">
+                <input type="password" placeholder="Password..." name="password">
+                <div class="error" id="password-error"></div>
+            </div>
+            <div class="form-action">
+                <div>Don't have Account?<span id="redirect-register" class="cursor-pointer"> Create Account </span></div>
+                <button class="btn cursor-pointer" type="submit">Login</button>
+            </div>
+            <div class="login-link">
+                <button id="googleAccountBtn" class="btn cursor-pointer" type="submit">Google Sign In</button>
+            </div>
+            
+        </form>
+    </div>\
+    
+`;
 
 
 
 component.admin = `
-<div class="admin-container">
+    <div class="admin-container">
         <div id="header"></div>
         <button class="btn cursor-pointer" id="logOutBtn" type="submit">log out</button>
 
@@ -105,12 +107,24 @@ component.admin = `
     </div>
 `;
 
-component.home = `
-<div class="home-container">
+component.homePage = `
+    
+    <p class="title">Hot products</p>
+    <section id="product_section" class="hot_item">
+    
+    <!-- js code  đoạn này cũng thế-->
+
+    </section>
+    <!-- login -->
+
+    <!-- end login -->
+`;
+component.headerHome = `
+    <div class="home-container">
     <div id="welcome-header"></div>
     <button class="btn cursor-pointer" id="logOutBtn" type="submit">log out</button>
-</div>
-<header>
+    </div>
+    <header>
         <div id="header">
             <!-- TOP HEADER -->
             <div id="top_header">
@@ -143,39 +157,34 @@ component.home = `
             </div>
             <!-- END MAIN HEADER -->
         </div>
+    
+        <div class="list">
+            <ul class="main_nav">
+                <li id= "homePage"><a href="/index.html">Home</a></li>
+                <li><a href="/aboutus.html">About us</a></li>
+                <li class="drop_down"><a href="">Smartphones</a>
+                    <ul id="subMenu" class="sub_menu">
+
+                    <!-- js code, đoạn này vào view.js tìm -->
+
+                    </ul>
+                </li>
+                <li class="drop_down"><a href="">Smartwatch</a>
+                    <ul class="sub_menu">
+                        <li><a href="">Apple Watch</a></li>
+                        <li><a href="">Samsung Watch</a></li>
+                        <li><a href="">Mi Band</a></li>
+                    </ul>
+                </li>
+                <li><a href="/contact.html">Contact</a></li>
+                <hr>
+            </ul>
+        </div>
     </header>
     <!-- END HEADER -->
-    <div class="list">
-        <ul class="main_nav">
-            <li><a href="/index.html">Home</a></li>
-            <li><a href="/aboutus.html">About us</a></li>
-            <li class="drop_down"><a href="">Smartphones</a>
-                <ul class="sub_menu">
-                    <li><a href="">iPhone</a></li>
-                    <li><a href="">Samsung</a></li>
-                    <li><a href="">Vsmart</a></li>
-                    <li><a href="">Xiaomi</a></li>
-                </ul>
-            </li>
-            <li class="drop_down"><a href="">Smartwatch</a>
-                <ul class="sub_menu">
-                    <li><a href="">Apple Watch</a></li>
-                    <li><a href="">Samsung Watch</a></li>
-                    <li><a href="">Mi Band</a></li>
-                </ul>
-            </li>
-            <li><a href="/contact.html">Contact</a></li>
-            <hr>
-        </ul>
-    </div>
-    <p class="title">Hot products</p>
-    <section id="product_section" class="hot_item">
-        
+`;
 
-    </section>
-    <!-- login -->
-
-    <!-- end login -->
+component.footerHome = `
     <footer class="footer">
         <div class="row">
             <div class="col span-2-of-4">
@@ -206,4 +215,138 @@ component.home = `
                 </ul>
             </div>
         </div>
-    </footer>`;
+    </footer>
+    `;
+
+
+
+component.detailProduct = `
+    <p class="path">Home / Smartphone / iPhone 11 Pro Max</p>
+    <section class="detail_product">
+        <div class="row">
+            <div class="col span-2-of-4">
+                <div class="image_product">
+                    <div id="slider">
+                        <input type="radio" name="slider" id="slide1" checked>
+                        <input type="radio" name="slider" id="slide2">
+                        <input type="radio" name="slider" id="slide3">
+                        <input type="radio" name="slider" id="slide4">
+                        <div id="slides">
+                            <div id="overflow">
+                                <div id="innerImg" class="inner">
+                                    <!--JS CODE-->
+                                </div>
+                            </div>
+                        </div>
+                        <div id="controls">
+                            <label for="slide1"></label>
+                            <label for="slide2"></label>
+                            <label for="slide3"></label>
+                            <label for="slide4"></label>
+                        </div>
+                        <div id="bullets">
+                            <label for="slide1"></label>
+                            <label for="slide2"></label>
+                            <label for="slide3"></label>
+                            <label for="slide4"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col span-2-of-4">
+                <div id="inforProduct" class="infor_product">
+                    <!--JS CODE-->
+                    <div class="checkout">
+                        <li><a href="#">ADD TO CART</a></li>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="desProduct" class="descriptionProduct">
+            <div class="des_video_container">
+            <!--JS CODE-->
+            </div>
+            <div class="des_word">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, aliquid blanditiis adipisci consectetur quisquam consequuntur reprehenderit corporis illo non dolore omnis deleniti, rem ipsa perferendis ipsam incidunt? Reprehenderit, culpa aut.</p>
+            </div>
+        </div>
+        <!--relate product-->
+        <div class="relate_product">
+            <h3>RELATE PRODUCT</h3>
+            <div class="row">
+                <div class="col span-1-of-4">
+                    <div class="item">
+                        <div class="relate_img">
+                            <a href=""><img src="https://fptshop.com.vn/Uploads/Originals/2020/2/12/637170945536714482_ss-s20-plus-den-1.png" alt=""></a>
+                        </div>
+                        <div class="item_title"><a href="">Samsung Galaxy S20+</a></div>
+                        <div class="item_price">
+                            <p>750$</p>
+
+                        </div>
+                        <div class="buy_now">
+                            <a href="#">
+                                <p>ADD TO CART</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col span-1-of-4">
+                    <div class="item">
+                        <div class="relate_img">
+                            <a href=""><img src="https://fptshop.com.vn/Uploads/Originals/2020/2/12/637170935336423061_ss-s20-ultra-xam-1.png" alt=""></a>
+                        </div>
+                        <div class="item_title"><a href="">Samsung Galaxy S20 Ultra</a></div>
+                        <div class="item_price">
+                            <p>1165 $
+                            </p>
+                        </div>
+                        <div class="buy_now">
+                            <a href="#">
+                                <p>ADD TO CART</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col span-1-of-4">
+                    <div class="item">
+                        <div class="relate_img">
+                            <a href=""><img src="https://fptshop.com.vn/Uploads/Originals/2020/9/4/637348296150310219_ss-z-fold-2-gold-1.png" alt=""></a>
+                        </div>
+                        <div class="item_title"><a href="">Samsung Galaxy Z Fold2 5G</a></div>
+                        <div class="item_price">
+                            <p>2158 $
+                            </p>
+                        </div>
+                        <div class="buy_now">
+                            <a href="#">
+                                <p>ADD TO CART</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col span-1-of-4">
+                    <div class="item">
+                        <div class="relate_img">
+                            <a href=""><img src="https://fptshop.com.vn/Uploads/Originals/2020/2/12/637171004138250826_ss-Z-flip-den-1.png" alt=""></a>
+                        </div>
+                        <div class="item_title"><a href="">Samsung Galaxy Z Flip</a></div>
+                        <div class="item_price">
+                            <p>1252 $
+                            </p>
+
+                        </div>
+                        <div class="buy_now">
+                            <a href="#">
+                                <p>ADD TO CART</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end relate product-->
+    </section>
+    <!-- login -->
+    <!-- end login -->
+    `;

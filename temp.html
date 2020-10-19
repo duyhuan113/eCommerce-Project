@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="CSS/admin.css">
     <link rel="stylesheet" href="CSS/home.css">
     <link rel="stylesheet" href="CSS/griddemo1.css">
+    <link rel="stylesheet" href="CSS/detailProductHome.css">
 </head>
 <script>
     // When the user clicks on <div>, open the popup
@@ -18,157 +19,286 @@
 </script>
 
 <body>
-    
-    <section class="hot_item">
+    <header>
+        <div id="header">
+            <!-- TOP HEADER -->
+            <div id="top_header">
+                <div class="container">
+                    <ul class="header_links_pull_left">
+                        <li><a href="#"><i class="fas fa-phone-square"></i>  0387798072</a></li>
+                        <li><a href="#"><i class="far fa-envelope"></i> BTECSTORE@FPT.EDU.VN</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> 107 Nguyen Phong Sac - Dich Vong Hau - Cau Giay - Ha Noi.</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- END TOP HEADER -->
+            <!-- MAIN HEADER -->
+            <div class="main_header">
+                <img src="IMG/logoshop.png" alt="">
+                <div class="search_box">
+                    <input class="search_txt" type="text" name="" placeholder="Search..." />
+                    <a class="search_btn" href="#">
+                        <i class="fas fa-search small-icon" id="icon"></i>
+                    </a>
+                </div>
+                <ul class="function_login">
+                    <li><a href=""><i class="far fa-bell"></i></a></li>
+                    <li><a href=""><i class="fas fa-shopping-cart"></i></a></li>
+                    <li><a href="" class="login"><i class="fas fa-user"></i></a></li>
+                </ul>
+            </div>
+            <!-- END MAIN HEADER -->
+        </div>
+    </header>
+    <!-- END HEADER -->
+    <div class="list">
+        <ul class="main_nav">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/aboutus.html">About us</a></li>
+            <li class="drop_down"><a href="">Smartphones</a>
+                <ul class="sub_menu">
+                    <li><a href="">iPhone</a></li>
+                    <li><a href="">Samsung</a></li>
+                    <li><a href="">Vsmart</a></li>
+                    <li><a href="">Xiaomi</a></li>
+                </ul>
+            </li>
+            <li class="drop_down"><a href="">Smartwatch</a>
+                <ul class="sub_menu">
+                    <li><a href="">Apple Watch</a></li>
+                    <li><a href="">Samsung Watch</a></li>
+                    <li><a href="">Mi Band</a></li>
+                </ul>
+            </li>
+            <li><a href="/contact.html">Contact</a></li>
+            <hr>
+        </ul>
+    </div>
+    <p class="path">Home / Smartphone / iPhone 11 Pro Max</p>
+    <section class="detail_product">
         <div class="row">
-            <div class="col span-1-of-4">
-                <div class="item">
-                    <div class="item_img">
-                        <a href=""><img src="https://fptshop.com.vn/Uploads/Originals/2020/2/12/637170945536714482_ss-s20-plus-den-1.png" alt=""></a>
-                    </div>
-                    <div class="item_title"><a href="">Samsung Galaxy S20+</a></div>
-                    <div class="item_price">
-                        <p>750$</p>
-
-                    </div>
-                    <div class="buy_now">
-                        <a href="#">
-                            <p>ADD TO CART</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col span-1-of-4">
-                <div class="item">
-                    <div class="item_img">
-                        <a href=""><img src="https://fptshop.com.vn/Uploads/Originals/2020/2/12/637170935336423061_ss-s20-ultra-xam-1.png" alt=""></a>
-                    </div>
-                    <div class="item_title"><a href="">Samsung Galaxy S20 Ultra</a></div>
-                    <div class="item_price">
-                        <p>1165 $
-                        </p>
-                    </div>
-                    <div class="buy_now">
-                        <a href="#">
-                            <p>ADD TO CART</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col span-1-of-4">
-                <div class="item">
-                    <div class="item_img">
-                        <a href=""><img src="https://fptshop.com.vn/Uploads/Originals/2020/9/4/637348296150310219_ss-z-fold-2-gold-1.png" alt=""></a>
-                    </div>
-                    <div class="item_title"><a href="">Samsung Galaxy Z Fold2 5G</a></div>
-                    <div class="item_price">
-                        <p>2158 $
-                        </p>
-
-                    </div>
-                    <div class="buy_now">
-                        <a href="#">
-                            <p>ADD TO CART</p>
-                        </a>
+            <div class="col span-2-of-4">
+                <div class="image_product">
+                    <div id="slider">
+                        <input type="radio" name="slider" id="slide1" checked>
+                        <input type="radio" name="slider" id="slide2">
+                        <input type="radio" name="slider" id="slide3">
+                        <input type="radio" name="slider" id="slide4">
+                        <div id="slides">
+                            <div id="overflow">
+                                <div class="inner">
+                                    <div class="slide slide_1">
+                                        <div class="slide-content">
+                                            <img src="https://fptshop.com.vn/Uploads/Originals/2019/9/11/637037687763926758_11-pro-max-xanh.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="slide slide_2">
+                                        <div class="slide-content">
+                                            <img src="https://fptshop.com.vn/Uploads/Originals/2019/9/11/637037687765081535_11-pro-max-vang.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="slide slide_3">
+                                        <div class="slide-content">
+                                            <img src="https://fptshop.com.vn/Uploads/Originals/2019/9/11/637037687763107876_11-pro-max-trang.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="slide slide_4">
+                                        <div class="slide-content">
+                                            <img src="https://fptshop.com.vn/Uploads/Originals/2019/9/11/637037687764284663_11-pro-max-den.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="controls">
+                            <label for="slide1"></label>
+                            <label for="slide2"></label>
+                            <label for="slide3"></label>
+                            <label for="slide4"></label>
+                        </div>
+                        <div id="bullets">
+                            <label for="slide1"></label>
+                            <label for="slide2"></label>
+                            <label for="slide3"></label>
+                            <label for="slide4"></label>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col span-1-of-4">
-                <div class="item">
-                    <div class="item_img">
-                        <a href=""><img src="https://fptshop.com.vn/Uploads/Originals/2020/2/12/637171004138250826_ss-Z-flip-den-1.png" alt=""></a>
-                    </div>
-                    <div class="item_title"><a href="">Samsung Galaxy Z Flip</a></div>
-                    <div class="item_price">
-                        <p>1252 $
-                        </p>
+            <div class="col span-2-of-4">
 
+                <div class="infor_product">
+                    <h4>iPhone 11 Pro Max</h4>
+                    <h3>1165 $</h3>
+                    <div class="item_price">
+
+                        <ul>
+                            <li>
+                                <h1>Screen:</h1>
+                                <p>6.5", Super Retina XDR, OLED, 1242 x 2688 Pixel </p>
+                            </li>
+                            <li>
+                                <h1>Operating system:</h1>
+                                <p> 2688 Pixel </p>
+                            </li>
+                            <li>
+                                <h1>Rear camera:</h1>
+                                <p> 1242 x 2688 Pixel </p>
+                            </li>
+                            <li>
+                                <h1>CPU:</h1>
+                                <p> x 2688 Pixel </p>
+                            </li>
+                            <li>
+                                <h1>RAM:</h1>
+                                <p> 2688 Pixel </p>
+                            </li>
+                            <li>
+                                <h1>Internal Memory:</h1>
+                                <p> 2688 Pixel </p>
+                            </li>
+                            <li>
+                                <h1>Battery Capacity:</h1>
+                                <p> x 2688 Pixel </p>
+                            </li>
+                            <li>
+                                <h1>Quantity:</h1>
+                                <div class="def-number-input number-input safari_only">
+                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+                                    <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="buy_now">
-                        <a href="#">
-                            <p>ADD TO CART</p>
-                        </a>
+                    <div class="checkout">
+                        <li><a href="#">ADD TO CART</a></li>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col span-1-of-4">
-                <div class="item">
-                    <div class="item_img">
-                        <a href=""><img src="https://fptshop.com.vn/Uploads/Originals/2019/9/11/637037687763926758_11-pro-max-xanh.png" alt=""></a>
-                    </div>
-                    <div class="item_title"><a href="">iPhone 11 Pro Max 64GB</a></div>
-                    <div class="item_price">
-                        <p>1208 $
-                        </p>
+        <div class="descriptionProduct">
+            <div class="des_video">
+                <iframe width="700" height="500" src="https://www.youtube.com/embed/8O4WL8B6LS4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe> 
+            </div>
+            <div class="des_word">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, aliquid blanditiis adipisci consectetur quisquam consequuntur reprehenderit corporis illo non dolore omnis deleniti, rem ipsa perferendis ipsam incidunt? Reprehenderit, culpa aut.</p>
+            </div>
+        </div>
+        <!--relate product-->
+        <div class="relate_product">
+            <h3>RELATE PRODUCT</h3>
+            <div class="row">
+                <div class="col span-1-of-4">
+                    <div class="item">
+                        <div class="relate_img">
+                            <a href=""><img src="https://fptshop.com.vn/Uploads/Originals/2020/2/12/637170945536714482_ss-s20-plus-den-1.png" alt=""></a>
+                        </div>
+                        <div class="item_title"><a href="">Samsung Galaxy S20+</a></div>
+                        <div class="item_price">
+                            <p>750$</p>
 
+                        </div>
+                        <div class="buy_now">
+                            <a href="#">
+                                <p>ADD TO CART</p>
+                            </a>
+                        </div>
                     </div>
-                    <div class="buy_now">
-                        <a href="#">
-                            <p>ADD TO CART</p>
-                        </a>
+                </div>
+                <div class="col span-1-of-4">
+                    <div class="item">
+                        <div class="relate_img">
+                            <a href=""><img src="https://fptshop.com.vn/Uploads/Originals/2020/2/12/637170935336423061_ss-s20-ultra-xam-1.png" alt=""></a>
+                        </div>
+                        <div class="item_title"><a href="">Samsung Galaxy S20 Ultra</a></div>
+                        <div class="item_price">
+                            <p>1165 $
+                            </p>
+
+                        </div>
+                        <div class="buy_now">
+                            <a href="#">
+                                <p>ADD TO CART</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col span-1-of-4">
+                    <div class="item">
+                        <div class="relate_img">
+                            <a href=""><img src="https://fptshop.com.vn/Uploads/Originals/2020/9/4/637348296150310219_ss-z-fold-2-gold-1.png" alt=""></a>
+                        </div>
+                        <div class="item_title"><a href="">Samsung Galaxy Z Fold2 5G</a></div>
+                        <div class="item_price">
+                            <p>2158 $
+                            </p>
+
+                        </div>
+                        <div class="buy_now">
+                            <a href="#">
+                                <p>ADD TO CART</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col span-1-of-4">
+                    <div class="item">
+                        <div class="relate_img">
+                            <a href=""><img src="https://fptshop.com.vn/Uploads/Originals/2020/2/12/637171004138250826_ss-Z-flip-den-1.png" alt=""></a>
+                        </div>
+                        <div class="item_title"><a href="">Samsung Galaxy Z Flip</a></div>
+                        <div class="item_price">
+                            <p>1252 $
+                            </p>
+
+                        </div>
+                        <div class="buy_now">
+                            <a href="#">
+                                <p>ADD TO CART</p>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col span-1-of-4">
-                <div class="item">
-                    <div class="item_img">
-                        <a href=""><img src="https://fptshop.com.vn/Uploads/Originals/2019/9/11/637037652457717299_11-den.png" alt=""></a>
-                    </div>
-                    <div class="item_title"><a href="">iPhone 11 64GB</a></div>
-                    <div class="item_price">
-                        <p>777 $
-                        </p>
-
-                    </div>
-                    <div class="buy_now">
-                        <a href="#">
-                            <p>ADD TO CART</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col span-1-of-4">
-                <div class="item">
-                    <div class="item_img">
-                        <a href=""><img src="https://fptshop.com.vn/Uploads/Originals/2020/4/20/637229926607690293_ip-se-silver-1.png" alt=""></a>
-                    </div>
-                    <div class="item_title"><a href="">iPhone SE (2020) 64GB</a></div>
-                    <div class="item_price">
-                        <p>475 $
-                        </p>
-
-                    </div>
-                    <div class="buy_now">
-                        <a href="#">
-                            <p>ADD TO CART</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col span-1-of-4">
-                <div class="item">
-                    <div class="item_img">
-                        <a href=""><img src="https://fptshop.com.vn/Uploads/Originals/2019/1/21/636836609818617272_ip7-plus-hong-1.png" alt=""></a>
-                    </div>
-                    <div class="item_title"><a href="">iPhone 7 Plus 32GB</a></div>
-                    <div class="item_price">
-                        <p>409 $
-                        </p>
-
-                    </div>
-                    <div class="buy_now">
-                        <a href="#">
-                            <p>ADD TO CART</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-           
-
-            </div>
+        </div>
+        <!-- end relate product-->
     </section>
+    <!-- login -->
+
+    <!-- end login -->
+    <footer class="footer">
+        <div class="row">
+            <div class="col span-2-of-4">
+                <h3>BTEC STORE</h3>
+                <ul>
+                    <li>
+                        <a href="https://www.google.com/maps/place/107+Nguy%E1%BB%85n+Phong+S%E1%BA%AFc,+D%E1%BB%8Bch+V%E1%BB%8Dng+H%E1%BA%ADu,+C%E1%BA%A7u+Gi%E1%BA%A5y,+H%C3%A0+N%E1%BB%99i,+Vi%E1%BB%87t+Nam/@21.0403351,105.7880043,17z/data=!3m1!4b1!4m5!3m4!1s0x3135ab36e43cf6eb:0xc420d35b1d1a47ac!8m2!3d21.0403351!4d105.790193?hl=vi-VN"><i class="fas fa-map-marker-alt"></i> 107 Nguyen Phong Sac, Dich Vong Hau, Cau Giay, Ha Noi</a>
+                    </li>
+                    <li><a href=""><i class="far fa-envelope"></i> BTECFPT@FPT.EDU.VN</a></li>
+                    <li><a href=""><i class="fas fa-phone-square"></i> 01234567893</a></li>
+                </ul>
+            </div>
+            <div class="col span-1-of-4">
+                <h3>CUSTOMER SUPPORT</h3>
+                <ul>
+                    <li>SHOPPING GUIDE </li>
+                    <li>PAYMENT GUIDE </li>
+                    <li>RETURN POLICY </li>
+                </ul>
+            </div>
+            <div class="col span-1-of-4">
+                <h3>CONTACT US WITH</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/BTEC-STORE-104462988106601"><i class="fab fa-facebook-square"></i> FACEBOOK </a></li>
+                    <li><a href="https://mail.google.com/mail/u/1/#inbox"><i class="far fa-envelope"></i> EMAIL </a></li>
+                    <li><img src="https://goccuaphu.com/wp-content/uploads/2017/10/huong-dan-tao-tai-khoan-paypal-cho-nguoi-moi-tu-a-z.png" alt=""></li>
+
+                </ul>
+            </div>
+        </div>
+    </footer>
+ 
 </body>
 
 </html>

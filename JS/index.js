@@ -18,10 +18,12 @@ window.onload = () => {
                 email: user.email,
             }
             if (user.emailVerified) {
-                if (model.currentRole == 'admin') {
-                    view.setActiveScreen('admin');
-                } else if (model.currentRole == 'user') {
-                    view.setActiveScreen('home');
+                if (model.currentLocationScreen == 'admin') {
+                    view.setActiveScreen(model.currentLocationScreen);
+                } else if (model.currentLocationScreen == 'homePage') {
+                    view.setActiveScreen(model.currentLocationScreen);
+                } else if (model.currentLocationScreen == 'detailProductHome') {
+                    view.setActiveScreen(model.currentLocationScreen);
                 }
             } else {
                 alert('Please Verified Your Email');
