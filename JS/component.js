@@ -153,7 +153,7 @@ component.headerHome = `
                 </div>
                 <ul class="function_login">
                     <li><a href=""><i class="far fa-bell"></i></a></li>
-                    <li><a href=""><i class="fas fa-shopping-cart"></i></a></li>
+                    <li><a href="" onclick="model.cartBtn()"><i class="fas fa-shopping-cart"></i></a></li>
                     <li><a href="" class="login"><i class="fas fa-user"></i></a></li>
                 </ul>
             </div>
@@ -293,3 +293,93 @@ component.detailProduct = `
 
     </section>
     `;
+
+    component.cart =`
+    <div class="bath">
+    <h1>CHECKOUT</h1>
+    <p>HOME / CHECKOUT</p>
+    </div>
+    <section class="checkout">
+        <div class=""></div>
+        <div class="row">
+            <div class="col span-3-of-6">
+                <div class="billing_details">
+                    <div class="section_title">
+                        <h3 class="title">BILLING ADDRESS</h3>
+                    </div>
+                    <div class="form_group">
+                        <input class="input" type="text" name="first-name" placeholder="First Name" required>
+                    </div>
+                    <div class="form_group">
+                        <input class="input" type="text" name="last-name" placeholder="Last Name" required>
+                    </div>
+                    <div class="form_group">
+                        <input class="input" type="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="form_group">
+                        <input class="input" type="text" name="address" placeholder="Address" required>
+                    </div>
+                    <div class="form_group">
+                        <input class="input" type="text" name="city" placeholder="City" required>
+                    </div>
+                    <div class="form_roup">
+                        <input class="input" type="text" name="zip-code" placeholder="ZIP Code" required>
+                    </div>
+                    <div class="form_group">
+                        <input class="input" type="tel" name="tel" placeholder="Telephone" required>
+                    </div>
+                    <div class="bill_notes">
+                        <input class="input" placeholder="Notes"></input required>
+                    </div>
+                </div>
+            </div>
+            <div class="col span-3-of-6">
+                <div class="order_detail">
+                    <div class="section_title">
+                        <h3 class="title">ORDER DETAIL</h3>
+                    </div>
+                    <table class="order_detail_table">
+                        <tbody>
+                            <tr>
+                                <td class="product_title_order">Product</td>
+                                <td class="quantity_title_order">Quantity</td>
+                                <td class="total_title_order">Total</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="scroll_table">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="scroll_table_img"><img src="https://fptshop.com.vn/Uploads/Originals/2020/8/5/637322682441632129_ss-note-20-ultra-gold-1.png" alt=""></td>
+                                    <td class="scroll_table_name">Samsung Galaxy Note 20 Ultra 5G
+                                    </td>
+                                    <td class="scroll_table_quantity"><input type="number" placeholder="1"></td>
+
+                                    <td class="scroll_table_price"><span>1990$</span></td>
+                                    <td><a href=""><i class="fas fa-trash-alt"></i></a></td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="shipping_order">
+                        <p>Shipping: <span>3$</span></p>
+                    </div>
+                    <div class="total_order">
+                        <p>Total: <span>1990$</span></p>
+                    </div>
+                    <div class="order_choose">
+                        <h4>Payment</h4>
+                        <ul>
+                            <li><input name="payment" type="radio" value="CASH">CASH</li>
+                            <li><input name="payment" type="radio" value="PAYPAL">PAYPAL</li>
+                        </ul>
+                    </div>
+                    <div class="order_checkout">
+                        <button><a href="">CHECKOUT</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>`;

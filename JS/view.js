@@ -90,6 +90,11 @@ view.setActiveScreen = (screenName) => {
             model.getProductData();
 
             break;
+
+        case 'cart':
+            //document.getElementById('app').innerHTML = component.headerHome;
+            document.getElementById('app').innerHTML += component.cart;
+            //document.getElementById('app').innerHTML += component.footerHome;
     }
 };
 

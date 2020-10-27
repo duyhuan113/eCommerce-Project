@@ -1,0 +1,545 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+html {
+    font-family: 'Lato', 'san-serif';
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    background-color: #ecf0f1;
+} */
+
+
+/* -------------------------------------------------------- */
+
+
+/* -------------------------code tai su dung------------------------- */
+
+
+/* -------------------------------------------------------- */
+
+/* .clearfix::after {
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+.row {
+    max-width: 1140px;
+    margin: 0 auto;
+} */
+
+
+/* ---------------------------------------------------- */
+
+
+/* --------------------------top header-------------------------- */
+
+/* #header {
+    float: left;
+    height: 133px;
+    width: 100%;
+    background-color: #1e1f29;
+}
+
+.top_header {
+    float: left;
+    height: 30px;
+    width: 100%;
+    background-color: #1e1f29;
+}
+
+.header_links_pull_left {
+    float: left;
+    line-height: 30px;
+    margin-left: 170px;
+}
+
+.header_links_pull_left li {
+    list-style: none;
+    float: left;
+    line-height: 30px;
+    margin-left: 20px;
+}
+
+.header_links_pull_left li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 10px;
+    transition: all 0.5s;
+}
+
+.header_links_pull_left li a:hover {
+    color: red;
+}
+
+.header_links_pull_right {
+    float: right;
+    margin-right: 161.5px;
+}
+
+.header_links_pull_right li {
+    float: right;
+    list-style: none;
+    line-height: 30px;
+    margin-right: 30px;
+}
+
+.header_links_pull_right li {
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 10px;
+    transition: all 0.5s;
+    padding: 2px;
+}
+
+.header_links_pull_right li a {
+    color: white;
+}
+
+.header_links_pull_right li a:hover {
+    color: red;
+} */
+
+
+/* --------------------------end top header-------------------------- */
+
+/* .main_header {
+    float: left;
+    width: 100%;
+    height: 100px;
+    background: #000000;
+}
+
+.main_header img {
+    margin-top: 14px;
+    width: 210px;
+    height: 80px;
+    float: left;
+    margin-left: 170px;
+}
+
+.function_login {
+    float: right;
+    margin-right: 165px;
+    margin-top: 4px;
+}
+
+.function_login li {
+    float: left;
+    line-height: 100px;
+    margin-right: 30px;
+}
+
+.function_login li a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.5s;
+}
+
+.function_login li a:hover {
+    color: red;
+} */
+
+
+/* --------------------------search-------------------------- */
+
+/* .search_box {
+    float: left;
+    width: 547px;
+    height: 40px;
+    margin-top: 30px;
+    margin-left: 142px;
+    background-color: black;
+    border: 2px solid white;
+}
+
+.search_txt {
+    float: left;
+    width: 505px;
+    height: 38px;
+    padding-left: 10px;
+    border: none;
+    outline: none;
+}
+
+.search_btn {
+    float: left;
+    padding: 3px 3.5px;
+    color: white;
+    margin-top: 3px;
+    margin-left: 7px;
+    transition: all 0.3s;
+    font-size: 20px;
+}
+
+.search_btn:hover {
+    color: red;
+} */
+
+
+/* --------------------------main_item-------------------------- */
+
+/* .list {
+    float: left;
+    height: 50px;
+    width: 100%;
+    border-top: 2px solid red;
+    border-bottom: 3px solid #E4E7ED
+}
+
+.main_nav {
+    float: left;
+    
+    line-height: 50px;
+    margin-left: 163px;
+}
+
+.main_nav li {
+    list-style: none;
+    float: left;
+    margin-left: 30px;
+    position: relative;
+}
+
+.main_nav li a {
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.main_nav li a:hover {
+    color: red;
+    border-bottom: 1px solid red;
+}
+
+.sub_menu {
+    position: absolute;
+    box-shadow: 0 8px 8px 0 rgba(103, 151, 255, .11), 0 12px 18px 0 rgba(103, 151, 255, .11);
+    display: none;
+}
+
+.drop_down:hover .sub_menu,
+.drop_down:active .sub_menu {
+    display: block;
+}
+
+.sub_menu li {
+    background-color: #ecf0f1;
+    width: 120px;
+    text-align: center;
+    margin-left: -13px;
+    border-bottom: 1px solid black;
+} */
+
+
+/*--end sub_menu--*/
+
+
+/*--bill--*/
+
+.bath {
+    float: left;
+    height: 90px;
+    width: 100%;
+    background-color: #ecf0f1;
+    border: 1px solid #c8d6e5;
+}
+
+.bath h1 {
+    margin-top: 30px;
+    float: left;
+    font-size: 30px;
+    margin-left: 192px;
+}
+
+.bath p {
+    float: left;
+    font-size: 15px;
+    margin-top: 44px;
+    margin-left: 20px;
+}
+
+.checkout {
+    margin-top: 10px;
+    float: left;
+    width: 76%;
+    margin-left: 12%;
+    margin-right: 12%;
+    border: 1px solid #c8d6e5;
+}
+
+.billing_details {
+    float: left;
+    width: 100%;
+    background-color: #ecf0f1;
+}
+
+.section_title {
+    float: left;
+    width: 100%;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.billing_details input {
+    width: 99%;
+    height: 40px;
+    margin-top: 20px;
+    background-color: #ecf0f1;
+    border: 1px solid #c8d6e5;
+    padding-left: 10px;
+}
+
+.bill_notes {
+    float: left;
+    width: 100%;
+}
+
+.bill_notes input {
+    height: 150px;
+    padding-bottom: 100px;
+}
+
+.order_detail {
+    float: left;
+    width: 100%;
+}
+
+
+/*--Quantity--*/
+
+.order_detail_table {
+    width: 100%;
+    text-align: center;
+    font-weight: 900;
+    font-size: 14px;
+}
+
+.scroll_table table {
+    width: 100%;
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+.scroll_table table tr:hover {
+    background-color: #dfe4ea;
+}
+
+.scroll_table table tr td {
+    text-align: center;
+    font-size: 16px;
+}
+
+.scroll_table tr td i {
+    color: black;
+}
+
+.scroll_table tr td i:hover {
+    color: red;
+}
+
+.scroll_table_img {
+    width: 10%;
+}
+
+.scroll_table_name {
+    width: 100%;
+    line-height: 45px;
+    float: left;
+}
+
+.scroll_table_quantity {
+    width: 15%;
+}
+
+.scroll_table_quantity input {
+    width: 60%;
+    text-align: center;
+    margin-left: -60px;
+    background-color: #ecf0f1;
+}
+
+.scroll_table_price {
+    width: 1%;
+}
+
+.scroll_table_price span {
+    float: left;
+    margin-left: 15px;
+}
+
+.scroll_table tr td a {
+    width: 5%;
+    margin-left: 3px;
+}
+
+.product_title_order {
+    float: left;
+}
+
+.quantity_title_order {
+    float: left;
+    margin-left: 300px;
+}
+
+.total_title_order {
+    float: left;
+    margin-left: 65px;
+}
+
+
+/*
+.scroll_table table tr td button {
+    background-color: orange;
+    font-weight: 600;
+    color: white;
+    border: 1px solid red;
+    outline: none;
+}
+.scroll_table table tr td button:hover {
+    background-color: red;
+    border: 2px solid red;
+}
+*/
+
+.scroll_table table tr td img {
+    width: 100%;
+}
+
+.scroll_table {
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.shipping_order {
+    float: left;
+    width: 100%;
+}
+
+.shipping_order p {
+    float: right;
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.shipping_order span {
+    padding-left: 202px;
+    padding-right: 35px;
+}
+
+.total_order {
+    float: left;
+    width: 100%;
+}
+
+.total_order p {
+    float: right;
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.total_order span {
+    padding-left: 200px;
+    padding-right: 35px;
+    font-weight: 900;
+    color: red;
+}
+
+.order_choose {
+    float: left;
+    margin-top: 20px;
+    margin-left: 198px;
+}
+
+.order_choose h4,
+ul {
+    float: left;
+    margin-left: 40px;
+}
+
+.order_choose ul li {
+    float: left;
+    margin-left: 33px;
+    font-size: 14px;
+    font-weight: 600;
+    padding-left: 5px;
+}
+
+.order_checkout {
+    float: left;
+    width: 100%;
+    margin-top: 90px;
+}
+
+.order_checkout button {
+    width: 400px;
+    height: 60px;
+    margin-left: 76px;
+    font-weight: 600;
+    font-size: 20px;
+    background-color: tomato;
+    border: 1px solid red;
+}
+
+.order_checkout button a {
+    color: white;
+}
+
+.order_checkout button:hover {
+    background-color: red;
+}
+
+
+/*--end-bill--*/
+
+
+/* --------------------------footer-------------------------- */
+
+/* .footer {
+    float: left;
+    width: 100%;
+    margin-top: 50px;
+    background-color: black;
+    color: white;
+}
+
+.footer h3 {
+    margin-bottom: 20px;
+}
+
+.footer ul {
+    margin-left: -1px;
+}
+
+.footer ul li {
+    margin-bottom: 20px;
+    font-size: 12px;
+}
+
+.footer ul li:hover {
+    color: crimson;
+}
+
+.footer ul li a {
+    color: white;
+}
+
+.footer ul li a:hover {
+    color: crimson;
+}
+
+.footer ul li img {
+    width: 150px;
+    margin-left: -10px;
+} */

@@ -181,6 +181,9 @@ model.homePageButton = () => {
 model.allProductButton = () => {
     localStorage.setItem('currentLocationScreen', 'allProductHome');
 };
+model.cartBtn = ()=>{
+    localStorage.setItem('currentLocationScreen', 'cart');
+};
 
 
 //đoạn này lấy Data từ doc
