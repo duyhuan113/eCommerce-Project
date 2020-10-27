@@ -4,17 +4,22 @@ model.currentLocationScreen = localStorage.getItem('currentLocationScreen');
 // biến này để lưu ng dùng hiện tại là ai?
 model.currentUser = undefined;
 // biến này để lưu sản phẩm vừa đc chọn để xem chi tiết là sp nào
-if(model.currentLocationScreen == 'detailProductHome'){
+if (model.currentLocationScreen == 'detailProductHome') {
     model.chosenProduct = localStorage.getItem('detailProduct');
     model.chosenProduct = JSON.parse(model.chosenProduct);
-}else{
-    model.chosenProduct = undefined;    
+} else {
+    model.chosenProduct = undefined;
 }
 // array này lưu tất cả dữ liệu của toàn bộ sp
-model.productData = [];
-// array này lưu tất cả category của toàn bộ sp
-model.categoriesProductData = [];
+model.productData = undefined;
 
+// array này lưu tất cả category của toàn bộ sp
+model.categoriesProductData = undefined;
+// array này chức Data vừa lọc đc
+model.filterProductData = [];
+
+
+//LOGIN--------------------------------------------------------------------------------------------------------------------------------
 // function này tạo tài khoản cho ng dùng mới
 model.register = async (data) => {
     try {
@@ -84,58 +89,70 @@ model.checkRole = async (email) => {
         }
         //đoạn này lưu role lên localstorage, tẹo lấy xuống
         localStorage.setItem('currentLocationScreen', data);
+
     }).catch(function (error) {
         console.log("Error getting document:", error);
     });
 }
+//END LOGIN--------------------------------------------------------------------------------------------------------------------------------
+
 
 //function này lấy Product data về từ firebase
 model.getProductData = async () => {
+    let index = 0; //số product muốn show ra
+
     //đoạn này bóc tách dữ liệu từ db trả về
-    const response = await firebase.firestore().collection("products").get().then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
-            // doc.data() is never undefined for query doc snapshots
-            const data = {
-                id: doc.id,
-                ...doc.data()
-            }
-            model.productData.push(data);
-        });
-        // đoạn này kiểm tra role để load dữ liệu
-        if (model.currentLocationScreen == 'admin') {
-            view.showListProductAdmin();
-        } else if (model.currentLocationScreen == 'homePage') {
-            view.showHotListProductHome();
-        }
-    });
-    //đoạn này lấy categories cho  vào 1 biến, các catogorries có thể giống nhau nên phải cho và o1 biến để lọc ra unique
-    const category = [];
-    for (let data of model.productData) {
-        category.push(data.category);
 
-    }
-    model.getCategoriesProduct(category);
-};
-//function này lấy các category.
-model.getCategoriesProduct = (data) => {
-    let newData = new Set(data);
-    for (let data of newData) {
-        model.categoriesProductData.push(data);
-    };
-    view.loadCategories();
-}
+    const response = await firebase.firestore().collection("products").get()
 
-
-
-model.tickProduct = (chosenProduct) => {
-
+    model.productData = getDataFromDocs(response.docs);
     
+
+    //     //đoạn này kiểm tra role để load dữ liệu
+    if (model.currentLocationScreen == 'admin') {
+        view.showListProductAdmin();
+    } else {
+        //view.showListProductHome();
+        model.getCategoriesProduct();
+    };
+    //đoạn này lấy categories cho  vào 1 biến, các catogorries có thể giống nhau nên phải cho và o1 biến để lọc ra unique
+};
+
+
+//HOMEPAGE--------------------------------------------------------------------------------------------------------------------------------
+//function này lấy các category.
+model.getCategoriesProduct = () => {
+    let categories = [];
+    for (item of model.productData) {
+        categories.push(item.category)
+    }
+    model.categoriesProductData = [...new Set(categories)];
+    
+    view.showListProductHome();
+}
+model.filterCategoryProductData = (key) => {
+    model.filterProductData = [];
+    console.log(key);
+    for (data of model.productData) {
+        if (data.category == key) {
+            model.filterProductData.push(data)
+            console.log(model.filterProductData);
+        }
+    }
+    view.showListProductHome(model.filterProductData, true);
+
+}
+// function này lưu product vừa đc chọn để lưu lên local, sau đó gọi lại để load ra màn hình detail.
+model.tickProduct = (chosenProduct) => {
     //đoạn này update location screen.
     localStorage.setItem('currentLocationScreen', 'detailProductHome');
     data = JSON.stringify(chosenProduct);
     localStorage.setItem('detailProduct', data);
 }
-//ADMIN 
+//END HOMEPAGE--------------------------------------------------------------------------------------------------------------------------------
+
+
+//ADMIN --------------------------------------------------------------------------------------------------------------------------------
 //function này dùng để delete product của Admin
 model.deleteProduct = (data) => {
     firebase.firestore().collection("products").doc(data.id).delete().then(function () {
@@ -148,4 +165,30 @@ model.deleteProduct = (data) => {
 model.addProduct = (data) => {
 };
 
+// End Admin--------------------------------------------------------------------------------------------------------------------------------
 
+model.signOutButton = () => {
+    firebase.auth().signOut();
+    model.currentUser = {};
+    localStorage.removeItem('currentLocationScreen');
+    model.productData = [];
+};
+
+model.homePageButton = () => {
+    localStorage.setItem('currentLocationScreen', 'homePage');
+};
+
+model.allProductButton = () => {
+    localStorage.setItem('currentLocationScreen', 'allProductHome');
+};
+
+
+//đoạn này lấy Data từ doc
+getDataFromDocs = (docs) => {
+    return docs.map(item => getDataFromDoc(item))
+}
+getDataFromDoc = (doc) => {
+    const data = doc.data()
+    data.id = doc.id
+    return data
+}

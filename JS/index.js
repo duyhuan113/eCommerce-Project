@@ -20,9 +20,7 @@ window.onload = () => {
             if (user.emailVerified) {
                 if (model.currentLocationScreen == 'admin') {
                     view.setActiveScreen(model.currentLocationScreen);
-                } else if (model.currentLocationScreen == 'homePage') {
-                    view.setActiveScreen(model.currentLocationScreen);
-                } else if (model.currentLocationScreen == 'detailProductHome') {
+                } else{
                     view.setActiveScreen(model.currentLocationScreen);
                 }
             } else {

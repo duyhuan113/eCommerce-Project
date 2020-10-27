@@ -383,3 +383,34 @@ body {
     width: 150px;
     margin-left: -10px;
 }
+
+/* đoạn này là của viewMore */
+.hiddenStyle {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+
+#cateList ul {
+    background: white;
+    list-style-type: none;
+    text-align: center;
+    border: 1px solid ;
+  }
+  #cateList li {
+    color: #f1f1f1;
+    display: inline-block;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: -5px;
+  }
+  #cateList a {
+    text-decoration: none;
+    color: black;
+    display: block;
+  }
+  #cateList a:hover {
+    background: #F1F1F1;
+    color: #333;
+  }

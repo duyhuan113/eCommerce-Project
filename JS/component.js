@@ -119,10 +119,11 @@ component.homePage = `
 
     <!-- end login -->
 `;
+
 component.headerHome = `
     <div class="home-container">
     <div id="welcome-header"></div>
-    <button class="btn cursor-pointer" id="logOutBtn" type="submit">log out</button>
+    <button class="btn cursor-pointer" id="logOutBtn" onclick="model.signOutButton()" type="submit">log out</button>
     </div>
     <header>
         <div id="header">
@@ -142,7 +143,8 @@ component.headerHome = `
             <!-- END TOP HEADER -->
             <!-- MAIN HEADER -->
             <div class="main_header">
-                <img src="IMG/logoshop.png" alt="">
+            <li class= "homePage" onclick="model.homePageButton()">  <a href=""><img  src="IMG/logoshop.png" alt=""></a></li>
+                
                 <div class="search_box">
                     <input class="search_txt" type="text" name="" placeholder="Search..." />
                     <a class="search_btn" href="#">
@@ -160,12 +162,12 @@ component.headerHome = `
     
         <div class="list">
             <ul class="main_nav">
-                <li id= "homePage"><a href="/index.html">Home</a></li>
+                <li class= "homePage" onclick="model.homePageButton()"><a href="">Home</a></li>
                 <li><a href="/aboutus.html">About us</a></li>
-                <li class="drop_down"><a href="">Smartphones</a>
+                <li class="drop_down" onclick="model.allProductButton()"><a href="">Smartphones</a>
                     <ul id="subMenu" class="sub_menu">
 
-                    <!-- js code, đoạn này vào view.js tìm -->
+                        <!-- js code, đoạn này vào view.js tìm -->
 
                     </ul>
                 </li>
@@ -218,10 +220,8 @@ component.footerHome = `
     </footer>
     `;
 
-
-
 component.detailProduct = `
-    <p class="path">Home / Smartphone / iPhone 11 Pro Max</p>
+    <p id="path" class="path"></p>
     <section class="detail_product">
         <div class="row">
             <div class="col span-2-of-4">
@@ -271,82 +271,25 @@ component.detailProduct = `
             </div>
         </div>
         <!--relate product-->
-        <div class="relate_product">
+        <div id="product_section" class="relate_product">
             <h3>RELATE PRODUCT</h3>
-            <div class="row">
-                <div class="col span-1-of-4">
-                    <div class="item">
-                        <div class="relate_img">
-                            <a href=""><img src="https://fptshop.com.vn/Uploads/Originals/2020/2/12/637170945536714482_ss-s20-plus-den-1.png" alt=""></a>
-                        </div>
-                        <div class="item_title"><a href="">Samsung Galaxy S20+</a></div>
-                        <div class="item_price">
-                            <p>750$</p>
-
-                        </div>
-                        <div class="buy_now">
-                            <a href="#">
-                                <p>ADD TO CART</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col span-1-of-4">
-                    <div class="item">
-                        <div class="relate_img">
-                            <a href=""><img src="https://fptshop.com.vn/Uploads/Originals/2020/2/12/637170935336423061_ss-s20-ultra-xam-1.png" alt=""></a>
-                        </div>
-                        <div class="item_title"><a href="">Samsung Galaxy S20 Ultra</a></div>
-                        <div class="item_price">
-                            <p>1165 $
-                            </p>
-                        </div>
-                        <div class="buy_now">
-                            <a href="#">
-                                <p>ADD TO CART</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col span-1-of-4">
-                    <div class="item">
-                        <div class="relate_img">
-                            <a href=""><img src="https://fptshop.com.vn/Uploads/Originals/2020/9/4/637348296150310219_ss-z-fold-2-gold-1.png" alt=""></a>
-                        </div>
-                        <div class="item_title"><a href="">Samsung Galaxy Z Fold2 5G</a></div>
-                        <div class="item_price">
-                            <p>2158 $
-                            </p>
-                        </div>
-                        <div class="buy_now">
-                            <a href="#">
-                                <p>ADD TO CART</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col span-1-of-4">
-                    <div class="item">
-                        <div class="relate_img">
-                            <a href=""><img src="https://fptshop.com.vn/Uploads/Originals/2020/2/12/637171004138250826_ss-Z-flip-den-1.png" alt=""></a>
-                        </div>
-                        <div class="item_title"><a href="">Samsung Galaxy Z Flip</a></div>
-                        <div class="item_price">
-                            <p>1252 $
-                            </p>
-
-                        </div>
-                        <div class="buy_now">
-                            <a href="#">
-                                <p>ADD TO CART</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
         <!-- end relate product-->
     </section>
     <!-- login -->
     <!-- end login -->
+    `;
+
+
+    component.allProduct = `
+    <section id="product_section" class="hot_item">
+        <div id="cateList">
+            <ul id="categoryList">
+            <!-- js code  đoạn này cũng thế-->
+            </ul>
+        </div>
+    <!-- js code  đoạn này cũng thế-->
+
+    </section>
     `;
