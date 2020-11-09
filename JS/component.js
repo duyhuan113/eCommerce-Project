@@ -153,7 +153,7 @@ component.headerHome = `
                 </div>
                 <ul class="function_login">
                     <li><a href=""><i class="far fa-bell"></i></a></li>
-                    <li><a href="" onclick="model.cartBtn()"><i class="fas fa-shopping-cart"></i></a></li>
+                    <li><a href="" onclick="model.cartBtn()"><i class="fas fa-shopping-cart"></i><span id="cartNumbers"></span></a></li>
                     <li><a href="" class="login"><i class="fas fa-user"></i></a></li>
                 </ul>
             </div>
@@ -163,7 +163,7 @@ component.headerHome = `
         <div class="list">
             <ul class="main_nav">
                 <li class= "homePage" onclick="model.homePageButton()"><a href="">Home</a></li>
-                <li><a href="/aboutus.html">About us</a></li>
+                
                 <li class="drop_down" onclick="model.allProductButton()"><a href="">Smartphones</a>
                     <ul id="subMenu" class="sub_menu">
 
@@ -179,6 +179,7 @@ component.headerHome = `
                     </ul>
                 </li>
                 <li><a href="/contact.html">Contact</a></li>
+                <li><a href="/aboutus.html">About us</a></li>
                 <hr>
             </ul>
         </div>
@@ -282,7 +283,7 @@ component.detailProduct = `
     `;
 
 
-    component.allProduct = `
+component.allProduct = `
     <section id="product_section" class="hot_item">
         <div id="cateList">
             <ul id="categoryList">
@@ -294,24 +295,23 @@ component.detailProduct = `
     </section>
     `;
 
-    component.cart =`
-    <div class="bath">
+component.cart = `
+    
+<section>
+<div class="bath">
     <h1>CHECKOUT</h1>
     <p>HOME / CHECKOUT</p>
-    </div>
-    <section class="checkout">
-        <div class=""></div>
-        <div class="row">
-            <div class="col span-3-of-6">
-                <div class="billing_details">
-                    <div class="section_title">
-                        <h3 class="title">BILLING ADDRESS</h3>
-                    </div>
+</div>
+<div class="checkout">
+    <div class="row">
+        <div class="col span-3-of-6">
+            <div class="billing_details">
+                <div class="section_title">
+                    <h3 class="title">BILLING ADDRESS</h3>
+                </div>
+                <div id="defaultAddress" class="default_address">
                     <div class="form_group">
-                        <input class="input" type="text" name="first-name" placeholder="First Name" required>
-                    </div>
-                    <div class="form_group">
-                        <input class="input" type="text" name="last-name" placeholder="Last Name" required>
+                        <input class="input" type="text" name="name" placeholder="Name" required>
                     </div>
                     <div class="form_group">
                         <input class="input" type="email" name="email" placeholder="Email" required>
@@ -322,64 +322,75 @@ component.detailProduct = `
                     <div class="form_group">
                         <input class="input" type="text" name="city" placeholder="City" required>
                     </div>
-                    <div class="form_roup">
-                        <input class="input" type="text" name="zip-code" placeholder="ZIP Code" required>
-                    </div>
                     <div class="form_group">
-                        <input class="input" type="tel" name="tel" placeholder="Telephone" required>
-                    </div>
-                    <div class="bill_notes">
-                        <input class="input" placeholder="Notes"></input required>
+                        <input class="input" type="tel" name="phone" placeholder="Telephone" required>
                     </div>
                 </div>
-            </div>
-            <div class="col span-3-of-6">
-                <div class="order_detail">
-                    <div class="section_title">
-                        <h3 class="title">ORDER DETAIL</h3>
+                <div class="other_address">
+                    <div class="input_checkbox">
+                        <input type="checkbox" id="myCheckAddress" onclick="view.checkboxAddress()"><br>
+                        <a onclick="view.checkboxAddress()">Ship to a diffrent address?</a>
                     </div>
-                    <table class="order_detail_table">
-                        <tbody>
-                            <tr>
-                                <td class="product_title_order">Product</td>
-                                <td class="quantity_title_order">Quantity</td>
-                                <td class="total_title_order">Total</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="scroll_table">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td class="scroll_table_img"><img src="https://fptshop.com.vn/Uploads/Originals/2020/8/5/637322682441632129_ss-note-20-ultra-gold-1.png" alt=""></td>
-                                    <td class="scroll_table_name">Samsung Galaxy Note 20 Ultra 5G
-                                    </td>
-                                    <td class="scroll_table_quantity"><input type="number" placeholder="1"></td>
-
-                                    <td class="scroll_table_price"><span>1990$</span></td>
-                                    <td><a href=""><i class="fas fa-trash-alt"></i></a></td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="shipping_order">
-                        <p>Shipping: <span>3$</span></p>
-                    </div>
-                    <div class="total_order">
-                        <p>Total: <span>1990$</span></p>
-                    </div>
-                    <div class="order_choose">
-                        <h4>Payment</h4>
-                        <ul>
-                            <li><input name="payment" type="radio" value="CASH">CASH</li>
-                            <li><input name="payment" type="radio" value="PAYPAL">PAYPAL</li>
-                        </ul>
-                    </div>
-                    <div class="order_checkout">
-                        <button><a href="">CHECKOUT</a></button>
-                    </div>
+                    <form class="caption" id="otherAddress">
+                        <div class="form_group">
+                            <input class="input" type="text" name="name" placeholder="Name" required>
+                        </div>
+                        <div class="form_group">
+                            <input class="input" type="text" name="address" placeholder="Address" required>
+                        </div>
+                        <div class="form_group">
+                            <input class="input" type="text" name="city" placeholder="City" required>
+                        </div>
+                        <div class="form_group">
+                            <input class="input" type="tel" name="phone" placeholder="Telephone" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="bill_notes">
+                    <input class="input" placeholder="Notes"></input required>
                 </div>
             </div>
         </div>
-    </section>`;
+        <div class="col span-3-of-6">
+            <div class="order_detail">
+                <div class="section_title">
+                    <h3 class="title">ORDER DETAIL</h3>
+                </div>
+                <table class="order_detail_table">
+                    <tbody>
+                        <tr>
+                            <td class="product_title_order">Product</td>
+                            <td class="quantity_title_order">Quantity</td>
+                            <td class="total_title_order">Total</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="scroll_table">
+                    <table>
+                        <tbody id="tbody">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="shipping_order">
+                    <p>Shipping: <span>3$</span></p>
+                </div>
+                <div id="totalOrder" class="total_order">
+                    <p>Total: <span>1990$</span></p>
+                </div>
+                <div name="myForm" id="choosePayment" class="order_choose" >
+                    <h4>Payment</h4>
+                    <ul>
+                        <li><input class="payment" name="payment" type="radio" value="cash" checked="true">CASH</li>
+                        <li><input class="payment" name="payment" type="radio" value="paypal">PAYPAL</li>
+                    </ul>
+                </div>
+                <div id="orderCheckout" class="order_checkout" type ="submit" onclick="">
+                    <button id="cashBtn" class="paymentBtn"><a href="">CHECKOUT</a></button>
+                    <div id="paypalBtn" class="paymentBtn" style = "display:none"  ></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>`;

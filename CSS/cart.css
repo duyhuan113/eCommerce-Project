@@ -1,4 +1,4 @@
-/* * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -13,7 +13,7 @@ html {
 
 body {
     background-color: #ecf0f1;
-} */
+}
 
 
 /* -------------------------------------------------------- */
@@ -24,7 +24,7 @@ body {
 
 /* -------------------------------------------------------- */
 
-/* .clearfix::after {
+.clearfix::after {
     content: " ";
     display: table;
     clear: both;
@@ -33,7 +33,7 @@ body {
 .row {
     max-width: 1140px;
     margin: 0 auto;
-} */
+}
 
 
 /* ---------------------------------------------------- */
@@ -41,24 +41,27 @@ body {
 
 /* --------------------------top header-------------------------- */
 
-/* #header {
+#header {
     float: left;
     height: 133px;
     width: 100%;
     background-color: #1e1f29;
+    border-bottom: 1px solid#f39c12;
 }
 
 .top_header {
     float: left;
     height: 30px;
-    width: 100%;
+    width: 80%;
+    margin-left: 10%;
     background-color: #1e1f29;
 }
 
 .header_links_pull_left {
     float: left;
+    width: 60%;
     line-height: 30px;
-    margin-left: 170px;
+    margin-left: 8.6%;
 }
 
 .header_links_pull_left li {
@@ -77,12 +80,12 @@ body {
 }
 
 .header_links_pull_left li a:hover {
-    color: red;
+    color: orange;
 }
 
 .header_links_pull_right {
     float: right;
-    margin-right: 161.5px;
+    margin-right: 8.5%;
 }
 
 .header_links_pull_right li {
@@ -92,26 +95,26 @@ body {
     margin-right: 30px;
 }
 
-.header_links_pull_right li {
+.header_links_pull_right li a {
+    color: white;
     text-decoration: none;
     font-weight: 900;
     font-size: 10px;
     transition: all 0.5s;
-    padding: 2px;
 }
 
-.header_links_pull_right li a {
-    color: white;
+.my_account {
+    padding-left: 5px;
 }
 
 .header_links_pull_right li a:hover {
-    color: red;
-} */
+    color: orange;
+}
 
 
 /* --------------------------end top header-------------------------- */
 
-/* .main_header {
+.main_header {
     float: left;
     width: 100%;
     height: 100px;
@@ -146,12 +149,12 @@ body {
 
 .function_login li a:hover {
     color: red;
-} */
+}
 
 
 /* --------------------------search-------------------------- */
 
-/* .search_box {
+.search_box {
     float: left;
     width: 547px;
     height: 40px;
@@ -182,12 +185,12 @@ body {
 
 .search_btn:hover {
     color: red;
-} */
+}
 
 
 /* --------------------------main_item-------------------------- */
 
-/* .list {
+.list {
     float: left;
     height: 50px;
     width: 100%;
@@ -197,7 +200,7 @@ body {
 
 .main_nav {
     float: left;
-    
+    /* margin-left: 470px; */
     line-height: 50px;
     margin-left: 163px;
 }
@@ -238,7 +241,7 @@ body {
     text-align: center;
     margin-left: -13px;
     border-bottom: 1px solid black;
-} */
+}
 
 
 /*--end sub_menu--*/
@@ -258,7 +261,7 @@ body {
     margin-top: 30px;
     float: left;
     font-size: 30px;
-    margin-left: 192px;
+    margin-left: 180px;
 }
 
 .bath p {
@@ -291,12 +294,43 @@ body {
 }
 
 .billing_details input {
-    width: 99%;
+    width: 80%;
     height: 40px;
     margin-top: 20px;
     background-color: #ecf0f1;
     border: 1px solid #c8d6e5;
     padding-left: 10px;
+}
+
+.other_address {
+    margin-top: 30px;
+    width: 99%;
+    float: left;
+}
+
+.input_checkbox>input {
+    float: left;
+    height: 20px;
+    /* margin-left; */
+    margin-top: -17px;
+}
+
+.input_checkbox>label {
+    float: left;
+    font-weight: 600;
+}
+
+.input_checkbox a {
+    cursor: pointer;
+    padding: 2px 2px;
+}
+
+.input_checkbox a:hover {
+    color: orange;
+}
+
+.caption {
+    display: none;
 }
 
 .bill_notes {
@@ -506,7 +540,7 @@ ul {
 
 /* --------------------------footer-------------------------- */
 
-/* .footer {
+.footer {
     float: left;
     width: 100%;
     margin-top: 50px;
@@ -542,4 +576,4 @@ ul {
 .footer ul li img {
     width: 150px;
     margin-left: -10px;
-} */
+}

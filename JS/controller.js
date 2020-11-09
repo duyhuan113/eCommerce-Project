@@ -59,7 +59,6 @@ controller.login = (data) => {
     };
 };
 
-
 function validateEmail(email) {
     const emailFomat = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return emailFomat.test(String(email).toLowerCase());
@@ -67,6 +66,5 @@ function validateEmail(email) {
 
 function validatePassword(password) {
     var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$/;
-
     return re.test(password);
 };
