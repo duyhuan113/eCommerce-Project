@@ -52,6 +52,14 @@ model.newUser = (data) => {
     firebase.firestore().collection('users').doc(data.email).set(dataToCreate);
 };
 
+
+model.newBill = async(data) => {
+    bill = {...data,
+        status: false
+    }
+    firebase.firestore().collection('orders').doc(data.id).set(bill);
+};
+
 // function này check login bằng email và pw
 model.login = (data) => {
     try {
@@ -102,15 +110,10 @@ model.checkRole = async(email) => {
 
 //function này lấy Product data về từ firebase
 model.getProductData = async() => {
-
-
     //đoạn này bóc tách dữ liệu từ db trả về
-
     const response = await firebase.firestore().collection("products").get()
-
+    
     model.productData = getDataFromDocs(response.docs);
-
-
     //     //đoạn này kiểm tra role để load dữ liệu
     if (model.currentLocationScreen == 'admin') {
         view.showListProductAdmin();
@@ -228,7 +231,14 @@ model.addCartBtn = (data) => {
     localStorage.setItem('productInCart', JSON.stringify(cartItems));
 };
 
+// model.getByName = async (keyValue)=>{
 
+// // const response = await firebase.firestore().collection('products').where('name','<=','Huawei nova 5T').get();
+// // console.log(getDataFromDocs(response.docs));
+// console.log(model.productData());
+
+
+// }
 
 //đoạn này lấy Data từ doc
 getDataFromDocs = (docs) => {

@@ -59,6 +59,28 @@ controller.login = (data) => {
     };
 };
 
+
+
+controller.addressForm = (data) => {
+    view.setErrorMessage('name-error', data.name === '' ? 'Please Enter Your First Name' : '');
+    view.setErrorMessage('address-error', data.address === '' ? 'Please Enter Your Address Name' : '');
+    view.setErrorMessage('city-error', data.city === '' ? 'Please Enter Your City' : '');
+    view.setErrorMessage('phone-error', data.phone === '' ? 'Please Enter Your Phone ' : '');
+
+
+    if (data.name !== '' && data.address !== '' && data.city !== '' && data.phone !== '') {
+        model.newBill(data);
+        view.showBill(data);
+        view.removeLocalStorage();
+    } else {
+        alert('Please Enter Your Information')
+    };
+};
+
+
+
+
+
 function validateEmail(email) {
     const emailFomat = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return emailFomat.test(String(email).toLowerCase());

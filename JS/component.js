@@ -146,10 +146,16 @@ component.headerHome = `
             <li class= "homePage" onclick="model.homePageButton()">  <a href=""><img  src="IMG/logoshop.png" alt=""></a></li>
                 
                 <div class="search_box">
-                    <input class="search_txt" type="text" name="" placeholder="Search..." />
+                    <input id="inputSearch" class="search_txt" onclick="view.searchByName()" type="text" name="" placeholder="Search..." />
                     <a class="search_btn" href="#">
                         <i class="fas fa-search small-icon" id="icon"></i>
                     </a>
+                    
+                    <ul id="resultSearch">
+                              
+                    </ul>
+
+                
                 </div>
                 <ul class="function_login">
                     <li><a href=""><i class="far fa-bell"></i></a></li>
@@ -312,18 +318,23 @@ component.cart = `
                 <div id="defaultAddress" class="default_address">
                     <div class="form_group">
                         <input class="input" type="text" name="name" placeholder="Name" required>
+                        <div class="error" id="name-error"></div>
                     </div>
                     <div class="form_group">
                         <input class="input" type="email" name="email" placeholder="Email" required>
+                        <div class="error" id="email-error"></div>
                     </div>
                     <div class="form_group">
                         <input class="input" type="text" name="address" placeholder="Address" required>
+                        <div class="error" id="address-error"></div>
                     </div>
                     <div class="form_group">
                         <input class="input" type="text" name="city" placeholder="City" required>
+                        <div class="error" id="city-error"></div>
                     </div>
                     <div class="form_group">
                         <input class="input" type="tel" name="phone" placeholder="Telephone" required>
+                        <div class="error" id="phone-error"></div>
                     </div>
                 </div>
                 <div class="other_address">
@@ -334,20 +345,24 @@ component.cart = `
                     <form class="caption" id="otherAddress">
                         <div class="form_group">
                             <input class="input" type="text" name="name" placeholder="Name" required>
+                            <div class="error" id="name-error"></div>
                         </div>
                         <div class="form_group">
                             <input class="input" type="text" name="address" placeholder="Address" required>
+                            <div class="error" id="address-error"></div>
                         </div>
                         <div class="form_group">
                             <input class="input" type="text" name="city" placeholder="City" required>
+                            <div class="error" id="city-error"></div>
                         </div>
                         <div class="form_group">
                             <input class="input" type="tel" name="phone" placeholder="Telephone" required>
+                            <div class="error" id="phone-error"></div>
                         </div>
                     </form>
                 </div>
                 <div class="bill_notes">
-                    <input class="input" placeholder="Notes"></input required>
+                    <input id="notesBill"  class="input" placeholder="Notes"></input required>
                 </div>
             </div>
         </div>
@@ -389,6 +404,27 @@ component.cart = `
                     <button id="cashBtn" class="paymentBtn"><a href="">CHECKOUT</a></button>
                     <div id="paypalBtn" class="paymentBtn" style = "display:none"  ></div>
                 </div>
+                <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span id="closeBtn" class="close">&times;</span>
+                <div id="billContent" class=" bill">
+                    <div class="header_bill">
+                        <img src="IMG/logoshopbill.png" alt="">
+                        <h4 class="bill_title">INVOICE</h4>
+                    </div>
+                    <!-- Main bill-->
+                    
+                    <!-- bill footer -->
+                    <div class="bill_footer">
+                        <h3>Thank you for business with us!</h3>
+                        <h2>----------------------------------------</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
             </div>
         </div>
     </div>

@@ -1,0 +1,416 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+html {
+    font-family: 'Lato', 'san-serif';
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    background-color: red;
+}
+
+
+/* -------------------------------------------------------- */
+
+
+/* -------------------------code tai su dung------------------------- */
+
+
+/* -------------------------------------------------------- */
+
+.clearfix::after {
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+.row {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+
+/* ---------------------------------------------------- */
+
+
+/* --------------------------header-------------------------- */
+
+
+/*-bill-*/
+
+.bill {
+    width: 590px;
+    float: left;
+    margin-left: 32%;
+    margin-top: 50px;
+    border: 1px solid black;
+}
+
+.header_bill {
+    float: left;
+    height: 70px;
+}
+
+.header_bill img {
+    float: left;
+    width: 30%;
+    margin-top: 13px;
+    margin-left: 30px;
+}
+
+.bill_title {
+    font-size: 35px;
+    font-weight: 700;
+    float: right;
+    color: #808080;
+    margin-right: 30px;
+    margin-top: 15px;
+}
+
+.main_bill {
+    width: 100%;
+}
+
+.infor_invoice {
+    float: left;
+    width: 100%;
+    height: 170px;
+}
+
+.infor_invoice_left {
+    float: left;
+    width: 50%;
+    height: 150px;
+}
+
+.infor_invoice_left span {
+    float: left;
+    margin-left: 12%;
+    width: 60%;
+    font-weight: 700;
+    background-color: #efefef;
+    padding: 2px;
+    margin-top: 65px;
+}
+
+.infor_invoice_left p {
+    margin-bottom: 0px;
+}
+
+.customer_name {
+    float: left;
+    width: 60%;
+    font-size: 15px;
+    margin-left: 12%;
+    font-weight: 700;
+}
+
+.customer_address {
+    float: left;
+    margin-left: 12%;
+    width: 60%;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.infor_invoice_right {
+    float: right;
+    width: 50%;
+}
+
+.infor_invoice_right h2 {
+    float: right;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-right: -60%;
+}
+
+.grandtotal_bill {
+    float: right;
+    height: 50px;
+    font-size: 30px;
+    text-align: center;
+    width: 60%;
+    font-weight: 700;
+    background-color: #ffd302;
+    line-height: 50px;
+    margin-right: 10%;
+}
+
+.grandtotal_bill p {
+    float: left;
+    margin-left: 5px;
+    line-height: 50px;
+}
+
+.infor_invoice_right p {
+    margin-bottom: 0px;
+}
+
+.bill_id {
+    float: left;
+    margin-top: 5px;
+    width: 60%;
+    margin-left: 45%;
+    overflow: hidden;
+    font-weight: 700;
+}
+
+.bill_id span {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.bill_date {
+    float: left;
+    width: 60%;
+    margin-left: 45%;
+    font-weight: 700;
+    overflow: hidden;
+}
+
+.bill_date span {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.main_item {
+    float: left;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.bill_title_item {
+    float: left;
+    width: 100%;
+    background-color: #3a3d46;
+    height: 30px;
+}
+
+.item_bill_title {
+    float: left;
+    margin-left: 10px;
+    line-height: 30px;
+    font-weight: 500;
+}
+
+.product_title_bill {
+    float: left;
+}
+
+.quantity_title_bill {
+    float: left;
+    margin-left: 12.8rem;
+}
+
+.price_title_bill {
+    float: left;
+    margin-left: 2.7rem;
+}
+
+.total_title_bill {
+    float: left;
+    margin-left: 4.5rem;
+}
+
+.bill_title_item tr td {
+    color: white;
+}
+
+.bill_item {
+    float: left;
+}
+
+.bill_item tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+.bill_item tr td {
+    padding-top: 0.4rem;
+    font-weight: 600;
+}
+
+.bill_item_name {
+    float: left;
+}
+
+.bill_item_quantity {
+    float: left;
+    margin-left: 1rem;
+    padding: 0 40px 0 30px;
+    border-left: 3px solid #95a5a6;
+    border-right: 3px solid #95a5a6;
+}
+
+.bill_item_price {
+    float: left;
+    margin-left: 1.6rem;
+    padding: 0 20px 0 0;
+    border-right: 3px solid #95a5a6;
+}
+
+.bill_item_total {
+    float: left;
+    margin-left: 2rem;
+    padding-right: 15px;
+}
+
+.price_bill {
+    float: right;
+    width: 40%;
+    margin-top: 40px;
+    margin-right: 1rem;
+}
+
+.price_bill p {
+    margin-bottom: 0px;
+    width: 100%;
+    float: left;
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
+.subtotal_bill span {
+    float: right;
+    width: 20%;
+    margin-right: 10%;
+}
+
+.price_ship_bill span {
+    float: right;
+    width: 18%;
+}
+
+.grandtotal_price_bill {
+    border-top: 3px solid #bdc3c7;
+}
+
+.grandtotal_price_bill span {
+    float: right;
+    width: 29%;
+}
+
+.payment_method_bill {
+    float: left;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.payment_method_bill h4 {
+    float: left;
+    height: 25px;
+    width: 100%;
+    background-color: #ffd302;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.infor_payment {
+    float: left;
+    width: 95%;
+    margin-left: 2.5%;
+}
+
+.infor_payment ul li {
+    float: left;
+    width: 31.5%;
+    background-color: #efefef;
+    overflow: hidden;
+    margin-left: 0.5rem;
+}
+
+.infor_payment ul li h1 {
+    font-size: 13px;
+    font-weight: 700;
+    margin-left: 12px;
+    margin-top: 10px;
+}
+
+.infor_payment ul li p {
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 12px;
+    margin-bottom: 0.5rem;
+}
+
+.bill_footer {
+    float: left;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 20px;
+    border-top: 3px solid #bdc3c7;
+}
+
+.bill_footer h3 {
+    margin-top: 0.5rem;
+    color: #ffd302;
+    text-align: center;
+}
+
+.bill_footer h2 {
+    text-align: center;
+    color: #bdc3c7;
+}
+
+
+/* popUp */
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+
+/* Modal Content */
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+
+/* The Close Button */
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}

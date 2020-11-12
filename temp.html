@@ -10,205 +10,146 @@
     <link rel="stylesheet" href="CSS/griddemo1.css">
     <link rel="stylesheet" href="CSS/detailProductHome.css">
     <link rel="stylesheet" href="CSS/cart.css">
+    <link rel="stylesheet" href="CSS/bill.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-<script>
-    // When the user clicks on <div>, open the popup
-    function myFunction() {
-        var popup = document.getElementById("myPopup");
-        popup.classList.toggle("show");
-    }
-</script>
+
 
 <body>
-    <!-- <header>
-        <div id="header"> -->
-    <!-- TOP HEADER -->
-    <!-- <div id="top_header">
-                <div class="container">
-                    <ul class="header_links_pull_left">
-                        <li><a href="#"><i class="fas fa-phone-square"></i>  0387798072</a></li>
-                        <li><a href="#"><i class="far fa-envelope"></i> BTECSTORE@FPT.EDU.VN</a></li>
-                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> 107 Nguyen Phong Sac - Dich Vong Hau - Cau Giay - Ha Noi.</a></li>
-                    </ul>
-                </div>
-            </div> -->
-    <!-- END TOP HEADER -->
-    <!-- MAIN HEADER -->
-    <!-- <div class="main_header">
-                <img src="IMG/logoshop.png" alt="">
-                <div class="search_box">
-                    <input class="search_txt" type="text" name="" placeholder="Search..." />
-                    <a class="search_btn" href="#">
-                        <i class="fas fa-search small-icon" id="icon"></i>
-                    </a>
-                </div>
-                <ul class="function_login">
-                    <li><a href=""><i class="far fa-bell"></i></a></li>
-                    <li><a href=""><i class="fas fa-shopping-cart"></i></a></li>
-                    <li><a href="" class="login"><i class="fas fa-user"></i></a></li>
-                </ul>
-            </div> -->
-    <!-- END MAIN HEADER -->
-    <!-- </div>
-    </header> -->
-    <!-- END HEADER -->
 
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* The Modal (background) */
+        
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+        /* Modal Content */
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        /* The Close Button */
+        
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    </head>
 
+    <body>
 
-    <section>
-        <div class="bath">
-            <h1>CHECKOUT</h1>
-            <p>HOME / CHECKOUT</p>
-        </div>
-        <div class="checkout">
-            <div class="row">
-                <div class="col span-3-of-6">
-                    <div class="billing_details">
-                        <div class="section_title">
-                            <h3 class="title">BILLING ADDRESS</h3>
-                        </div>
-                        <div id="defaultAddress" class="default_address">
-                            <div class="form_group">
-                                <input class="input" type="text" name="first-name" placeholder="Name" required>
-                            </div>
-                            <div class="form_group">
-                                <input class="input" type="email" name="email" placeholder="Email" required>
-                            </div>
-                            <div class="form_group">
-                                <input class="input" type="text" name="address" placeholder="Address" required>
-                            </div>
-                            <div class="form_group">
-                                <input class="input" type="text" name="city" placeholder="City" required>
-                            </div>
-                            <div class="form_group">
-                                <input class="input" type="tel" name="tel" placeholder="Telephone" required>
-                            </div>
-                        </div>
-                        <div class="other_address">
-                            <div class="input_checkbox">
-                                <input type="checkbox" id="myCheck" onclick="lmao()"><br>
-                                <a onclick="lmao()">Ship to a diffrent address?</a>
-                            </div>
-
-                            <div class="caption" id="otherAddress">
-                                <div class="form_group">
-                                    <input class="input" type="text" name="name" placeholder="Name">
-                                </div>
-
-                                <div class="form_group">
-                                    <input class="input" type="text" name="address" placeholder="Address">
-                                </div>
-                                <div class="form_group">
-                                    <input class="input" type="text" name="city" placeholder="City">
-                                </div>
-                                <div class="form_group">
-                                    <input class="input" type="tel" name="tel" placeholder="Telephone">
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <div class="bill_notes">
-                            <input class="input" placeholder="Notes"></input required>
-                        </div>
-                    </div>
-                </div>
-                <div class="col span-3-of-6">
-                    <div class="order_detail">
-                        <div class="section_title">
-                            <h3 class="title">ORDER DETAIL</h3>
-                        </div>
-                        <table class="order_detail_table">
-                            <tbody>
-                                <tr>
-                                    <td class="product_title_order">Product</td>
-                                    <td class="quantity_title_order">Quantity</td>
-                                    <td class="total_title_order">Total</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="scroll_table">
-                            <table>
-                                <tbody id="tbody">
-
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="shipping_order">
-                            <p>Shipping: <span>3$</span></p>
-                        </div>
-                        <div class="total_order">
-                            <p>Total: <span>1990$</span></p>
-                        </div>
-                        <div class="order_choose">
-                            <h4>Payment</h4>
-                            <ul>
-                                <li><input name="payment" type="radio" value="CASH">CASH</li>
-                                <li><input name="payment" type="radio" value="PAYPAL">PAYPAL</li>
+        <div class="home-container">
+            <div id="welcome-header"></div>
+            <button class="btn cursor-pointer" id="logOutBtn" onclick="model.signOutButton()" type="submit">log out</button>
+            </div>
+            <header>
+                <div id="header">
+                    <!-- TOP HEADER -->
+                    <div id="top_header">
+                        <div class="container">
+                            <ul class="header_links_pull_left">
+                                <li><a href="#"><i class="fas fa-phone-square"></i>  0387798072</a></li>
+                                <li><a href="#"><i class="far fa-envelope"></i> BTECSTORE@FPT.EDU.VN</a></li>
+                                <li><a href="#"><i class="fas fa-map-marker-alt"></i> 107 Nguyen Phong Sac - Dich Vong Hau - Cau Giay - Ha Noi.</a></li>
+                            </ul>
+                            <ul class="header_links_pull_right">
+                                <li><a href="#"><i class="fas fa-user"></i> MY ACCOUNT</a></li>
                             </ul>
                         </div>
-                        <div class="order_checkout">
-                            <button><a href="">CHECKOUT</a></button>
-                        </div>
                     </div>
+                    <!-- END TOP HEADER -->
+                    <!-- MAIN HEADER -->
+                    <div class="main_header">
+                    <li class= "homePage" onclick="model.homePageButton()">  <a href=""><img  src="IMG/logoshop.png" alt=""></a></li>
+                        
+                        <div class="search_box">
+                            <input class="search_txt" type="text" name="" placeholder="Search..." />
+                            <a class="search_btn" href="#">
+                                <i class="fas fa-search small-icon" id="icon"></i>
+                            </a>
+                            <ul id="resultSearch">
+                                
+                            </ul>
+        
+        
+                        
+                        </div>
+                        <ul class="function_login">
+                            <li><a href=""><i class="far fa-bell"></i></a></li>
+                            <li><a href="" onclick="model.cartBtn()"><i class="fas fa-shopping-cart"></i><span id="cartNumbers"></span></a></li>
+                            <li><a href="" class="login"><i class="fas fa-user"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- END MAIN HEADER -->
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- <footer class="footer">
-        <div class="row">
-            <div class="col span-2-of-4">
-                <h3>BTEC STORE</h3>
-                <ul>
-                    <li>
-                        <a href="https://www.google.com/maps/place/107+Nguy%E1%BB%85n+Phong+S%E1%BA%AFc,+D%E1%BB%8Bch+V%E1%BB%8Dng+H%E1%BA%ADu,+C%E1%BA%A7u+Gi%E1%BA%A5y,+H%C3%A0+N%E1%BB%99i,+Vi%E1%BB%87t+Nam/@21.0403351,105.7880043,17z/data=!3m1!4b1!4m5!3m4!1s0x3135ab36e43cf6eb:0xc420d35b1d1a47ac!8m2!3d21.0403351!4d105.790193?hl=vi-VN"><i class="fas fa-map-marker-alt"></i> 107 Nguyen Phong Sac, Dich Vong Hau, Cau Giay, Ha Noi</a>
-                    </li>
-                    <li><a href="" ><i class="far fa-envelope"></i> BTECFPT@FPT.EDU.VN</a></li>
-                    <li><a href=""><i class="fas fa-phone-square"></i> 01234567893</a></li>
-                </ul>
-            </div>
-            <div class="col span-1-of-4">
-                <h3>CUSTOMER SUPPORT</h3>
-                <ul>
-                    <li>SHOPPING GUIDE </li>
-                    <li>PAYMENT GUIDE </li>
-                    <li>RETURN POLICY </li>
-                </ul>
-            </div>
-            <div class="col span-1-of-4">
-                <h3>CONTACT US WITH</h3>
-                <ul>
-                    <li><a href="https://www.facebook.com/BTEC-STORE-104462988106601"><i class="fab fa-facebook-square"></i> FACEBOOK </a></li>
-                    <li><a href="https://mail.google.com/mail/u/1/#inbox"><i class="far fa-envelope"></i> EMAIL </a></li>
-                    <li><img src="https://goccuaphu.com/wp-content/uploads/2017/10/huong-dan-tao-tai-khoan-paypal-cho-nguoi-moi-tu-a-z.png" alt=""></li>
-
-                </ul>
-            </div>
-
             
-        </div>
-    </footer> -->
+                <div class="list">
+                    <ul class="main_nav">
+                        <li class= "homePage" onclick="model.homePageButton()"><a href="">Home</a></li>
+                        
+                        <li class="drop_down" onclick="model.allProductButton()"><a href="">Smartphones</a>
+                            <ul id="subMenu" class="sub_menu">
+        
+                                <!-- js code, đoạn này vào view.js tìm -->
+        
+                            </ul>
+                        </li>
+                        <li class="drop_down"><a href="">Smartwatch</a>
+                            <ul class="sub_menu">
+                                <li><a href="">Apple Watch</a></li>
+                                <li><a href="">Samsung Watch</a></li>
+                                <li><a href="">Mi Band</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/contact.html">Contact</a></li>
+                        <li><a href="/aboutus.html">About us</a></li>
+                        <hr>
+                    </ul>
+                </div>
+            </header>
+            <!-- END HEADER -->
+        
 
-</body>
-<script>
-    var a = 0;
+    </body>
 
-    function lmao() {
-        y
-        var checkBox = document.getElementById("myCheck");
-        // Get the output text
-        var otherAddress = document.getElementById("otherAddress");
-
-        // If the checkbox is checked, display the output text
-        if (checkBox.checked == true) {
-            otherAddress.style.display = "block";
-            document.getElementById('defaultAddress').style.opacity = '0.5';
-        } else {
-            otherAddress.style.display = "none";
-            document.getElementById('defaultAddress').style.opacity = '1';
-        }
-    }
-</script>
 
 </html>

@@ -45,9 +45,9 @@ view.setActiveScreen = (screenName) => {
             //đoạn này đăng nhập bằng tk gg
             const googleAccount = document.getElementById('googleAccountBtn');
             googleAccount.addEventListener('click', () => {
-                    model.loginGoogleAccount();
-                })
-                // đoạn này điều hướng tới form đăng kí
+                model.loginGoogleAccount();
+            })
+            // đoạn này điều hướng tới form đăng kí
             document.getElementById('redirect-register').addEventListener('click', () => {
                 view.setActiveScreen('registerPage');
             });
@@ -58,9 +58,6 @@ view.setActiveScreen = (screenName) => {
             logOutBtn.addEventListener('click', () => {
                 model.signOutButton();
             });
-
-
-
             break;
         case 'homePage':
             document.getElementById('app').innerHTML = component.headerHome;
@@ -95,35 +92,41 @@ view.setActiveScreen = (screenName) => {
             //document.getElementById('app').innerHTML += component.footerHome;
             model.getCurrentUserData();
             const totalCart = parseInt(localStorage.getItem('totalCart'));
-
-
-            paypal.Buttons({
-                createOrder: function(data, actions) {
+            let createBill = {
+                createOrder: function (data, actions) {
                     // This function sets up the details of the transaction, including the amount and line item details.
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: totalCart
-                            }
-                        }]
-                    });
+                    if (totalCart) {
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+                                    value: totalCart
+                                }
+                            }]
+                        });
+                    } else {
+                        alert('error')
+                    }
                 },
-                onApprove: function(data, actions) {
+                onApprove: function (data, actions) {
                     // This function captures the funds from the transaction.
-                    return actions.order.capture().then(function(details) {
+                    return actions.order.capture().then(function (details) {
                         // This function shows a transaction success message to your buyer.
-                        alert('Transaction completed by ' + details.payer.name.given_name);
+                        console.log(details);
+                        alert('Transaction completed by ' + details.payer.name.given_name + 'huan' + details.txn_id);
                         view.createBill('paypal')
+                        view.showCart();
+
                     });
                 }
-            }).render('#paypalBtn');
+            }
 
+            // đoạn này render ra nút thanh toán bằng paypal
+            paypal.Buttons(createBill).render('#paypalBtn');
             const cashBtn = document.getElementById('cashBtn');
             cashBtn.addEventListener('click', (e) => {
-                e.preventDefault()
                 view.createBill('cash');
+                view.showCart()
             });
-
     }
 };
 
@@ -213,15 +216,15 @@ view.loadMoreProduct = () => {
     hiddenClass = "hiddenStyle";
     hiddenItems = Array.from(document.querySelectorAll(".hiddenStyle"));
 
-    items.forEach(function(item, index) {
+    items.forEach(function (item, index) {
         //console.log(item.innerText, index);
         if (index > maxItems - 1) {
             item.classList.add(hiddenClass);
         }
     });
     // đoạn này tham khảo nên đ hiểu lắm
-    viewMoreBtn.addEventListener("click", function() {
-        [].forEach.call(document.querySelectorAll("." + hiddenClass), function(
+    viewMoreBtn.addEventListener("click", function () {
+        [].forEach.call(document.querySelectorAll("." + hiddenClass), function (
             item,
             index
         ) {
@@ -244,7 +247,7 @@ view.showDetailProductHome = () => {
     const inforProduct = document.getElementById('inforProduct');
     const inforImg = document.getElementById('innerImg');
     const inforDes = document.getElementById('desProduct')
-        //đoạn này load ra patch của màn hình
+    //đoạn này load ra patch của màn hình
     document.getElementById('path').innerHTML = `<a><a href="" onclick="model.homePageButton()">Home</a> / <a href="" onclick="model.allProductButton()">Smartphone</a> / ${data.name}</a>`;
     //đoạn này để tải ra hình ảnh ở slider
     for (let i = 0; i < data.img.length; i++) {
@@ -316,17 +319,12 @@ view.setTotalCart = (chosenProduct) => {
     }
 }
 
-
 view.showCart = () => {
     view.checkboxPaymentMethods();
-
-
     const userData = model.userData;
 
     let productInCart = JSON.parse(localStorage.getItem('productInCart'));
-    productInCart = (Object.values(productInCart));
     let cartTotal = Number(localStorage.getItem('totalCart'));
-
     const defaultAddress = document.getElementById('defaultAddress');
     const tblListProduct = document.getElementById('tbody');
     const totalOrder = document.getElementById('totalOrder');
@@ -334,11 +332,17 @@ view.showCart = () => {
     const quantityItem = document.getElementsByClassName('quantityItem');
     //show ra địa chỉ default
     defaultAddress.innerHTML = view.htmlDefaultAddress(userData);
-    // show ra list sản phẩm trong giỏ hàng
-    for (let product of productInCart) {
-        tbody.innerHTML += view.htmlItemCart(product);
-    };
 
+    if (productInCart) {
+        productInCart = (Object.values(productInCart));
+        tbody.innerHTML = '';
+        // show ra list sản phẩm trong giỏ hàng
+        for (let product of productInCart) {
+            tbody.innerHTML += view.htmlItemCart(product);
+        };
+    } else {
+        tbody.innerHTML = `Cart is Empty!`
+    }
     // lắng nghe sự kiện thay đổi value Quantity vặ sự kiện Delete Item trong giỏ hàng
     for (let i = 0; i < quantityItem.length; i++) {
 
@@ -363,7 +367,6 @@ view.showCart = () => {
     }
     totalOrder.innerHTML = `<p>Total: <span> ${cartTotal}$ </span></p>`;
 };
-
 
 // function này update số sp trong giỏ hàng
 view.updateNumberInCart = (chosenProduct, type) => {
@@ -425,32 +428,21 @@ view.removeProductInCart = (indexRemove) => {
     tblListProduct.innerHTML = '';
     console.log(productInCart);
     localStorage.setItem('productInCart', JSON.stringify(productInCart));
+    if (productInCart.length == 0) {
+        localStorage.removeItem('productInCart');
+        localStorage.removeItem('totalCart');
+        localStorage.removeItem('CartNumbers');
+    }
 };
 view.updateProductInCart = (indexChosenProduct, inCart) => {
-        let productInCart = localStorage.getItem('productInCart');
-        productInCart = JSON.parse(productInCart);
-        productInCart = (Object.values(productInCart));
-        productInCart[indexChosenProduct].inCart = inCart;
-        localStorage.setItem('productInCart', JSON.stringify(productInCart));
+    let productInCart = localStorage.getItem('productInCart');
+    productInCart = JSON.parse(productInCart);
+    productInCart = (Object.values(productInCart));
+    productInCart[indexChosenProduct].inCart = inCart;
+    localStorage.setItem('productInCart', JSON.stringify(productInCart));
 
-    }
-    // function này để chọn địa chỉ gửi hàng
-    // view.setChosenAddress = () => {
-    //     let selectedDiv = "";
-    //     const x = document.getElementById('default')
-    //     const optionAddress = document.getElementsByClassName('addressOption')
-    //     for (var i = 0; i < optionAddress.length; i++) {
-    //         optionAddress[i].addEventListener("click", function() {
-    //             x.style.pointerEvents = 'none';
-    //             let selectedEl = document.querySelector(".selected");
-    //             if (selectedEl) {
-    //                 selectedEl.classList.remove("selected");
+}
 
-//             }
-//             this.classList.add("selected");
-//         });
-//     }
-// };
 //========================================== END HOME =================================================================================================================================
 
 //==========================================HTML===================================================================================================
@@ -564,6 +556,86 @@ view.htmlDefaultAddress = (userData) => {
     `;
     return html
 }
+view.htmlBill = (data) => {
+    let html = `
+    <div class="main_bill">
+            <div class="infor_invoice">
+                <div class="infor_invoice_left">
+                    <span>Invoice to:</span>
+                    <p class="customer_name">${data.name}</p>
+                    <p class="customer_address">${data.address}, ${data.city}.</p>
+                </div>
+                <div class="infor_invoice_right">
+                    <h2>AMOUNT</h2>
+                    <h3 class="grandtotal_bill">
+                        <p>$</p>
+                        ${data.total}
+                    </h3>
+                    <p class="bill_id">Invoice# <span>${data.id}</span></p>
+                    <p class="bill_date">Date <span${data.createAt}</span></p>
+                </div>
+            </div>
+            <div class="main_item">
+                <div class="bill_title_item">
+                    <table>
+                        <tbody class="item_bill_title">
+                            <tr>
+                                <td class="product_title_bill">Product</td>
+                                <td class="quantity_title_bill">Quantity</td>
+                                <td class="price_title_bill">Price</td>
+                                <td class="total_title_bill">Total</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bill_item">
+                    <table>
+                        <tbody id="tbodyBill">
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="price_bill">
+                <p class="subtotal_bill">SUB TOTAL <span>${data.total}$</span></p>
+                <p class="price_ship_bill">SHIPPING <span>3$</span></p>
+                <p class="grandtotal_price_bill">GRAND TOTAL <span>${Number(data.total) + 3}$</span></p>
+            </div>
+            <div class="payment_method_bill">
+                <h4>PAYMENT METHOD</h4>
+                <div class="infor_payment">
+                    <ul>
+                        <li>
+                            <h1>${data.methodPayment.toUpperCase()}</h1>
+                            <p>${data.email}</p>
+                        </li>
+                        <li>
+                            <h1>Bank account </h1>
+                            <p>123-321-123-321</p>
+                        </li>
+                        <li>
+                            <h1>Cheque</h1>
+                            <p>Information here</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    `;
+
+    return html
+};
+
+view.htmlBillItem = (data) => {
+    html = `
+    <tr>
+        <td class="bill_item_name">${data.name}</td>
+        <td class="bill_item_quantity"><span>${data.inCart}</span></td>
+        <td class="bill_item_price"><span>${data.price}$</span></td>
+        <td class="bill_item_total"><span>${data.price * data.inCart}$</span></td>
+    </tr>`;
+    return html;
+};
 
 //==========================================END HTML===================================================================================================
 
@@ -642,7 +714,7 @@ view.checkboxPaymentMethods = () => {
     const paypalBtn = document.getElementById('paypalBtn');
     let prev = null;
     for (var i = 0; i < choice.length; i++) {
-        choice[i].addEventListener('change', function() {
+        choice[i].addEventListener('change', function () {
             if (this !== prev) {
                 prev = this;
             }
@@ -659,51 +731,154 @@ view.checkboxPaymentMethods = () => {
     };
 };
 
-view.btnPayment = () => {
-    const cashBtn = document.getElementById('cashBtn');
-    const paypalBtn = document.getElementById('paypalBtn');
-
-    cashBtn.addEventListener('click', (e) => {
-        console.log('huan1');
-        e.preventDefault();
-
-    });
-    paypalBtn.addEventListener('click', (e) => {
-        console.log('huan2');
-        e.preventDefault();
-
-    });
-};
-
+// function này dựa vào thuộc tính checked để để lấy về địa chỉ để tạo đơn hàng
 view.getAddressForm = () => {
     const checkboxAddress = document.getElementById("myCheckAddress");
     let address = undefined;
     if (checkboxAddress.checked) {
         const otherAddress = document.getElementById('otherAddress');
         address = {
-            name: otherAddress.name.value,
-            phone: otherAddress.phone.value,
-            address: otherAddress.address.value,
-            city: otherAddress.city.value
+            name: otherAddress.name.value.trim(),
+            phone: otherAddress.phone.value.trim(),
+            address: otherAddress.address.value.trim(),
+            city: otherAddress.city.value.trim()
         }
     } else {
         const userData = model.userData
         address = {
-            name: userData.name,
-            phone: userData.phone,
-            address: userData.address,
-            city: userData.city
+            name: userData.name.trim(),
+            phone: userData.phone.trim(),
+            address: userData.address.trim(),
+            city: userData.city.trim()
         };
     }
-    return address;
+
+    return address
 };
+
 view.createBill = (methodPayment) => {
     let address = view.getAddressForm();
     let productInCart = JSON.parse(localStorage.getItem('productInCart'));
-    productInCart = (Object.values(productInCart));
 
-    let bill = {
+    let cartTotal = localStorage.getItem('totalCart');
+    let randomNumber = Math.floor(Math.random() * 1000000);
+    let note = document.getElementById('notesBill').value;
 
+
+    if (productInCart) {
+        productInCart = (Object.values(productInCart));
+        let bill = {
+            ...address,
+            id: 'BTEC' + randomNumber,
+            items: [...productInCart],
+            total: cartTotal,
+            createAt: formatDate(new Date().toISOString()),
+            methodPayment: methodPayment,
+            note: note
+        };
+        controller.addressForm(bill)
+
+
+    } else {
+        alert('Cart Is Empty');
     }
 
 };
+
+// function này remove hết item  trong cart sau khi thanh toán thành công
+view.removeLocalStorage = () => {
+    localStorage.removeItem('productInCart');
+    localStorage.removeItem('totalCart');
+    localStorage.removeItem('CartNumbers');
+}
+
+//function này format lại thời gian thành ngày / tháng / năm
+
+
+view.showBill = (data) => {
+    // Get the modal
+    var modal = document.getElementById("myModal");
+    // Get the button that opens the modal
+
+    // Get the <span> element that closes the modal
+    const closeBtn = document.getElementById('closeBtn');
+    // When the user clicks the button, open the modal 
+    const billContent = document.getElementById('billContent');
+
+
+    billContent.innerHTML += view.htmlBill(data);
+    const tbodyBill = document.getElementById('tbodyBill');
+
+    for (let i = 0; i < data.items.length; i++) {
+        tbodyBill.innerHTML += view.htmlBillItem(data.items[i]);
+    }
+
+
+    modal.style.display = "block";
+    // When the user clicks on <span> (x), close the modal
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = "none";
+    })
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+};
+
+function formatDate(input) {
+    var date = new Date(input);
+    return [
+        ("0" + date.getDate()).slice(-2),
+        ("0" + (date.getMonth() + 1)).slice(-2),
+        date.getFullYear()
+    ].join('/');
+};
+
+// function Search
+view.searchByName = () => {
+    const inputSearch = document.getElementById('inputSearch');
+    inputSearch.addEventListener('input', () => {
+        view.filterByName(inputSearch.value)
+    })
+};
+view.filterByName = (keyValue) => {
+    // lọc theo tên và category
+    let data = model.productData.filter(item => {
+        return item.name.toLowerCase().includes(keyValue.toLowerCase()) || item.category.toLowerCase().includes(keyValue.toLowerCase())
+    })
+
+    //sắp xếp alphabet
+    data.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+    view.showListSearch(data, keyValue);
+};
+
+view.showListSearch = (data, keyValue) => {
+    console.log(data);
+    const resultSearch = document.getElementById('resultSearch');
+    let a = data.length;
+
+    resultSearch.innerHTML = ''
+
+    if (keyValue.length > 0) {
+        resultSearch.style.background = 'white';
+        resultSearch.style.boxShadow = '0 15px 15px 0 rgba(51, 51, 51, 0.1);';
+        if (a > 3) {
+            for (let i = 0; i < 5; i++) {
+                resultSearch.innerHTML += `<li>${data[i].name}</li>`;
+            }
+        } else if (a > 0) {
+            for (let i = 0; i < a; i++) {
+                resultSearch.innerHTML += `<li>${data[i].name}</li>`;
+            }
+        }
+    } else {
+        resultSearch.innerHTML = ''
+    }
+
+
+};
+
+
