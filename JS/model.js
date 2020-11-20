@@ -64,7 +64,7 @@ model.newBill = async(data) => {
 model.login = (data) => {
     try {
         firebase.auth().signInWithEmailAndPassword(data.email, data.password);
-        // đoạn này sau khi login thành công, chuyển tiếp email vừa dùng để check role
+        
 
     } catch (err) {
         console.log(err);

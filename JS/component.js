@@ -71,7 +71,7 @@ component.loginPage = `
             </div>
             
         </form>
-    </div>\
+    </div>
     
 `;
 

@@ -572,7 +572,7 @@ view.htmlBill = (data) => {
                         ${data.total}
                     </h3>
                     <p class="bill_id">Invoice# <span>${data.id}</span></p>
-                    <p class="bill_date">Date <span${data.createAt}</span></p>
+                    <p class="bill_date">Date <span${formatDate(data.createAt) }</span></p>
                 </div>
             </div>
             <div class="main_item">
@@ -772,9 +772,10 @@ view.createBill = (methodPayment) => {
             id: 'BTEC' + randomNumber,
             items: [...productInCart],
             total: cartTotal,
-            createAt: formatDate(new Date().toISOString()),
+            createAt: new Date().toISOString(),
             methodPayment: methodPayment,
-            note: note
+            note: note,
+            email: model.currentUser.email
         };
         controller.addressForm(bill)
 
@@ -813,19 +814,18 @@ view.showBill = (data) => {
         tbodyBill.innerHTML += view.htmlBillItem(data.items[i]);
     }
 
-
     modal.style.display = "block";
     // When the user clicks on <span> (x), close the modal
     closeBtn.addEventListener('click', () => {
         modal.style.display = "none";
-    })
+    });
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
-    }
+    };
 };
 
 function formatDate(input) {
@@ -877,8 +877,6 @@ view.showListSearch = (data, keyValue) => {
     } else {
         resultSearch.innerHTML = ''
     }
-
-
 };
 
 
