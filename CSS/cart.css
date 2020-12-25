@@ -1,289 +1,20 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    list-style: none;
-}
-
-html {
-    font-family: 'Lato', 'san-serif';
-    text-rendering: optimizeLegibility;
-}
-
-body {
-    background-color: #ecf0f1;
-}
-
-
-/* -------------------------------------------------------- */
-
-
-/* -------------------------code tai su dung------------------------- */
-
-
-/* -------------------------------------------------------- */
-
-.clearfix::after {
-    content: " ";
-    display: table;
-    clear: both;
-}
-
-.row {
-    max-width: 1140px;
-    margin: 0 auto;
-}
-
-
-/* ---------------------------------------------------- */
-
-
-/* --------------------------top header-------------------------- */
-
-#header {
-    float: left;
-    height: 133px;
-    width: 100%;
-    background-color: #1e1f29;
-    border-bottom: 1px solid#f39c12;
-}
-
-.top_header {
-    float: left;
-    height: 30px;
-    width: 80%;
-    margin-left: 10%;
-    background-color: #1e1f29;
-}
-
-.header_links_pull_left {
-    float: left;
-    width: 60%;
-    line-height: 30px;
-    margin-left: 8.6%;
-}
-
-.header_links_pull_left li {
-    list-style: none;
-    float: left;
-    line-height: 30px;
-    margin-left: 20px;
-}
-
-.header_links_pull_left li a {
-    color: white;
-    text-decoration: none;
-    font-weight: 900;
-    font-size: 10px;
-    transition: all 0.5s;
-}
-
-.header_links_pull_left li a:hover {
-    color: orange;
-}
-
-.header_links_pull_right {
-    float: right;
-    margin-right: 8.5%;
-}
-
-.header_links_pull_right li {
-    float: right;
-    list-style: none;
-    line-height: 30px;
-    margin-right: 30px;
-}
-
-.header_links_pull_right li a {
-    color: white;
-    text-decoration: none;
-    font-weight: 900;
-    font-size: 10px;
-    transition: all 0.5s;
-}
-
-.my_account {
-    padding-left: 5px;
-}
-
-.header_links_pull_right li a:hover {
-    color: orange;
-}
-
-
-/* --------------------------end top header-------------------------- */
-
-.main_header {
-    float: left;
-    width: 100%;
-    height: 100px;
-    background: #000000;
-}
-
-.main_header img {
-    margin-top: 14px;
-    width: 210px;
-    height: 80px;
-    float: left;
-    margin-left: 170px;
-}
-
-.function_login {
-    float: right;
-    margin-right: 165px;
-    margin-top: 4px;
-}
-
-.function_login li {
-    float: left;
-    line-height: 100px;
-    margin-right: 30px;
-}
-
-.function_login li a {
-    color: white;
-    text-decoration: none;
-    transition: all 0.5s;
-}
-
-.function_login li a:hover {
-    color: red;
-}
-
-
-/* --------------------------search-------------------------- */
-
-.search_box {
-    float: left;
-    width: 547px;
-    height: 40px;
-    margin-top: 30px;
-    margin-left: 142px;
-    background-color: black;
-    border: 2px solid white;
-}
-
-.search_txt {
-    float: left;
-    width: 505px;
-    height: 38px;
-    padding-left: 10px;
-    border: none;
-    outline: none;
-}
-
-.search_btn {
-    float: left;
-    padding: 3px 3.5px;
-    color: white;
-    margin-top: 3px;
-    margin-left: 7px;
-    transition: all 0.3s;
-    font-size: 20px;
-}
-
-.search_btn:hover {
-    color: red;
-}
-
-
 /* --------------------------main_item-------------------------- */
-
-.list {
-    float: left;
-    height: 50px;
-    width: 100%;
-    border-top: 2px solid red;
-    border-bottom: 3px solid #E4E7ED
-}
-
-.main_nav {
-    float: left;
-    /* margin-left: 470px; */
-    line-height: 50px;
-    margin-left: 163px;
-}
-
-.main_nav li {
-    list-style: none;
-    float: left;
-    margin-left: 30px;
-    position: relative;
-}
-
-.main_nav li a {
-    color: black;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s;
-}
-
-.main_nav li a:hover {
-    color: red;
-    border-bottom: 1px solid red;
-}
-
-.sub_menu {
-    position: absolute;
-    box-shadow: 0 8px 8px 0 rgba(103, 151, 255, .11), 0 12px 18px 0 rgba(103, 151, 255, .11);
-    display: none;
-}
-
-.drop_down:hover .sub_menu,
-.drop_down:active .sub_menu {
-    display: block;
-}
-
-.sub_menu li {
-    background-color: #ecf0f1;
-    width: 120px;
-    text-align: center;
-    margin-left: -13px;
-    border-bottom: 1px solid black;
-}
-
-
-/*--end sub_menu--*/
 
 
 /*--bill--*/
 
-.bath {
-    float: left;
-    height: 90px;
-    width: 100%;
-    background-color: #ecf0f1;
-    border: 1px solid #c8d6e5;
-}
-
-.bath h1 {
-    margin-top: 30px;
-    float: left;
-    font-size: 30px;
-    margin-left: 180px;
-}
-
-.bath p {
-    float: left;
-    font-size: 15px;
-    margin-top: 44px;
-    margin-left: 20px;
-}
-
 .checkout {
-    margin-top: 10px;
+    margin-top: 1px;
+    width: 80%;
+    margin-left: 10%;
     float: left;
-    width: 76%;
-    margin-left: 12%;
-    margin-right: 12%;
     border: 1px solid #c8d6e5;
 }
 
 .billing_details {
     float: left;
-    width: 100%;
-    background-color: #ecf0f1;
+    width: 98%;
+    margin-left: 2%;
 }
 
 .section_title {
@@ -294,15 +25,14 @@ body {
 }
 
 .billing_details input {
-    width: 80%;
+    width: 99%;
     height: 40px;
     margin-top: 20px;
-    background-color: #ecf0f1;
     border: 1px solid #c8d6e5;
     padding-left: 10px;
 }
 
-.other_address {
+.shiping_details {
     margin-top: 30px;
     width: 99%;
     float: left;
@@ -311,7 +41,7 @@ body {
 .input_checkbox>input {
     float: left;
     height: 20px;
-    /* margin-left; */
+    margin-left: -70px;
     margin-top: -17px;
 }
 
@@ -399,7 +129,7 @@ body {
     width: 60%;
     text-align: center;
     margin-left: -60px;
-    background-color: #ecf0f1;
+    outline: none;
 }
 
 .scroll_table_price {
@@ -408,6 +138,8 @@ body {
 
 .scroll_table_price span {
     float: left;
+    width: 40px;
+    overflow: hidden;
     margin-left: 15px;
 }
 
@@ -418,32 +150,20 @@ body {
 
 .product_title_order {
     float: left;
+    font-weight: 600;
 }
 
 .quantity_title_order {
     float: left;
-    margin-left: 300px;
+    font-weight: 600;
+    margin-left: 20.7rem;
 }
 
 .total_title_order {
     float: left;
-    margin-left: 65px;
-}
-
-
-/*
-.scroll_table table tr td button {
-    background-color: orange;
     font-weight: 600;
-    color: white;
-    border: 1px solid red;
-    outline: none;
+    margin-left: 4rem;
 }
-.scroll_table table tr td button:hover {
-    background-color: red;
-    border: 2px solid red;
-}
-*/
 
 .scroll_table table tr td img {
     width: 100%;
@@ -463,12 +183,13 @@ body {
     float: right;
     font-weight: 600;
     font-size: 16px;
-    margin-top: 20px;
+    margin-top: 1.6rem;
+    margin-right: 0.2rem;
 }
 
 .shipping_order span {
-    padding-left: 202px;
-    padding-right: 35px;
+    padding-left: 12.7rem;
+    padding-right: 1.7rem;
 }
 
 .total_order {
@@ -478,102 +199,158 @@ body {
 
 .total_order p {
     float: right;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 16px;
-    margin-top: 20px;
+    margin-top: 0.3rem;
+    margin-right: -1.2rem;
 }
 
 .total_order span {
-    padding-left: 200px;
-    padding-right: 35px;
-    font-weight: 900;
+    padding-left: 10rem;
+    padding-right: 3.1rem;
+    font-weight: 600;
     color: red;
 }
 
-.order_choose {
+.payment {
     float: left;
-    margin-top: 20px;
-    margin-left: 198px;
+    width: 100%;
+    margin-top: 1rem;
 }
 
-.order_choose h4,
-ul {
+.payment ul {
     float: left;
-    margin-left: 40px;
+    width: 90%;
+    margin-left: 5%;
 }
 
-.order_choose ul li {
+.payment ul li {
     float: left;
-    margin-left: 33px;
-    font-size: 14px;
-    font-weight: 600;
-    padding-left: 5px;
+    width: 50%
+}
+
+.payment ul li button {
+    width: 15rem;
+    font-weight: 500;
 }
 
 .order_checkout {
     float: left;
     width: 100%;
-    margin-top: 90px;
 }
 
 .order_checkout button {
-    width: 400px;
-    height: 60px;
-    margin-left: 76px;
+    width: 86.5%;
+    margin-left: 5%;
+    height: 4rem;
     font-weight: 600;
     font-size: 20px;
-    background-color: tomato;
     border: 1px solid red;
 }
 
-.order_checkout button a {
-    color: white;
-}
 
-.order_checkout button:hover {
-    background-color: red;
-}
+
 
 
 /*--end-bill--*/
+.disableddiv {
+    pointer-events: none;
+    opacity: 0.4;
+};
+.suggessted {
+    float: left;
+    width: 30%;
+    height: 360px;
+    margin-top: 10rem;
+    margin-left: 35%;
+    border: 1px solid rgb(88, 59, 59);
+    background-color: #06062b;
+    border-radius: 10px;
+}
 
-
-/* --------------------------footer-------------------------- */
-
-.footer {
+.main_suggessted {
     float: left;
     width: 100%;
-    margin-top: 50px;
-    background-color: black;
+}
+
+.main_suggessted img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.main_suggessted p {
+    float: left;
+    width: 100%;
     color: white;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
 }
 
-.footer h3 {
-    margin-bottom: 20px;
+.btn_fct {
+    min-width: 160px;
 }
 
-.footer ul {
-    margin-left: -1px;
+.function_suggessted {
+    float: left;
+    width: 90%;
+    margin-left: 5%;
 }
 
-.footer ul li {
-    margin-bottom: 20px;
-    font-size: 12px;
+.btn_skip {
+    float: right;
+}.suggessted {
+    display: block;
+    float: left;
+    width: 100%;
+    height: 450px;
+    background-color: #06062b;
+    border-radius: 10px!important;
 }
 
-.footer ul li:hover {
-    color: crimson;
+.modal_suggested_edit {
+    border-radius: 10px!important;
 }
 
-.footer ul li a {
+.suggessted_login_show {
+    padding: 0!important;
+    background-color: #06062b!important;
+}
+
+.main_suggessted {
+    float: left;
+    width: 100%;
+}
+
+.main_suggessted img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.main_suggessted p {
+    float: left;
+    width: 100%;
     color: white;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
 }
 
-.footer ul li a:hover {
-    color: crimson;
+.btn_fct {
+    min-width: 160px;
 }
 
-.footer ul li img {
-    width: 150px;
-    margin-left: -10px;
+.function_suggessted {
+    float: left;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.btn_skip {
+    float: right;
+}
+
+.suggessted_edit {
+    border-radius: 10px!important;
+    border: 1px solid white!important;
 }

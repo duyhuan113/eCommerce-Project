@@ -1,4 +1,4 @@
-window.onload = () => {
+window.onload =  () => {
     var firebaseConfig = {
         apiKey: "AIzaSyCK52EI2vlm53OQJsss1r8sIpBuJFMmuic",
         authDomain: "ecommerce-project-1b257.firebaseapp.com",
@@ -11,25 +11,23 @@ window.onload = () => {
     };
     firebase.initializeApp(firebaseConfig);
 
-    firebase.auth().onAuthStateChanged((user) => {
+     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             model.currentUser = {
-                displayName: user.displayName,
+                name: user.displayName,
                 email: user.email,
             }
+            
+            console.log(model.currentUser);
             if (user.emailVerified) {
-                if (model.currentLocationScreen == 'admin') {
                     view.setActiveScreen(model.currentLocationScreen);
-                } else{
-                    view.setActiveScreen(model.currentLocationScreen);
-                }
+                    view.userRole();
             } else {
                 alert('Please Verified Your Email');
                 firebase.auth().signOut();
-                view.setActiveScreen('registerPage');
             }
         } else {
-            view.setActiveScreen('loginPage');
+            view.setActiveScreen(model.currentLocationScreen);
         }
     });
 

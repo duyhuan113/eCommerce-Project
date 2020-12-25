@@ -1,8 +1,10 @@
 const controller = {};
 
 controller.register = (data) => {
-    view.setErrorMessage('first-name-error', data.firstName === '' ? 'Please Enter Your First Name' : '');
-    view.setErrorMessage('last-name-error', data.lastName === '' ? 'Please Enter Your Last Name' : '');
+    console.log(data);
+    view.setErrorMessage('name-error', data.name === '' ? 'Please Enter Your Name' : '');
+    view.setErrorMessage('phone-error', data.phone === '' ? 'Please Enter Your Phone' : '');
+
 
     if (data.email === '') {
         view.setErrorMessage('email-error', 'Please Enter Your Email')
@@ -19,62 +21,45 @@ controller.register = (data) => {
     if (data.password === '') {
         view.setErrorMessage('password-error', 'Please Enter Your Password');
     } else {
-        if (validatePassword(data.password) == true) {
+        if (validatePassword(data.password)) {
             view.setErrorMessage('password-error', '');
         } else {
             view.setErrorMessage('password-error', 'Password Must Be Longer Than 6 Characters, Contains 1 Upper Case Character and 1 Number');
         }
     }
+
     if (data.confirmPassword === '') {
-        view.setErrorMessage('confirm-password-error', 'Please Confirm Your Password');
+        view.setErrorMessage('confirmPw-error', 'Please Confirm Your Password');
     } else {
         if (data.confirmPassword !== data.password) {
-            view.setErrorMessage('confirm-password-error', "Confirm Password Doesn't Match With PassWord");
+            view.setErrorMessage('confirmPw-error', "Confirm Password Doesn't Match With PassWord");
         } else {
-            view.setErrorMessage('confirm-password-error', '');
+            view.setErrorMessage('confirmPw-error', '');
         }
     }
-
-    if (data.firstName !== '' && data.lastName !== '' && data.email !== '' && data.password !== '' && data.confirmPassword === data.password) {
+    if (data.name !== '' && data.email !== '' && data.password !== '') {
+        console.log('ok');
         model.register(data);
-
+    }else{
+        console.log('2');
     };
 };
 
 controller.login = (data) => {
-    view.setErrorMessage('email-error', data.email === '' ? 'Please Enter Your Email' : '');
-
-    if (data.password === '') {
-        view.setErrorMessage('password-error', 'Please Enter Your Password');
-    } else {
-        if (validatePassword(data.password) == true) {
-            view.setErrorMessage('password-error', '');
-        } else {
-            view.setErrorMessage('password-error', 'Password Must Be Longer Than 6 Characters, Contains 1 Upper Case Character and 1 Number');
-        }
-    }
+    
     if (data.email !== '' && data.password !== '') {
         model.login(data);
-        model.checkRole(data.email);
     };
 };
 
-
-
 controller.addressForm = (data) => {
-    view.setErrorMessage('name-error', data.name === '' ? 'Please Enter Your First Name' : '');
-    view.setErrorMessage('address-error', data.address === '' ? 'Please Enter Your Address Name' : '');
-    view.setErrorMessage('city-error', data.city === '' ? 'Please Enter Your City' : '');
-    view.setErrorMessage('phone-error', data.phone === '' ? 'Please Enter Your Phone ' : '');
-
-
-    if (data.name !== '' && data.address !== '' && data.city !== '' && data.phone !== '') {
-        model.newBill(data);
-        view.showBill(data);
-        view.removeLocalStorage();
-    } else {
-        alert('Please Enter Your Information')
-    };
+    let flag = true;
+    if (data.name == '' || data.email == '' || data.address == '' || data.phone == '') {
+        
+        alert('Enter Your Information!');
+        flag = false;
+    }
+    return flag;
 };
 
 

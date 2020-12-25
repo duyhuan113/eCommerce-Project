@@ -4,9 +4,7 @@ model.currentLocationScreen = localStorage.getItem('currentLocationScreen');
 // biến này để lưu ng dùng hiện tại là ai?
 model.currentUser = undefined;
 
-//biến này lưu thông tin ng dùng hiện tại
-model.userData = undefined
-    // biến này để lưu sản phẩm vừa đc chọn để xem chi tiết là sp nào
+// biến này để lưu sản phẩm vừa đc chọn để xem chi tiết là sp nào
 if (model.currentLocationScreen == 'detailProductHome') {
     model.chosenProduct = localStorage.getItem('detailProduct');
     model.chosenProduct = JSON.parse(model.chosenProduct);
@@ -17,174 +15,175 @@ if (model.currentLocationScreen == 'detailProductHome') {
 model.productData = undefined;
 
 // array này lưu tất cả category của toàn bộ sp
-model.categoriesProductData = undefined;
+model.categoryData = undefined;
 // array này chức Data vừa lọc đc
 model.filterProductData = [];
 
-
 //LOGIN--------------------------------------------------------------------------------------------------------------------------------
 // function này tạo tài khoản cho ng dùng mới
-model.register = async(data) => {
+model.register = async (data) => {
+    let flag = true;
     try {
         const response = await firebase.auth().createUserWithEmailAndPassword(data.email, data.password);
         firebase.auth().currentUser.updateProfile({
-            displayName: data.firstName + ' ' + data.lastName,
+            displayName: data.name,
         });
         firebase.auth().currentUser.sendEmailVerification();
+
+    } catch (err) {
+        alert(err)
+        flag = false
+    }
+    if (flag) {
         //đoạn này nếu register thành công thì mới thêm user trong db.
         model.newUser(data);
-    } catch (err) {
-        alert(err.message);
     }
 };
 // function này thêm mới user trong db, 
 model.newUser = (data) => {
-    const dataToCreate = {
-        name: data.firstName + ' ' + data.lastName,
-        gender: data.gender,
-        dob: data.dob,
-        phone: data.phone,
-        email: data.email,
+    dataToAdd = {
+        avatar: 'https://huyhoanhotel.com/wp-content/uploads/2016/05/765-default-avatar.png',
         address: data.address,
+        createdOrders: 0,
+        dob: data.gender,
+        email: data.email,
+        gender: data.gender,
+        memberShip: 0,
+        name: data.firstName + ' ' + data.lastName,
+        phone: data.phone,
         password: data.password,
+        status: true,
         role: 'user'
     }
-    firebase.firestore().collection('users').doc(data.email).set(dataToCreate);
+    firebase.firestore().collection('users').doc(data.email).set(dataToAdd);
 };
 
 
-model.newBill = async(data) => {
-    bill = {...data,
-        status: false
-    }
-    firebase.firestore().collection('orders').doc(data.id).set(bill);
-};
+model.getCurrentUserData = async (email) => {
+    const response = await firebase.firestore().collection("users").doc(email).get()
+    model.currentUser = response.data();
+
+    return model.currentUser
+}
 
 // function này check login bằng email và pw
-model.login = (data) => {
+model.login = async (data) => {
+    let flag = true;
     try {
-        firebase.auth().signInWithEmailAndPassword(data.email, data.password);
-        
-
+        await firebase.auth().signInWithEmailAndPassword(data.email, data.password)
     } catch (err) {
-        console.log(err);
-        alert(err.message)
+        alert(err);
+        flag = false
     }
-};
+    if (flag) {
+        userData = await model.getCurrentUserData(data.email);
+        console.log(userData);
+        if (userData) {
+            if (!userData.status) {
+                alert('Your account is temporarily locked!');
+                firebase.auth().signOut();
+            }
+        } else {
+            alert('This account does not exist.');
+            firebase.auth().signOut();
 
-// function này check login bằng tk liên kết với google
-model.loginGoogleAccount = () => {
-    baseProvider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(baseProvider).then(function(result) {
+        }
+    }
+    location.reload();
+};
+model.loginWithFacebook = () => {
+    baseProvider = new firebase.auth.FacebookAuthProvider();
+    firebase.auth().signInWithPopup(baseProvider).then(function (result) {
         console.log(result);
 
-    }).catch(function(error) {
+    }).catch(function (error) {
         console.log(error);
     })
 }
 
-//function này check Role tài khoản
-model.checkRole = async(email) => {
-        const docRef = firebase.firestore().collection("admins").doc(email);
-        let data = undefined;
-        docRef.get().then(function(doc) {
-            if (doc.exists) {
-                console.log("Turn to Admin Page:", doc.data());
-                data = doc.data().role;
-                model.currentLocationScreen = data;
-            } else {
-                // doc.data() will be undefined in this case
-                console.log("Turn to Home Page");
-                data = 'homePage';
-                model.currentLocationScreen = data;
-            }
-            //đoạn này lưu role lên localstorage, tẹo lấy xuống
-            localStorage.setItem('currentLocationScreen', data);
+// function này check login bằng tk liên kết với google
+model.loginGoogleAccount = async () => {
+    let flag = true;
+    baseProvider = new firebase.auth.GoogleAuthProvider();
+    await firebase.auth().signInWithPopup(baseProvider).then(function (result) {
+        console.log(result);
 
-        }).catch(function(error) {
-            console.log("Error getting document:", error);
-        });
-    }
-    //END LOGIN--------------------------------------------------------------------------------------------------------------------------------
+    }).catch(function (error) {
+        console.log(error);
+
+    })
+    location.reload();
+}
+
+
 
 
 //function này lấy Product data về từ firebase
-model.getProductData = async() => {
+model.getProductsData = async () => {
     //đoạn này bóc tách dữ liệu từ db trả về
-    const response = await firebase.firestore().collection("products").get()
-    
+    const response = await firebase.firestore().collection("products").where("status", "==", true).get();
     model.productData = getDataFromDocs(response.docs);
-    //     //đoạn này kiểm tra role để load dữ liệu
-    if (model.currentLocationScreen == 'admin') {
-        view.showListProductAdmin();
-    } else {
-        //view.showListProductHome();
-        model.getCategoriesProduct();
-    };
     //đoạn này lấy categories cho  vào 1 biến, các catogorries có thể giống nhau nên phải cho và o1 biến để lọc ra unique
+    return model.productData;
 };
 
-
-//HOMEPAGE--------------------------------------------------------------------------------------------------------------------------------
-//function này lấy các category.
-model.getCategoriesProduct = () => {
-    let categories = [];
-    for (item of model.productData) {
-        categories.push(item.category)
-    }
-    model.categoriesProductData = [...new Set(categories)];
-
-    view.showListProductHome();
+model.getProductsDataByCategory = async (category) => {
+    console.log(category);
+    const response = await firebase.firestore().collection("products").where("category", "==", category).get();
+    let data = model.productData = getDataFromDocs(response.docs);
+    return data
 }
-model.filterCategoryProductData = (key) => {
-        model.filterProductData = [];
-        console.log(key);
-        for (data of model.productData) {
-            if (data.category == key) {
-                model.filterProductData.push(data)
-                console.log(model.filterProductData);
-            }
+
+model.getCollectionData = async (collection) => {
+    const response = await firebase.firestore().collection(collection).get()
+    return getDataFromDocs(response.docs).sort((a, b) => (a.createAt < b.createAt) ? 1 : ((b.createAt < a.createAt) ? -1 : 0));
+};
+
+model.getProductsDataById = async (id) => {
+    const response = await firebase.firestore().collection("products").where("id", "==", id).get();
+    return getDataFromDocs(response.docs);
+}
+
+// function này lưu product vừa đc chọn để lưu lên local, sau đó gọi lại để load ra màn hình detail.
+model.tickProduct = async (id) => {
+    let data = await model.getProductsDataById(id);
+    console.log(data);
+    // đoạn này update location screen.
+    localStorage.setItem('currentLocationScreen', 'detailProduct');
+    parseData = JSON.stringify(data[0]);
+    localStorage.setItem('detailProduct', parseData);
+    location.reload();
+};
+
+// function này lưu order vafo db
+model.newBill = async (data) => {
+    console.log(data);
+    dataItem = data.items
+    try {
+        await firebase.firestore().collection('orders').doc(data.id).set(data);
+        for (let item of dataItem) {
+            await model.updateProductData(item.id, item.inCart);
         }
-        view.showListProductHome(model.filterProductData, true);
-
+    } catch (err) {
+        console.log(err);
     }
-    // function này lưu product vừa đc chọn để lưu lên local, sau đó gọi lại để load ra màn hình detail.
-model.tickProduct = (chosenProduct) => {
-    //đoạn này update location screen.
-    localStorage.setItem('currentLocationScreen', 'detailProductHome');
-    data = JSON.stringify(chosenProduct);
-    localStorage.setItem('detailProduct', data);
 };
-model.getCurrentUserData = async() => {
-    const response = await firebase.firestore().collection("users").doc(model.currentUser.email).get()
 
-    model.userData = response.data();
-
-    view.showCart();
-    // view.createBill();
-
-}
-model.cartProduct = () => {
-
-}
-
-
-//END HOMEPAGE--------------------------------------------------------------------------------------------------------------------------------
-
-
-//ADMIN --------------------------------------------------------------------------------------------------------------------------------
-//function này dùng để delete product của Admin
-model.deleteProduct = (data) => {
-    firebase.firestore().collection("products").doc(data.id).delete().then(function() {
-        console.log("Document successfully deleted!");
-    }).catch(function(error) {
-        console.error("Error removing document: ", error);
+model.updateProductData = async (id, inCart) => {
+    let data = await model.getProductsDataById(id);
+    await firebase.firestore().collection('products').doc(id).update({
+        availableQuantity: Number(data[0].availableQuantity) - inCart
+    });
+};
+//function này cập nhật thông tin memberShip cho thành viên.
+model.updateUserData = async (email, total) => {
+    let userData = model.currentUser;
+    await firebase.firestore().collection('users').doc(email).update({
+        createdOrders: userData.createdOrders + 1,
+        memberShip: userData.memberShip + total
     });
 };
 
-model.addProduct = (data) => {};
-
-// End Admin--------------------------------------------------------------------------------------------------------------------------------
 
 model.signOutButton = () => {
     firebase.auth().signOut();
@@ -193,59 +192,13 @@ model.signOutButton = () => {
     model.productData = [];
 };
 
-model.homePageButton = () => {
-    localStorage.setItem('currentLocationScreen', 'homePage');
-};
-
-model.allProductButton = () => {
-    localStorage.setItem('currentLocationScreen', 'allProductHome');
-};
-model.cartBtn = () => {
-    localStorage.setItem('currentLocationScreen', 'cart');
-};
-
-// function này lưu sản phẩm đc chọn vào giỏ hàng
-model.addCartBtn = (data) => {
-    let cartItems = localStorage.getItem('productInCart');
-    cartItems = JSON.parse(cartItems);
-    if (cartItems != null) {
-        if (cartItems[data.id] == undefined) {
-            data.inCart = 1;
-            cartItems = {
-                ...cartItems,
-                [data.id]: data,
-            }
-        } else {
-            cartItems = {
-                ...cartItems,
-                [data.id]: data,
-            }
-            cartItems[data.id].inCart += 1;
-        }
-    } else {
-        data.inCart = 1;
-        cartItems = {
-            [data.id]: data,
-        }
-    }
-    localStorage.setItem('productInCart', JSON.stringify(cartItems));
-};
-
-// model.getByName = async (keyValue)=>{
-
-// // const response = await firebase.firestore().collection('products').where('name','<=','Huawei nova 5T').get();
-// // console.log(getDataFromDocs(response.docs));
-// console.log(model.productData());
-
-
-// }
-
 //đoạn này lấy Data từ doc
 getDataFromDocs = (docs) => {
     return docs.map(item => getDataFromDoc(item))
-}
+};
+
 getDataFromDoc = (doc) => {
-    const data = doc.data()
+    let data = doc.data()
     data.id = doc.id
     return data
 }

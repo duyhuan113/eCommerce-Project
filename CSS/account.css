@@ -1,0 +1,296 @@
+/*--my account--*/
+
+.infor_account {
+    float: left;
+    background-color: #f4f4f4;
+    width: 80%;
+    min-height: 40rem;
+    margin-top: 0.5rem;
+    margin-left: 10%;
+    border: 1px solid #b2bec3;
+    border-radius: 5px;
+}
+
+.funtion_account {
+    float: left;
+    margin-top: 1rem;
+}
+
+.nav_funtion .color_nav_link.active {
+    color: white !important;
+    background-color: #bdc3c7 !important;
+}
+
+.color_nav_link {
+    color: black;
+    font-weight: 500;
+}
+
+.funtion_account a {
+    width: 80%;
+    margin-left: 5%;
+    text-align: center;
+}
+
+.show_funtion_account {
+    float: left;
+}
+
+.list_product_orders {
+    width: 40%;
+}
+
+.address_account {
+    float: left;
+    width: 98%;
+    margin-top: 1rem;
+}
+
+.address_account li {
+    float: left;
+    width: 100%;
+    min-height: 5.5rem;
+    background-color: white;
+    border: 1px solid #95a5a6;
+    margin-bottom: 1rem;
+}
+
+.address_account li a {
+    float: left;
+    width: 100%;
+    text-align: center;
+    line-height: 5.5rem;
+}
+
+li.add_new_address {
+    border-style: dashed;
+}
+
+li.add_new_address:hover {
+    border-style: dashed;
+    border-color: orange;
+}
+
+.add_new_address {
+    font-size: 17px;
+    line-height: 5.5rem;
+    text-align: center;
+}
+
+.add_new_address span {
+    color: black;
+    margin-left: 0.2rem;
+}
+
+.add_new_address i {
+    color: black;
+}
+
+.add_new_address:hover {
+    text-decoration: none;
+    color: orange !important;
+    cursor: pointer;
+}
+
+.list_address {
+    float: left;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.infor_address {
+    float: left;
+    width: 70%;
+}
+
+.infor_address h1 span {
+    color: #2ecc71;
+    font-size: 13px;
+    font-weight: 400;
+    margin-left: 1rem;
+}
+
+.infor_address h1 span i {
+    padding: 0 4px 0 0;
+}
+
+.list_address h1 {
+    font-size: 15px;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.3rem;
+}
+
+.list_address table {
+    margin-left: 1rem;
+}
+
+.function_address {
+    float: right;
+    display: flex;
+    align-items: center;
+}
+
+.function_address button {
+    margin-right: 0.5rem;
+}
+
+.title_infor th {
+    color: #84817a;
+    font-weight: 400;
+}
+
+.infor_orders {
+    float: left;
+    margin-top: 1rem;
+    width: 98%;
+}
+
+.title_infor td {
+    padding-left: 1rem;
+}
+
+.show_infor_account {
+    width: 98%;
+}
+
+.show_infor_account span {
+    width: 8rem;
+}
+
+.show_infor_account button {
+    width: 100%;
+    font-weight: 600;
+}
+
+.modal_edit {
+    max-width: 1200px !important;
+}
+
+.modal_header_color {
+    background-color: black !important;
+    color: white;
+    box-shadow: 0 0px 30px 0px rgba(0, 0, 0, 0.15) !important;
+    -moz-box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.15) !important;
+    -webkit-box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.15)!important;
+    -o-box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.15)!important;
+    -ms-box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.15)!important;
+}
+
+.modal_header_color button {
+    color: white !important;
+}
+
+.modal_header_color h5 {
+    font-size: 20px !important;
+    margin-left: 1.7rem;
+}
+
+.modal_header_color h5 span {
+    margin-left: 0.3rem;
+    text-transform: uppercase;
+}
+
+.popup_detail_order h2 {
+    font-size: 15px;
+}
+
+.infor_detail_order {
+    float: left;
+}
+
+.detail_infor_order li {
+    padding: 0 0 0 0 !important;
+}
+
+.detail_infor_order {
+    min-height: 7rem;
+    border: 2px solid black;
+    padding: 0 0 !important;
+    border-radius: 10px;
+    background: linear-gradient(-180deg, black, rgb(156, 144, 209));
+    transition: 0.4s;
+    box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.15);
+    -o-box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.15);
+    -ms-box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+.detail_infor_order:hover {
+    transform: scale(1.04);
+}
+
+.detail_infor_order p {
+    font-weight: 500;
+    text-align: center;
+    margin: 0!important;
+    padding: 5px 0;
+    color: white;
+}
+
+.infor_cus {
+    float: left;
+    background-color: white;
+    min-height: 6.2rem;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.infor_cus p {
+    float: left;
+    width: 100%;
+    font-size: 15px;
+    text-align: center;
+    line-height: 5rem;
+    color: black;
+    font-weight: 500;
+}
+
+.infor_cus h1 {
+    float: left;
+    font-size: 15px;
+    width: 100%;
+    margin-left: 1rem;
+    margin-top: 0.2rem;
+    color: black;
+}
+
+.infor_cus h2 {
+    float: left;
+    width: 100%;
+    margin-left: 1rem;
+    color: black;
+}
+
+.infor_cus h2 span {
+    color: black;
+    margin-left: 0.4rem;
+    font-weight: 400;
+}
+
+.modal_tbl {
+    box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.15);
+    -o-box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.15);
+    -ms-box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+.modal_prd {
+    width: 60%;
+}
+
+.modal_prd_inf {
+    width: 10%;
+}
+
+.modal_footer button {
+    width: 95%;
+    margin: 0 auto !important;
+}
+
+
+/*--my account--*/
