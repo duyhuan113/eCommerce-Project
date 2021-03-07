@@ -9,6 +9,7 @@
     margin-left: 10%;
     float: left;
     border: 1px solid #c8d6e5;
+    position: relative;
 }
 
 .billing_details {
@@ -91,7 +92,12 @@
 .scroll_table table {
     width: 100%;
     margin-top: 5px;
+    background-color: white;
     font-weight: 600;
+}
+
+.scroll_table table tr {
+    height: 4rem;
 }
 
 .scroll_table table tr:hover {
@@ -133,7 +139,7 @@
 }
 
 .scroll_table_price {
-    width: 1%;
+    width: 10%;
 }
 
 .scroll_table_price span {
@@ -156,13 +162,13 @@
 .quantity_title_order {
     float: left;
     font-weight: 600;
-    margin-left: 20.7rem;
+    margin-left: 18rem;
 }
 
 .total_title_order {
     float: left;
     font-weight: 600;
-    margin-left: 4rem;
+    margin-left: 3.8rem;
 }
 
 .scroll_table table tr td img {
@@ -171,7 +177,7 @@
 
 .scroll_table {
     height: 300px;
-    overflow-y: scroll;
+    overflow: auto;
 }
 
 .shipping_order {
@@ -249,58 +255,9 @@
 }
 
 
-
-
-
 /*--end-bill--*/
-.disableddiv {
-    pointer-events: none;
-    opacity: 0.4;
-};
+
 .suggessted {
-    float: left;
-    width: 30%;
-    height: 360px;
-    margin-top: 10rem;
-    margin-left: 35%;
-    border: 1px solid rgb(88, 59, 59);
-    background-color: #06062b;
-    border-radius: 10px;
-}
-
-.main_suggessted {
-    float: left;
-    width: 100%;
-}
-
-.main_suggessted img {
-    width: 100%;
-    border-radius: 10px;
-}
-
-.main_suggessted p {
-    float: left;
-    width: 100%;
-    color: white;
-    font-size: 15px;
-    font-weight: 600;
-    text-align: center;
-}
-
-.btn_fct {
-    min-width: 160px;
-}
-
-.function_suggessted {
-    float: left;
-    width: 90%;
-    margin-left: 5%;
-}
-
-.btn_skip {
-    float: right;
-}.suggessted {
-    display: block;
     float: left;
     width: 100%;
     height: 450px;
@@ -313,6 +270,7 @@
 }
 
 .suggessted_login_show {
+    margin-top: 5rem;
     padding: 0!important;
     background-color: #06062b!important;
 }

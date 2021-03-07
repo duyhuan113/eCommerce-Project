@@ -2,15 +2,19 @@ const view = {};
 // khởi tạo, chèn html header footer vào thẻ body.
 document.getElementsByTagName('BODY')[0].innerHTML = component.headerAndFooter;
 
-view.userRole = () => {
+view.userRole = async () => {
     if (model.currentUser) {
+
         modal_login = document.getElementById('modal_login');
         modal_login.parentNode.removeChild(modal_login);
 
         document.getElementById('dropDownProfile').setAttribute('onclick', "view.setScreenBtn('profilePage')");
-        document.getElementById('dropdownlogin').setAttribute('onclick', "view.setScreenBtn('profilePage')");
+        document.getElementById('directProfilePage').setAttribute('onclick', "view.setScreenBtn('profilePage')");
+        let userName = document.getElementsByClassName('userName');
+        for (let a of userName) {
+            a.innerHTML = model.currentUser.name;
+        }
 
-        document.getElementById('userName').textContent = model.currentUser.name;
         document.getElementById('dropdownlogin').classList.add("dropdown");
 
         //đoạn này tính discount cho user
@@ -20,12 +24,13 @@ view.userRole = () => {
 };
 
 view.setActiveScreen = async (screenName) => {
+    if (model.currentUser) {
+        await model.getCurrentUserData(model.currentUser.email)
+
+    }
     view.loadTotalCart();
     view.loadSubCategory();
     view.searchProduct();
-    if (model.currentUser) {
-        await model.getCurrentUserData(model.currentUser.email)
-    }
     switch (screenName) {
         case 'homePage':
             document.getElementById('app').insertAdjacentHTML('beforeend', component.homePage);
@@ -37,7 +42,7 @@ view.setActiveScreen = async (screenName) => {
             break;
         case 'profilePage':
             document.getElementById('app').insertAdjacentHTML('beforeend', component.profilePage);
-            // view.showDetailProductHome();
+            view.showProfilePage();
             break;
         case 'productPage':
             document.getElementById('app').insertAdjacentHTML('beforeend', component.productPage);
@@ -226,7 +231,6 @@ view.addCart = async (id, num, multi = true) => {
 
 //productPage==============================================================================================================================
 view.showProductPage = async (category, searchData) => {
-    console.log(category)
 
     let dataCategory = await model.getCollectionData('categories');
     view.loadViewByCategory(dataCategory);
@@ -243,7 +247,6 @@ view.showProductPage = async (category, searchData) => {
         document.getElementById(category).checked = true;
     }
 
-    console.log(data);
 
     let productList = document.getElementById('productList');
     let colum = document.getElementsByClassName('col-sm');
@@ -253,11 +256,11 @@ view.showProductPage = async (category, searchData) => {
     for (let i = 0; i < row; i++) {
         productList.innerHTML += `
         <div class="row">
-            <div class="col-sm">
+            <div class="itemColum col-sm">
             </div>
-            <div class="col-sm">
+            <div class="itemColum col-sm">
             </div>
-            <div class="col-sm">
+            <div class="itemColum col-sm">
             </div>
         </div>`;
     };
@@ -266,7 +269,7 @@ view.showProductPage = async (category, searchData) => {
         colum[i].innerHTML += view.htmlItemProduct(data[i])
     }
 
-    view.loadMoreProduct();
+    view.loadMoreItem(6, 6);
 }
 
 // function này load ra mấy cái filter theo category á.
@@ -285,12 +288,12 @@ view.loadViewByCategory = (data) => {
     };
 }
 
-// function này chỉ cho phép 8 item đc hiển thị, còn lại ẩn, khi ấn vào view more sẽ load ra 8 item nữa, cho đến hết 
-view.loadMoreProduct = () => {
+// function này chỉ cho phép loaded item đc hiển thị, còn lại ẩn, khi ấn vào view more sẽ load ra loading item nữa, cho đến hết 
+view.loadMoreItem = (loaded, loading) => {
     const viewMoreBtn = document.getElementById('viewMoreBtn');
-    var items = Array.from(document.getElementsByClassName("col-sm"));
-    maxItems = 6;
-    loadItems = 6;
+    var items = Array.from(document.getElementsByClassName("itemColum"));
+    maxItems = loaded;
+    loadItems = loading;
     hiddenClass = "hiddenStyle";
     hiddenItems = Array.from(document.getElementsByClassName("hiddenStyle"));
 
@@ -310,7 +313,6 @@ view.loadMoreProduct = () => {
                     viewMoreBtn.style.display = "none";
                 }
             }
-
         });
     });
     if (document.querySelectorAll("." + hiddenClass).length === 0) {
@@ -445,6 +447,8 @@ view.htmlDetailProduct = (data, dataDetail) => {
     `;
     return html;
 };
+
+
 // function này tính tổng tiền trong giỏ hàng
 view.setTotalCart = () => {
     let productInCart = JSON.parse(localStorage.getItem('productInCart'));
@@ -464,20 +468,15 @@ view.setTotalCart = () => {
 view.loadTotalCart = () => {
     let cartTotalSpan = document.querySelectorAll('.cartTotal')
     let cartTotal = localStorage.getItem('totalCart');
-    cartTotal = parseInt(cartTotal);
     if (cartTotal) {
-        if (cartTotal != 0) {
-            for (let i = 0; i < cartTotalSpan.length; i++) {
-                cartTotalSpan[i].textContent = `$ ${cartTotal}`;
-            }
-        } else if (cartTotal == 0) {
-            for (let i = 0; i < cartTotalSpan.length; i++) {
-                cartTotalSpan[i].textContent = `$ 0`;
-            }
+        cartTotal = parseInt(cartTotal);
+        for (let i = 0; i < cartTotalSpan.length; i++) {
+            cartTotal == 0 ? cartTotalSpan[i].textContent = `$ 0` : cartTotalSpan[i].textContent = `$ ${cartTotal}`;
         }
     }
     view.loadSubCart();
 };
+
 
 //đoạn này tính discount cho user
 view.setDiscountTotal = (cartTotal) => {
@@ -488,13 +487,19 @@ view.setDiscountTotal = (cartTotal) => {
     let memberShip = parseInt(model.currentUser.memberShip);
     if (model.currentUser) {
         if (memberShip < 5000) {
+            document.getElementById('discountPercent').textContent = '(0.5 %)'
             a = discountTotal(0.5);
         } else if (memberShip > 5000 && memberShip < 50000) {
+            document.getElementById('discountPercent').textContent = '(2.5 %)'
             a = discountTotal(2.5);
         } else if (memberShip > 50000 && memberShip < 100000) {
             a = discountTotal(5);
+            document.getElementById('discountPercent').textContent = '(5 %)'
+
         } else if (memberShip > 100000) {
             a = discountTotal(7.5);
+            document.getElementById('discountPercent').textContent = '(7.5 %)'
+
         }
     }
     return a;
@@ -607,13 +612,8 @@ view.showCheckoutPage = (e) => {
     if (model.currentUser) {
         // đoạn này hiển thị total sau khi discount.
         if (totalCart) {
-            console.log(totalCart);
             totalCart = view.setDiscountTotal(totalCart);
-            console.log(totalCart);
-
             discountTotal.textContent = `$ ` + totalCart;
-
-
         }
         //load ra address của user.
         defaultAddress.innerHTML = view.htmlDefaultAddressForm(userData);
@@ -728,7 +728,6 @@ view.removeItemInCart = (indexRemove) => {
     productInCart = (Object.values(productInCart));
     productInCart.splice(indexRemove, 1);
     localStorage.setItem('productInCart', JSON.stringify(productInCart));
-
     view.setTotalCart();
 };
 
@@ -923,14 +922,144 @@ view.htmlItemBill = (data) => {
     return html;
 };
 
-function formatDate(input) {
-    var date = new Date(input);
-    return [
-        ("0" + date.getDate()).slice(-2),
-        ("0" + (date.getMonth() + 1)).slice(-2),
-        date.getFullYear()
-    ].join('/');
-};
+
+
+// Profile Page======================================================================================================================
+view.showProfilePage = async () => {
+    let data = await model.getOrdersDatabyId(model.currentUser.email);
+    let listOrders = document.getElementById('listOrders');
+
+    console.log(data);
+    // document.getElementById('username').textContent = model.currentUser.name;
+    let avatar = document.getElementsByClassName('userAvt')
+    for (let a of avatar) {
+        a.src = model.currentUser.avatar
+    }
+
+
+    document.getElementById('v-pills-order-tab').addEventListener("click", () => {
+        listOrders.innerHTML = ''
+        document.getElementById('numberOrder').textContent = `(${data.length} Orders)`
+        let i = 0
+        // đoạn này show ra item orders
+        for (item of data) {
+            listOrders.innerHTML += `
+            <tr class=" item  itemColum">
+                <td>
+                    <a href="" onclick="view.showOrder(${i++})" data-toggle="modal" data-target="#show_detail_order">#${item.id}</a>
+                </td> 
+                <td>${formatDate(item.createAt)}</td>
+                <td>${item.note}</td>
+                <td>$ ${item.total}</td>
+                <td>${item.status}</td>
+            </tr>`;
+        }
+        view.loadMoreItem(3, 3);
+    })
+
+}
+
+
+
+view.showOrder = (index) => {
+    let data = model.Orderdata[index]
+    console.log(data);
+    let orderItem = data.items;
+    let detailModal = document.getElementById('show_detail_order');
+    detailModal.style = "block"
+    // load ra detail order
+    detailModal.innerHTML = view.htmlOrder(data);
+
+    // load ra item cua order
+    for (item of orderItem) {
+        document.getElementById('itemOrder').innerHTML += `
+        <tr>
+            <td>${item.name}</td>
+            <td>$ ${item.price}</td>
+            <td>${item.inCart}</td>
+            <td>$0</td>
+            <td>$${item.price * item.inCart}</td>
+        </tr>
+        `;
+    }
+}
+
+view.htmlOrder = (data) => {
+    html = `
+    <div class=" modal-dialog modal_edit ">
+        <div class=" modal-content modal_color ">
+            <div class="modal-header modal_header_color ">
+                <h5 class="modal-title " id="detail_order">STATUS ORDER:<span>Delivered</span></h5>
+            </div>
+            <div class=" modal-body ">
+                <div class="popup_detail_order container ">
+                    <h2>DETAIL ORDER: <span>#${data.id}</span></h2>
+                    <p>Order date: <span>${formatDate(data.createAt)}</span></p>
+                    <div class="infor_detail_order container-fluid ">
+                        <div class="row ">
+                            <div class="detail_infor_order col ">
+                                <ul>
+                                    <li>
+                                        <p>RECEIVER'S ADDRESS</p>
+                                    </li>
+                                    <li class="infor_cus ">
+                                        <h1>${data.id.toUpperCase()}</h1>
+                                        <h2>Address:
+                                            <Span>${data.address}</Span>
+                                        </h2>
+                                        <h2>Phone Number:<span>${data.phone}</span></h2>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="detail_infor_order col ">
+                                <ul>
+                                    <li>
+                                        <p>FORM OF DELIVERY</p>
+                                    </li>
+                                    <li class="infor_cus ">
+                                        <p>FREESHIP</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="detail_infor_order col ">
+                                <ul>
+                                    <li>
+                                        <p>PAYMENT METHOD</p>
+                                    </li>
+                                    <li class="infor_cus ">
+                                        <p>${data.methodPayment.toUpperCase()}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="modal_tbl table ">
+                        <thead>
+                            <tr>
+                                <th class="modal_prd ">PRODUCTS</th>
+                                <th class="modal_prd_inf ">PRICE</th>
+                                <th class="modal_prd_inf ">QUANTITY</th>
+                                <th class="modal_prd_inf ">SALE</th>
+                                <th class="modal_prd_inf ">TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody id ="itemOrder">
+                            <!-- JS CODE-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal_footer modal-footer ">
+                <button type="button " class="btn btn-dark" data-dismiss="modal">CONFIRM</button>
+            </div>
+        </div>
+    </div>
+    `;
+    return html
+}
+
+// End Profile Page
+
 
 // function Search========================================================================================================================
 view.searchProduct = () => {
@@ -985,7 +1114,7 @@ view.showListSearch = (data, keyValue) => {
         resultSearch.innerHTML = ''
     }
 
-    if (a && model.currentLocationScreen=="productPage") {
+    if (a && model.currentLocationScreen == "productPage") {
         document.getElementById('searchBtn').addEventListener('click', (e) => {
             e.preventDefault()
             // view.setActiveScreen('productPage')
@@ -994,10 +1123,10 @@ view.showListSearch = (data, keyValue) => {
     }
 };
 
-
 view.setScreenBtn = (value) => {
+    console.log(value);
     localStorage.setItem('currentLocationScreen', value);
-    location.reload();
+    location.reload()
 };
 
 view.signOutButton = () => {
@@ -1005,6 +1134,9 @@ view.signOutButton = () => {
         firebase.auth().signOut();
         model.currentUser = undefined;
         location.reload();
+        if (model.currentLocationScreen == 'profilePage') {
+            view.setScreenBtn('homePage')
+        }
     }
 };
 
@@ -1031,6 +1163,28 @@ view.removeLocalStorage = () => {
 };
 
 view.removeSuggestLogin = () => {
-    let suggestLogin = document.querySelector('#modal_suggessted_login');
-    suggestLogin.parentNode.removeChild(suggestLogin);
+    try {
+        let suggestLogin = document.querySelector('#modal_suggessted_login');
+        suggestLogin.parentNode.removeChild(suggestLogin);
+    } catch (err) { }
+
 };
+
+function formatDate(input) {
+    var date = new Date(input);
+    return [
+        ("0" + date.getDate()).slice(-2),
+        ("0" + (date.getMonth() + 1)).slice(-2),
+        date.getFullYear()
+    ].join('/');
+};
+
+function changePassword() {
+    if (a == 0) {
+        document.getElementById('changePassword').style.display = 'block';
+        a = 1;
+    } else {
+        document.getElementById('changePassword').style.display = 'none';
+        a = 0;
+    }
+}

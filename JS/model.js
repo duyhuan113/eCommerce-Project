@@ -61,8 +61,8 @@ model.newUser = (data) => {
 
 model.getCurrentUserData = async (email) => {
     const response = await firebase.firestore().collection("users").doc(email).get()
-    model.currentUser = response.data();
-
+     model.currentUser = await response.data();
+    console.log(model.currentUser);
     return model.currentUser
 }
 
@@ -139,10 +139,18 @@ model.getCollectionData = async (collection) => {
     return getDataFromDocs(response.docs).sort((a, b) => (a.createAt < b.createAt) ? 1 : ((b.createAt < a.createAt) ? -1 : 0));
 };
 
+//func này lấy ra 1 product bằng id.
 model.getProductsDataById = async (id) => {
     const response = await firebase.firestore().collection("products").where("id", "==", id).get();
     return getDataFromDocs(response.docs);
 }
+
+//func này lấy ra tòan bộ order của current user.
+model.getOrdersDatabyId = async (id) => {
+    const response = await firebase.firestore().collection("orders").where("email", "==", id).get()
+    model.Orderdata = getDataFromDocs(response.docs).sort((a, b) => (a.createAt < b.createAt) ? 1 : ((b.createAt < a.createAt) ? -1 : 0));
+    return model.Orderdata
+};
 
 // function này lưu product vừa đc chọn để lưu lên local, sau đó gọi lại để load ra màn hình detail.
 model.tickProduct = async (id) => {

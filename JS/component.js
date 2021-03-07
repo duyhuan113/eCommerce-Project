@@ -221,12 +221,16 @@ component.headerAndFooter = `
                     <div class="header_funtion navbar-toolbar d-flex flex-shrink-0 align-items-center drop_down">
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarCollapse"><span><i class="fas fa-bars"></i></span></button>
-                        <div id="profile" class="header_funtion_title navbar-tool-icon-box"><a ><i class="far fa-heart" data-toggle="modal" ></i><span class="navbar-tool-tooltip"></span></a>
+                        <div id="profile" class="header_funtion_title navbar-tool-icon-box">
+                        <a ><i class="far fa-heart" data-toggle="modal" ></i><span class="navbar-tool-tooltip"></span></a>
                         </div>
-                        <div class="header_funtion_title navbar-tool-icon-box " id="dropdownlogin" ><a href="" data-toggle="modal" data-target="#modal_login"><i class="far fa-user"></i>
-                            <p class="navbar-tool d-none d-lg-flex"><span class="navbar-tool-tooltip"><small id="userName">Hello, Sign in</small></br>MY ACCOUNT</span></p></a>
-                            
-                            
+                        <div id="dropdownlogin" class="header_funtion_title navbar-tool-icon-box "  >
+                            <a id="directProfilePage"  data-toggle="modal" data-target="#modal_login">
+                                <i class="far fa-user"></i>
+                                <p class="navbar-tool d-none d-lg-flex"><span class="navbar-tool-tooltip">
+                                    <small class="userName">Hello, Sign in</small></br>MY ACCOUNT</span>
+                                </p>
+                            </a>
                             <!-- show_funtion_login -->
                             <div class="show_funtion_login dropdown-menu" aria-labelledby="dropdownLogin">
                                 <a id="dropDownProfile" class="dropdown-item"  ><i class="fas fa-user-circle"></i> MY ACCOUNT</a>
@@ -317,7 +321,7 @@ component.headerAndFooter = `
                                         <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password" required>
                                     </div>
                                     <div class="forgot_pass">
-                                        <a href="">Forgot your password?</a>
+                                        <a href="" data-toggle="modal" data-target="#modal_forgot_password" data-dismiss="modal">Forgot your password?</a>
                                     </div>
                                     <button onclick="view.login(event)" id ="loginBtn" type="submit" class="btn btn-primary">SIGN IN</button>
                                     <div class="login_api">
@@ -336,6 +340,7 @@ component.headerAndFooter = `
                                 </form>
                             </div>
                         </div>
+
                         <div class="register tab-pane fade" id="nav-register" role="tabpanel"
                             aria-labelledby="nav-register-tab">
                             <div class="modal_left_register">
@@ -397,6 +402,26 @@ component.headerAndFooter = `
             </div>
         </div>
     </div>
+    <!-- Modal forgot password-->
+    <div class="modal fade" id="modal_forgot_password" tabindex="-1" role="dialog" aria-labelledby="forgot_password" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content edit_modal_forgot_password">
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group forgot_pass_body">
+                            <img src="img/fgpass.jpg" alt="">
+                            <p>Confirm email to change password</p>
+                            <input type="email" class="form-control" id="confirmEmail" placeholder="Enter your email...">
+                        </div>
+                </div>
+                </form>
+                <div class="modal-footer footer_modal_update_addrs">
+                    <button id="confirmBtn" type="button" class="btn btn-warning btn_forgot_password ">CONFIRM</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end modal forgot password --> 
     <!-- end modal login -->
 
 
@@ -724,7 +749,7 @@ component.checkoutPage = `
                         <p>Grand Total: <span class="cartTotal">$ 0</span></p>
                     </div>
                     <div class="total_order">
-                        <p>Discount Total ( %): <span id="discountTotal">$ 0</span></p>
+                        <p>Discount Total <span id="discountPercent"></span>: <span id="discountTotal">$ 0</span></p>
                     </div>
                     <div class="payment">
                         <ul>
@@ -743,67 +768,117 @@ component.checkoutPage = `
 </section>
 `;
 
-component.profilePage =`
-    <section class="main_page ">
+component.profilePage = `
+<section class="main_page  ">
         <!--bath-->
         <nav class="bath" aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="bath_edit breadcrumb-item"><a onclick ="view.setScreenBtn('homePage')" href="">Home</a></li>
+                <li class="bath_edit breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">My Account</li>
             </ol>
         </nav>
         <div class="infor_account ">
             <div class="row">
                 <div class="funtion_account col-3">
+                    <div class="funtion_account_header">
+                        <div class="funtion_account_header-img">
+                            <img src="https://scontent.fhan3-1.fna.fbcdn.net/v/t1.0-9/49339024_2125777764330744_62499324709306368_n.jpg?_nc_cat=102&ccb=2&_nc_sid=174925&_nc_ohc=Iok9No9uZCgAX-ztA89&_nc_oc=AQm8o1E-NKwLkgXljqHrd89GDktZfSZ703pK_PChZe358yk1F3EjJ5zBLPUBqq3OwBk&_nc_ht=scontent.fhan3-1.fna&oh=94008b741b4264d07e631fbece092b98&oe=6007E6AB"
+                                alt="">
+                        </div>
+                        <div class="funtion_account_header-title">
+                            <h5>Tung Tran</h5>
+                            <span><i class="fas fa-user-edit"></i>EDIT INFORMATION</span>
+                        </div>
+                    </div>
                     <div class="nav_funtion nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="color_nav_link nav-link active" id="v-pills-account-tab" data-toggle="pill" href="#v-pills-account" role="tab" aria-controls="v-pills-account" aria-selected="true">MY ACCOUNT</a>
-                        <a class="color_nav_link nav-link" id="v-pills-address-tab" data-toggle="pill" href="#v-pills-address" role="tab" aria-controls="v-pills-address" aria-selected="false">MY ADDRESS</a>
-                        <a class="color_nav_link nav-link" id="v-pills-order-tab" data-toggle="pill" href="#v-pills-order" role="tab" aria-controls="v-pills-order" aria-selected="false">MY ORDERS</a>
+                        <a class="color_nav_link nav-link active" id="v-pills-account-tab" data-toggle="pill" href="#v-pills-account" role="tab" aria-controls="v-pills-account" aria-selected="true"><i class="fas fa-user-circle"></i>MY ACCOUNT</a>
+                        <a class="color_nav_link nav-link" id="v-pills-address-tab" data-toggle="pill" href="#v-pills-address" role="tab" aria-controls="v-pills-address" aria-selected="false"><i class="fas fa-address-card"></i>MY ADDRESS</a>
+                        <a class="color_nav_link nav-link" id="v-pills-order-tab" data-toggle="pill" href="#v-pills-order" role="tab" aria-controls="v-pills-order" aria-selected="false"><i class="fas fa-archive"></i>MY ORDERS</a>
                     </div>
                 </div>
                 <div class="show_funtion_account col-9">
                     <div class="tab-content" id="v-pills-tabContent">
+
                         <div class="tab-pane fade show active" id="v-pills-account" role="tabpanel" aria-labelledby="v-pills-account-tab">
+                            <div class="show_funtion_header">
+                                <h3>MY ACCOUNT</h3>
+                                <h5>Manage profile information for account security.</h5>
+                            </div>
+                            <div class="avatar_account">
+                                <img class="userAvt" src=""
+                                    alt="">
+                                <input type="file" id="profile_img" name="profile_img" accept=".jpg,.jpeg,.png">
+                            </div>
                             <div class="show_infor_account mt-3 ">
                                 <div class="input-group mb-3 ">
                                     <div class="input-group-prepend ">
-                                        <span class="input-group-text ">Username:</span>
+                                        <span class="input-group">Username:</span>
                                     </div>
-                                    <input type="text " class="form-control " placeholder="Username " id="usr " name="username ">
+                                    <input type="text" class="form-control " placeholder="Username " id="usr " name="username ">
                                 </div>
                                 <div class="input-group mb-3 ">
                                     <div class="input-group-prepend ">
-                                        <span class="input-group-text ">Phonenumber:</span>
+                                        <span class="input-group">Phonenumber:</span>
                                     </div>
-                                    <input type="text " class="form-control " placeholder="Phonenumber " id="phone " name="Phonenumber ">
+                                    <input type="text" class="form-control " placeholder="Phonenumber " id="phone " name="Phonenumber">
                                 </div>
                                 <div class="input-group mb-3 ">
                                     <div class="input-group-prepend ">
-                                        <span class="input-group-text ">Email:</span>
+                                        <span class="input-group">Email:</span>
                                     </div>
                                     <input type="text " class="form-control " placeholder="Email " id="email " name="Email ">
                                 </div>
                                 <div class="input-group mb-3 ">
                                     <div class="input-group-prepend ">
-                                        <span class="input-group-text ">Date Of Birth:</span>
+                                        <span class="input-group">Date Of Birth:</span>
                                     </div>
-                                    <input type="date " class="form-control " placeholder="Date Of Birth " id="usr " name="birth ">
+                                    <input type="date" class="form-control " placeholder="Date Of Birth " id="dateOfBirth" name="birth ">
                                 </div>
                                 <div class="input-group mb-3 ">
                                     <div class="input-group-prepend ">
-                                        <span class="input-group-text ">Gender:</span>
+                                        <span class="input-group">Gender:</span>
                                     </div>
-                                    <select class="form-control " id="gender ">
-                                        <option value="gender ">Male</option>
-                                        <option value="gender ">Female</option>
-                                    </select>
+                                    <form id="gender">
+                                        <input type="radio" id="male" name="gender" value="male">
+                                        <label for="male">Male</label>
+                                        <input type="radio" id="female" name="gender" value="female">
+                                        <label for="female">Female</label>
+                                        <input type="radio" id="other" name="gender" value="other">
+                                        <label for="other">Other</label>
+                                    </form>
                                 </div>
-
-                                <button type="submit " class="btn btn-primary ">SUBMIT</button>
+                                <div class="changePass">
+                                    <a onclick="changePassword()">Change Password!</a>
+                                    <div class="ChangePassword" id="ChangePassword">
+                                        <div class="input-group mb-3 ">
+                                            <div class="input-group-prepend ">
+                                                <span class="input-group">Old Password:</span>
+                                            </div>
+                                            <input type="text" class="form-control " placeholder="Enter old password." id="oldPass" name="oldP">
+                                        </div>
+                                        <div class="input-group mb-3 ">
+                                            <div class="input-group-prepend ">
+                                                <span class="input-group">New Password:</span>
+                                            </div>
+                                            <input type="text" class="form-control " placeholder="Enter new password." id="newPass" name="newP">
+                                        </div>
+                                        <div class="input-group mb-3 ">
+                                            <div class="input-group-prepend ">
+                                                <span class="input-group">Retype Password:</span>
+                                            </div>
+                                            <input type="text" class="form-control " placeholder="Retype new password." id="ReNewPass" name="ReNP">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-secondary">SUBMIT</button>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="v-pills-address" role="tabpanel" aria-labelledby="v-pills-address-tab">
                             <ul class="address_account ">
+                                <div class="show_funtion_header">
+                                    <h3>MY ADDRESS</h3>
+                                    <h5>Manage address information for shipping.</h5>
+                                </div>
                                 <li class="add_new_address" data-toggle="modal" data-target="#add_newAddress"><i class="far fa-plus-square "></i><span>ADD NEW ADDRESS</span>
                                     <div class="modal fade" id="add_newAddress" tabindex="-1" role="dialog" aria-labelledby="addNew_address" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
@@ -812,7 +887,12 @@ component.profilePage =`
                                                     <h5 class="modal-title" id="addNew_address">ADD NEW ADDRESS</h5>
                                                 </div>
                                                 <div class="modal-body">
-                                                    ...
+                                                    <form action="">
+                                                        <input type="text" class="form-control" id="inputName" placeholder="Name">
+                                                        <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+                                                        <input type="text" class="form-control" id="inputPhonenumber" placeholder="Phonenumber">
+                                                        <input type="text" class="form-control" id="inputAddress" placeholder="Address">
+                                                    </form>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-primary">CONFIRM</button>
@@ -888,6 +968,10 @@ component.profilePage =`
                             </ul>
                         </div>
                         <div class="tab-pane fade" id="v-pills-order" role="tabpanel" aria-labelledby="v-pills-order-tab">
+                            <div class="show_funtion_header">
+                                <h3>MY ORDER <small id="numberOrder" >(0 ORDERS)</small></h3>
+                                <h5>Manage order information for account customer.</h5>
+                            </div>
                             <table class="infor_orders table ">
                                 <thead>
                                     <tr>
@@ -898,218 +982,24 @@ component.profilePage =`
                                         <th>Status</th>
                                     </tr>
                                 </thead>
-                                <tbody class="list_orders ">
-                                    <tr>
-                                        <td><a href="" data-toggle="modal" data-target="#show_detail_order">#111111</a>
-                                            <!-- Modal -->
-                                            <div class="modal fade " id="show_detail_order" tabindex="-1 " aria-labelledby="detail_order" aria-hidden="true ">
-                                                <div class=" modal-dialog modal_edit ">
-                                                    <div class=" modal-content modal_color ">
-                                                        <div class="modal-header modal_header_color ">
-                                                            <h5 class="modal-title " id="detail_order">STATUS ORDER:<span>Delivered</span></h5>
-
-                                                        </div>
-                                                        <div class=" modal-body ">
-                                                            <div class="popup_detail_order container ">
-                                                                <h2>DETAIL ORDER: <span>#11111111</span></h2>
-                                                                <p>Order date: <span>07/11/2020</span></p>
-                                                                <div class="infor_detail_order container-fluid ">
-                                                                    <div class="row ">
-                                                                        <div class="detail_infor_order col ">
-                                                                            <ul>
-                                                                                <li>
-                                                                                    <p>RECEIVER'S ADDRESS</p>
-                                                                                </li>
-                                                                                <li class="infor_cus ">
-                                                                                    <h1>TRAN THANH TUNG</h1>
-                                                                                    <h2>Address:
-                                                                                        <Span>107 Nguyen Phong Sac, Dich Vong Hau, Cau Giay, Ha Noi.</Span>
-                                                                                    </h2>
-                                                                                    <h2>Phonenumber:<span>0123456789</span></h2>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <div class="detail_infor_order col ">
-                                                                            <ul>
-                                                                                <li>
-                                                                                    <p>FORM OF DELIVERY</p>
-                                                                                </li>
-                                                                                <li class="infor_cus ">
-                                                                                    <p>FREESHIP</p>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <div class="detail_infor_order col ">
-                                                                            <ul>
-                                                                                <li>
-                                                                                    <p>PAYMENT METHOD</p>
-                                                                                </li>
-                                                                                <li class="infor_cus ">
-                                                                                    <p>CASH PAYMENT ON RECEIPT OF GOODS</p>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <table class="modal_tbl table ">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th class="modal_prd ">PRODUCTS</th>
-                                                                            <th class="modal_prd_inf ">PRICE</th>
-                                                                            <th class="modal_prd_inf ">QUANTITY</th>
-                                                                            <th class="modal_prd_inf ">SALE</th>
-                                                                            <th class="modal_prd_inf ">TOTAL</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td>SAMSUNG GALAXY NOTE 20 ULTRA</td>
-                                                                            <td>$4000</td>
-                                                                            <td>3</td>
-                                                                            <td>$0</td>
-                                                                            <td>$12000</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>SAMSUNG GALAXY NOTE 20 ULTRA</td>
-                                                                            <td>$4000</td>
-                                                                            <td>3</td>
-                                                                            <td>$0</td>
-                                                                            <td>$12000</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>SAMSUNG GALAXY NOTE 20 ULTRA</td>
-                                                                            <td>$4000</td>
-                                                                            <td>3</td>
-                                                                            <td>$0</td>
-                                                                            <td>$12000</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>SAMSUNG GALAXY NOTE 20 ULTRA</td>
-                                                                            <td>$4000</td>
-                                                                            <td>3</td>
-                                                                            <td>$0</td>
-                                                                            <td>$12000</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>SAMSUNG GALAXY NOTE 20 ULTRA</td>
-                                                                            <td>$4000</td>
-                                                                            <td>3</td>
-                                                                            <td>$0</td>
-                                                                            <td>$12000</td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal_footer modal-footer ">
-                                                            <button type="button " class="btn btn-dark" data-dismiss="modal">CONFIRM</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>20/11/2020</td>
-                                        <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam delectus dolorem asperiores maiores commodi, ducimus recusandae hic impedit, facere eius vero unde dolorum esse ex? Veritatis, fuga. Vel, neque nam?</td>
-                                        <td>$5000</td>
-                                        <td>Delivered</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href=" ">#111111</a></td>
-                                        <td>20/11/2020</td>
-                                        <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam delectus dolorem asperiores maiores commodi, ducimus recusandae hic impedit, facere eius vero unde dolorum esse ex? Veritatis, fuga. Vel, neque nam?</td>
-                                        <td>$5000</td>
-                                        <td>Delivered</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href=" ">#111111</a></td>
-                                        <td>20/11/2020</td>
-                                        <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam delectus dolorem asperiores maiores commodi, ducimus recusandae hic impedit, facere eius vero unde dolorum esse ex? Veritatis, fuga. Vel, neque nam?</td>
-                                        <td>$5000</td>
-                                        <td>Delivered</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href=" ">#111111</a></td>
-                                        <td>20/11/2020</td>
-                                        <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam delectus dolorem asperiores maiores commodi, ducimus recusandae hic impedit, facere eius vero unde dolorum esse ex? Veritatis, fuga. Vel, neque nam?</td>
-                                        <td>$5000</td>
-                                        <td>Delivered</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href=" ">#111111</a></td>
-                                        <td>20/11/2020</td>
-                                        <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam delectus dolorem asperiores maiores commodi, ducimus recusandae hic impedit, facere eius vero unde dolorum esse ex? Veritatis, fuga. Vel, neque nam?</td>
-                                        <td>$5000</td>
-                                        <td>Delivered</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href=" ">#111111</a></td>
-                                        <td>20/11/2020</td>
-                                        <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam delectus dolorem asperiores maiores commodi, ducimus recusandae hic impedit, facere eius vero unde dolorum esse ex? Veritatis, fuga. Vel, neque nam?</td>
-                                        <td>$5000</td>
-                                        <td>Delivered</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href=" ">#111111</a></td>
-                                        <td>20/11/2020</td>
-                                        <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam delectus dolorem asperiores maiores commodi, ducimus recusandae hic impedit, facere eius vero unde dolorum esse ex? Veritatis, fuga. Vel, neque nam?</td>
-                                        <td>$5000</td>
-                                        <td>Delivered</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href=" ">#111111</a></td>
-                                        <td>20/11/2020</td>
-                                        <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam delectus dolorem asperiores maiores commodi, ducimus recusandae hic impedit, facere eius vero unde dolorum esse ex? Veritatis, fuga. Vel, neque nam?</td>
-                                        <td>$5000</td>
-                                        <td>Delivered</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href=" ">#111111</a></td>
-                                        <td>20/11/2020</td>
-                                        <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam delectus dolorem asperiores maiores commodi, ducimus recusandae hic impedit, facere eius vero unde dolorum esse ex? Veritatis, fuga. Vel, neque nam?</td>
-                                        <td>$5000</td>
-                                        <td>Delivered</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href=" ">#111111</a></td>
-                                        <td>20/11/2020</td>
-                                        <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam delectus dolorem asperiores maiores commodi, ducimus recusandae hic impedit, facere eius vero unde dolorum esse ex? Veritatis, fuga. Vel, neque nam?</td>
-                                        <td>$5000</td>
-                                        <td>Delivered</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href=" ">#111111</a></td>
-                                        <td>20/11/2020</td>
-                                        <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam delectus dolorem asperiores maiores commodi, ducimus recusandae hic impedit, facere eius vero unde dolorum esse ex? Veritatis, fuga. Vel, neque nam?</td>
-                                        <td>$5000</td>
-                                        <td>Delivered</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href=" ">#111111</a></td>
-                                        <td>20/11/2020</td>
-                                        <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam delectus dolorem asperiores maiores commodi, ducimus recusandae hic impedit, facere eius vero unde dolorum esse ex? Veritatis, fuga. Vel, neque nam?</td>
-                                        <td>$5000</td>
-                                        <td>Delivered</td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href=" ">#111111</a></td>
-                                        <td>20/11/2020</td>
-                                        <td>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam delectus dolorem asperiores maiores commodi, ducimus recusandae hic impedit, facere eius vero unde dolorum esse ex? Veritatis, fuga. Vel, neque nam?</td>
-                                        <td>$5000</td>
-                                        <td>Delivered</td>
-                                    </tr>
-
+                                <tbody id="listOrders" class="list_orders ">
+                                    <!-- JS CODE-->
+                                    <div class="modal fade " id="show_detail_order" tabindex="-1 " aria-labelledby="detail_order" aria-hidden="true ">
+                                        <!-- JS CODE-->
+                                    </div>        
                                 </tbody>
                             </table>
+                            <div id="viewMoreBtn" class="pagination_page">
+                                <button type="button" class="btn btn-outline-secondary">View More<i class="fas fa-sort-down"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </section>`;
 
-`
-
-component.billPage =`
+component.billPage = `
 <div class="bill">
     <div class="show_bill">
         <div class="bill_header">

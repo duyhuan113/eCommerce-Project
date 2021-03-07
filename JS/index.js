@@ -1,4 +1,4 @@
-window.onload =  () => {
+window.onload = () => {
     var firebaseConfig = {
         apiKey: "AIzaSyCK52EI2vlm53OQJsss1r8sIpBuJFMmuic",
         authDomain: "ecommerce-project-1b257.firebaseapp.com",
@@ -11,17 +11,17 @@ window.onload =  () => {
     };
     firebase.initializeApp(firebaseConfig);
 
-     firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             model.currentUser = {
                 name: user.displayName,
                 email: user.email,
             }
-            
+
             console.log(model.currentUser);
             if (user.emailVerified) {
-                    view.setActiveScreen(model.currentLocationScreen);
-                    view.userRole();
+                view.userRole();
+                view.setActiveScreen(model.currentLocationScreen);
             } else {
                 alert('Please Verified Your Email');
                 firebase.auth().signOut();

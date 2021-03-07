@@ -222,15 +222,15 @@
     font-size: 20px;
 }
 
-.item {
-    height: 24rem;
+/* .item {
+    height: 14rem;
     background-color: white;
     border-radius: 8px;
     border: 2px solid #ecf0f1;
     transition: 0.3s linear;
     overflow: hidden;
     margin-top: 0.5rem;
-}
+} */
 
 .item:hover {
     box-shadow: 0 8px 8px 0 rgba(103, 151, 255, .11), 0 12px 18px 0 rgba(103, 151, 255, .11);

@@ -101,8 +101,6 @@ body {
     width: 6rem;
 }
 
-/* Search */
-
 .search_box {
     float: left;
     width: 70% !important;
@@ -123,27 +121,20 @@ body {
 }
 
 .search_recmt {
-    height: 0px;
     top: 2.6rem;
     width: 100%;
     border-radius: 3px;
-    background-color: rgba(195, 230, 247, 0.884);
+    background-color: white;
     position: absolute;
     z-index: 5000;
     display: none;
-    cursor: pointer;
-}
-
-.active{
-    display: block;
 }
 
 .search_box input:focus~.search_recmt {
     display: block;
-    height: auto;
 }
+
 .search_recmt ul li {
-    display: block;
     float: left;
     height: 2rem;
     width: 100%;
@@ -160,10 +151,9 @@ body {
     width: 98%;
     margin-left: 2%;
     color: black;
+    overflow: hidden;
     text-decoration: none;
 }
-
-/* end search */
 
 .header_funtion {
     float: right;
@@ -173,11 +163,7 @@ body {
 .header_funtion_title {
     float: left;
     margin-left: 1.5rem;
-}
-
-.header_funtion_title i {
-    color: black;
-    transition: 0.1s all;
+    cursor: pointer;
 }
 
 .header_funtion_title i:hover {
@@ -189,6 +175,7 @@ body {
     font-size: 25px;
     color: #2c3e50;
     line-height: 5rem;
+    transition: 0.1s all;
 }
 
 .header_funtion_title p {
@@ -201,7 +188,7 @@ body {
 
 .header_funtion_title span {
     float: left;
-    margin-left: 0.7rem;
+    margin-left: 0.3rem;
     color: #34495e;
     font-size: 13px;
     font-weight: 500;
@@ -226,6 +213,10 @@ body {
 
 .modal_login_show {
     height: 35rem!important;
+}
+
+.modal_content {
+    z-index: 1;
 }
 
 .modal_title {
@@ -283,15 +274,18 @@ body {
 .login_api ul li {
     float: left;
     width: 30%;
-    height: 2rem !important;
+    height: 3rem !important;
     margin-left: 0.6rem;
 }
 
 .login_api ul li a {
     width: 100%;
     height: 3rem!important;
+    padding: 10px 50px;
     border: 2px solid #bdc3c7;
     border-radius: 7px;
+    text-align: center;
+    cursor: pointer;
 }
 
 .login_api ul li a:hover {
@@ -301,8 +295,9 @@ body {
 }
 
 .login_api ul li a i {
-    margin-left: 40%;
+    font-size: 20px;
     line-height: 3rem;
+    color: black;
 }
 
 .register {
@@ -341,7 +336,7 @@ body {
 .show_funtion_login {
     margin-top: -1rem!important;
     width: 180px!important;
-    margin-left: 2rem!important;
+    margin-left: -2rem!important;
 }
 
 .show_funtion_login a {
@@ -351,6 +346,7 @@ body {
     line-height: 2rem;
     font-size: 13px;
     transition: 0.3s all;
+    cursor: pointer;
 }
 
 .show_funtion_login a:hover {
@@ -384,6 +380,7 @@ body {
     height: 18rem;
     overflow: auto;
     border-bottom: 2px solid red;
+    overflow-x: hidden;
 }
 
 .header_product a {
@@ -413,6 +410,7 @@ body {
     text-align: center;
     color: black;
     transition: 0.3s;
+    margin-left: 1rem;
 }
 
 .header_delete_product i:hover {
@@ -422,7 +420,7 @@ body {
 .header_infor_order img {
     float: left;
     margin-top: 0.5rem;
-    width: 32%;
+    width: 28%;
     margin-left: -1.3rem;
 }
 
@@ -515,10 +513,17 @@ body {
 
 .main_nav_title li a {
     font-weight: 500;
-    color: #2f3640 !important;
+    text-decoration: none;
+    position: relative;
+    transition: .3s ease;
+    background-image: linear-gradient(180deg, transparent 89%, #ff5722 0);
+    background-repeat: no-repeat;
+    background-size: 0 100%;
+    cursor: pointer;
 }
 
 .main_nav_title li a:hover {
+    background-size: 100% 100%;
     color: red !important;
 }
 
@@ -583,11 +588,12 @@ body {
 }
 
 .item_img {
-    max-height: 70%;
+    float: left;
+    width: 100%;
+    height: 17rem;
 }
 
 .item_img img {
-    width: 90%;
     margin-top: 0.5rem;
     margin-left: auto;
     margin-right: auto;
@@ -725,13 +731,7 @@ body {
     color: orange;
 }
 
-/* đoạn search mở ra div kết quả */
-.resultSearch{
-    background-color: red;
-};
-
-
-.hiddenStyle {
-    display: none;
-    visibility:hidden
+.disableddiv{
+    opacity: 0.5;
+    pointer-events: none;
 }
