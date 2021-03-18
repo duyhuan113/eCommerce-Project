@@ -1,5 +1,336 @@
 const component = {};
 
+component.headerAndFooter = `
+<div id="app">
+    <header class="header fixed-top">
+    <!-- Topbar-->
+        <div class="top_header topbar topbar-dark bg-dark">
+            <ul class="title_top_header nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-mobile-alt"></i><span> 0387798072</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="far fa-envelope"></i><span> BTECSTORE@FPT.EDU.VN</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-map-marker-alt"></i><span> 107 Nguyen Phong Sac, Dich
+                            Vong Hau, Cau Giay, Ha Noi.</span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="main_header navbar-sticky">
+            <div class="title_main_header navbar navbar-expand-lg navbar-light">
+                <div class="main_header_title container">
+                    <a onclick ="view.setScreenBtn('homePage')" class="logo_img navbar-brand d-none d-sm-block mr-3 flex-shrink-0" ><img
+                            src="img/logoshop.png" alt=""></a>
+                    <a class="logo_img_rps navbar-brand d-sm-none mr-2" href="index.html"><img src="img/logoshop.png"
+                            alt=""></a>
+                    <!---search--->
+                    <div class="search_box input-group-overlay d-none d-lg-flex mx-4">
+                        <input id="inputSearch" class="form-control" type="text" placeholder="Search" aria-label="Search">
+                        <a id="searchBtn" class="search_btn"><i class="fas fa-search"></i></a>
+                        <div id="searchrecmt" class="search_recmt">
+                            <ul id="resultSearch">
+                                <!-- JS-->
+                            </ul>
+                        </div>
+                    </div>
+                    <!--end search-->
+                    <div class="header_funtion navbar-toolbar d-flex flex-shrink-0 align-items-center drop_down">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarCollapse"><span><i class="fas fa-bars"></i></span></button>
+                        <div id="profile" class="header_funtion_title navbar-tool-icon-box">
+                        <a ><i class="far fa-heart" data-toggle="modal" ></i><span class="navbar-tool-tooltip"></span></a>
+                        </div>
+                        <div id="dropdownlogin" class="header_funtion_title navbar-tool-icon-box "  >
+                            <a id="directProfilePage"  data-toggle="modal" data-target="#modal_login">
+                                <i class="far fa-user"></i>
+                                <p class="navbar-tool d-none d-lg-flex"><span class="navbar-tool-tooltip">
+                                    <small class="userName">Hello, Sign in</small></br>MY ACCOUNT</span>
+                                </p>
+                            </a>
+                            <!-- show_funtion_login -->
+                            <div class="show_funtion_login dropdown-menu" aria-labelledby="dropdownLogin">
+                                <a id="dropDownProfile" class="dropdown-item"  ><i class="fas fa-user-circle"></i> MY ACCOUNT</a>
+                                <a class="dropdown-item" onclick="view.signOutButton()"><i class="fas fa-sign-out-alt"></i> LOGOUT</a>
+                            </div>
+                            <!--end show_funtion_login -->
+                        </div>
+                        <div class="header_funtion_title header_cart navbar-tool-icon-box dropdown">
+                                <a onclick="view.setScreenBtn('checkoutPage')" id="dropdownCart"><i class="fab fa-opencart"></i>
+                                    <p class="navbar-tool d-none d-lg-flex "><span class="navbar-tool-tooltip"><small>My Cart</small></br><span class="cartTotal">0</span></p>
+                                </a>
+                            <div class="show_cart_header dropdown-menu" aria-labelledby="dropdownCart">
+                                
+                                <div id="subCartItem" class="header_product">
+                                    <!-- JS CODE -->
+                                </div>
+                                <div class="header_checkout">
+                                    <ul>
+                                        <li class="header_total">GRAND TOTAL : <span class="cartTotal">0</span></li>
+                                        <li class="header_funtion_checkout"><a ><button onclick="view.setScreenBtn('checkoutPage')" type="" class="btn btn-danger">CHECKOUT</button></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main_nav_show navbar navbar-expand-lg navbar-light navbar-stuck-menu mt-n2 pt-0 pb-2">
+            <div class="main_nav container">
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <!-- Search-->
+                    <div class="input-group-overlay d-lg-none my-3">
+                        <div class="input-group-prepend-overlay"><span class="input-group-text"><i
+                                    class="czi-search"></i></span></div>
+                        <input class="form-control prepended-form-control" type="text" placeholder="Search...">
+                    </div>
+                    <!-- Primary menu-->
+                    <ul class="main_nav_title navbar-nav">
+                        <li onclick ="view.setScreenBtn('homePage')" class=" nav-item"><a class="nav-link" >Home</a></li>
+                        <li id="navItemDropdown" onclick ="view.setScreenBtn('productPage/all')" class="nav-item dropdown"><a class="nav-link dropdown-toggle" 
+                                data-toggle="dropdown">Products</a>
+                            <ul id="subCategoryDropdown" class="dropdown-menu">
+                                <!-- JS CODE -->
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" onclick ="view.setScreenBtn('contact')">Contact</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#">Service</a></li>
+                        <li class="nav-item"><a class="nav-link" onclick ="view.setScreenBtn('aboutUs')">About Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+    </header>
+
+    <!-- div Loading -->
+    <div id="loading" style=" display: none;">
+        <div class="overLay"></div>
+        <div class="loader"></div>
+    </div>
+
+    <!-- Modal login-->
+    <div class="modal fade" id="modal_login" tabindex="-1" aria-labelledby="LoginLabel"
+        aria-hidden="true">
+        <div class=" modal-dialog modal_login_edit">
+            <div class=" modal-content">
+                <div class="modal_login_show modal-body">
+                    <nav>
+                        <div class="nav modal_title nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active popup_login_title"
+                                id="nav-login-tab" data-toggle="tab" href="#nav-login"
+                                role="tab" aria-controls="nav-login"
+                                aria-selected="true">LOGIN</a>
+                            <a class="nav-item nav-link popup_login_title" id="nav-register-tab"
+                                data-toggle="tab" href="#nav-register" role="tab"
+                                aria-controls="nav-register" aria-selected="false">REGISTER</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-login" role="tabpanel"
+                            aria-labelledby="nav-login-tab">
+                            <div class="modal_left">
+                                <img src="img/login.png" alt=""></div>
+                            <div class="modal_right">
+                                <form id="loginForm" class="login_form">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Password</label>
+                                        <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password" required>
+                                    </div>
+                                    <div class="forgot_pass">
+                                        <a href="" data-toggle="modal" data-target="#modal_forgot_password" data-dismiss="modal">Forgot your password?</a>
+                                    </div>
+                                    <button onclick="view.login(event)" id ="loginBtn" type="submit" class="btn btn-primary">SIGN IN</button>
+                                    <div class="login_api">
+                                        <ul>
+                                            <li>
+                                                <a onclick="model.loginWithFacebook()" ><i class="fab fa-facebook-square"></i></a>
+                                            </li>
+                                            <li>
+                                                <a onclick="model.loginGoogleAccount()" ><i class="fab fa-google"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href=""><i class="fab fa-github"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="register tab-pane fade" id="nav-register" role="tabpanel"
+                            aria-labelledby="nav-register-tab">
+                            <div class="modal_left_register">
+                                <img src="img/login.png" alt="">
+                            </div>
+                            <form id="registerForm">
+                                <div class="modal_right_register">
+                                    <div class="input-group mb-3">
+                                        <span>Full Name :</span>
+                                        <input name="name" type="text" class="form-control" placeholder="Fullname" aria-label="Fullname" aria-describedby="basic-addon1">
+                                        <div class="error" id="name-error"></div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span>Phone :</span>
+                                        <input name="phone" type="text" class="form-control" placeholder="Numberphone" aria-label="Numberphone"aria-describedby="basic-addon1">
+                                        <div class="error" id="phone-error"></div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span>Email :</span>
+                                        <input name="email" type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+                                        <div class="error" id="email-error"></div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span>Address:</span>
+                                        <input name="address" type="text" class="form-control" placeholder="Address" aria-label="Address" aria-describedby="basic-addon1">
+                                        <div class="error" id="address-error"></div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span>Date Of Birth:</span>
+                                        <input name="dob" type="date" class="form-control" aria-describedby="basic-addon1">
+                                        <div class="error" id="dob-error"></div>
+                                    </div>
+                                    <div class=" input-group mb-3">
+                                        <span>Gender:</span>
+                                        <select>
+                                            <option value=""></option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                        <div class="error" id="gender-error"></div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span>Password:</span>
+                                        <input name="password" type="text" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                                        <div class="error" id="password-error"></div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span>Retype Password:</span>
+                                        <input name="confirmPw" type="text" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                                        <div class="error" id="confirmPw-error"></div>
+                                    </div>
+                                    <button id="registerBtn" class="btn btn-warning" onclick="view.register(event)" type="button" >REGISTER</button>
+                                </div>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal forgot password-->
+    <div class="modal fade" id="modal_forgot_password" tabindex="-1" role="dialog" aria-labelledby="forgot_password" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content edit_modal_forgot_password">
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group forgot_pass_body">
+                            <img src="img/fgpass.jpg" alt="">
+                            <p>Confirm email to change password</p>
+                            <input id="confirmEmail" type="email" class="form-control"  placeholder="Enter your email...">
+                        </div>
+                </div>
+                </form>
+                <div class="modal-footer footer_modal_update_addrs">
+                    <button id="confirmBtn" class="btn btn-warning btn_forgot_password type="button" onclick="view.sendResetPassword()">CONFIRM</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end modal forgot password --> 
+    <!-- end modal login -->
+
+    <div id='mainContainer'>
+    
+    </div>
+
+
+    <footer class="footer">
+    <div class="footer_title">
+        <div class="row">
+            <div class="col-sm-6 ">
+                <h1>BTEC STORE</h1>
+                <ul>
+                    <li>
+                        <a href=""><i class="fas fa-map-marker-alt"></i><span>107 Nguyen Phong Sac, Dich Vong Hau,
+                                Cau Giay, Ha Noi.</span></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fas fa-mobile-alt"></i><span>0387798072</span></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="far fa-envelope"></i><span>BTECSTORE@GMAIL.COM</span></a>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="col-sm-3 ">
+                <h1>Customer Support</h1>
+                <ul>
+                    <li>
+                        <a href=""><i class="far fa-question-circle"></i><span> Shopping Guide</span></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="far fa-question-circle"></i><span> Payment Guide</span></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="far fa-question-circle"></i><span> Return Policy</span></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-3 ">
+                <h1>Payment Methods</h1>
+                <ul>
+                    <li>
+                        <a href=""><i class="fas fa-money-bill"></i><span> Cash On Delivery</span></a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fab fa-cc-paypal"></i><span> Payment Via Paypal</span></a>
+                    </li>
+                    <li>
+                        <a href=""><img src="https://goccuaphu.com/wp-content/uploads/2017/10/huong-dan-tao-tai-khoan-paypal-cho-nguoi-moi-tu-a-z.png" alt=""></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="socialNetwork">
+            <div class="row d-flex justify-content-center">
+                <div class="col d-flex justify-content-center my-5 pt-1">
+                    <a class="fb-ic" href="">
+                        <i class="fab fa-facebook-f fa-lg white-text mx-3 mx-md-4 fa-2x"> </i>
+                    </a>
+                    <a class="tw-ic" href="">
+                        <i class="fab fa-twitter fa-lg white-text mx-3 mx-md-4 fa-2x"> </i>
+                    </a>
+                    <a class="gplus-ic" href="">
+                        <i class="fab fa-google-plus-g fa-lg white-text mx-3 mx-md-4 fa-2x"> </i>
+                    </a>
+                    <a class="li-ic" href="">
+                        <i class="fab fa-linkedin-in fa-lg white-text mx-3 mx-md-4 fa-2x"> </i>
+                    </a>
+                    <a class="ins-ic" href="">
+                        <i class="fab fa-instagram fa-lg white-text mx-3 mx-md-4 fa-2x"> </i>
+                    </a>
+                    <a class="pin-ic" href="">
+                        <i class="fab fa-pinterest fa-lg white-text mx-3 mx-md-4 fa-2x"> </i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+`;
+
 component.homePage = `
 <section class="main_page">
         <!--banner-->
@@ -182,332 +513,12 @@ component.homePage = `
     </section>
 `;
 
-component.headerAndFooter = `
-<div id="app">
-    <header class="header fixed-top">
-    <!-- Topbar-->
-        <div class="top_header topbar topbar-dark bg-dark">
-            <ul class="title_top_header nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-mobile-alt"></i><span> 0387798072</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="far fa-envelope"></i><span> BTECSTORE@FPT.EDU.VN</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-map-marker-alt"></i><span> 107 Nguyen Phong Sac, Dich
-                            Vong Hau, Cau Giay, Ha Noi.</span></a>
-                </li>
-            </ul>
-        </div>
-        <div class="main_header navbar-sticky">
-            <div class="title_main_header navbar navbar-expand-lg navbar-light">
-                <div class="main_header_title container">
-                    <a onclick ="view.setScreenBtn('homePage')" class="logo_img navbar-brand d-none d-sm-block mr-3 flex-shrink-0" href="index.html"><img
-                            src="img/logoshop.png" alt=""></a>
-                    <a class="logo_img_rps navbar-brand d-sm-none mr-2" href="index.html"><img src="img/logoshop.png"
-                            alt=""></a>
-                    <!---search--->
-                    <div class="search_box input-group-overlay d-none d-lg-flex mx-4">
-                        <input id="inputSearch" class="form-control" type="text" placeholder="Search" aria-label="Search">
-                        <a id="searchBtn" class="search_btn"><i class="fas fa-search"></i></a>
-                        <div id="searchrecmt" class="search_recmt">
-                            <ul id="resultSearch">
-                                <!-- JS-->
-                            </ul>
-                        </div>
-                    </div>
-                    <!--end search-->
-                    <div class="header_funtion navbar-toolbar d-flex flex-shrink-0 align-items-center drop_down">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarCollapse"><span><i class="fas fa-bars"></i></span></button>
-                        <div id="profile" class="header_funtion_title navbar-tool-icon-box">
-                        <a ><i class="far fa-heart" data-toggle="modal" ></i><span class="navbar-tool-tooltip"></span></a>
-                        </div>
-                        <div id="dropdownlogin" class="header_funtion_title navbar-tool-icon-box "  >
-                            <a id="directProfilePage"  data-toggle="modal" data-target="#modal_login">
-                                <i class="far fa-user"></i>
-                                <p class="navbar-tool d-none d-lg-flex"><span class="navbar-tool-tooltip">
-                                    <small class="userName">Hello, Sign in</small></br>MY ACCOUNT</span>
-                                </p>
-                            </a>
-                            <!-- show_funtion_login -->
-                            <div class="show_funtion_login dropdown-menu" aria-labelledby="dropdownLogin">
-                                <a id="dropDownProfile" class="dropdown-item"  ><i class="fas fa-user-circle"></i> MY ACCOUNT</a>
-                                <a class="dropdown-item" onclick="view.signOutButton()"><i class="fas fa-sign-out-alt"></i> LOGOUT</a>
-                            </div>
-                            <!--end show_funtion_login -->
-                        </div>
-                        <div class="header_funtion_title header_cart navbar-tool-icon-box dropdown">
-                                <a onclick="view.setScreenBtn('checkoutPage')" id="dropdownCart"><i class="fab fa-opencart"></i>
-                                    <p class="navbar-tool d-none d-lg-flex "><span class="navbar-tool-tooltip"><small>My Cart</small></br><span class="cartTotal">0</span></p>
-                                </a>
-                            <div class="show_cart_header dropdown-menu" aria-labelledby="dropdownCart">
-                                
-                                <div id="subCartItem" class="header_product">
-                                    <!-- JS CODE -->
-                                </div>
-                                <div class="header_checkout">
-                                    <ul>
-                                        <li class="header_total">GRAND TOTAL : <span class="cartTotal">0</span></li>
-                                        <li class="header_funtion_checkout"><a ><button onclick="view.setScreenBtn('checkoutPage')" type="" class="btn btn-danger">CHECKOUT</button></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="main_nav_show navbar navbar-expand-lg navbar-light navbar-stuck-menu mt-n2 pt-0 pb-2">
-            <div class="main_nav container">
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <!-- Search-->
-                    <div class="input-group-overlay d-lg-none my-3">
-                        <div class="input-group-prepend-overlay"><span class="input-group-text"><i
-                                    class="czi-search"></i></span></div>
-                        <input class="form-control prepended-form-control" type="text" placeholder="Search...">
-                    </div>
-                    <!-- Primary menu-->
-                    <ul class="main_nav_title navbar-nav">
-                        <li onclick ="view.setScreenBtn('homePage')" class=" nav-item"><a class="nav-link" href="#">Home</a></li>
-                        <li id="navItemDropdown" onclick ="view.setScreenBtn('productPage')" class="nav-item dropdown"><a class="nav-link dropdown-toggle" 
-                                data-toggle="dropdown">Products</a>
-                            <ul id="subCategoryDropdown" class="dropdown-menu">
-                                <!-- JS CODE -->
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="#">Service</a></li>
-                        <li class="nav-item"><a class="nav-link" href="aboutus.html">About Us</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        </div>
-    </header>
-    <!-- Modal login-->
-    <div class="modal fade" id="modal_login" tabindex="-1" aria-labelledby="LoginLabel"
-        aria-hidden="true">
-        <div class=" modal-dialog modal_login_edit">
-            <div class=" modal-content">
-                <div class="modal_login_show modal-body">
-                    <nav>
-                        <div class="nav modal_title nav-tabs" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link active popup_login_title"
-                                id="nav-login-tab" data-toggle="tab" href="#nav-login"
-                                role="tab" aria-controls="nav-login"
-                                aria-selected="true">LOGIN</a>
-                            <a class="nav-item nav-link popup_login_title" id="nav-register-tab"
-                                data-toggle="tab" href="#nav-register" role="tab"
-                                aria-controls="nav-register" aria-selected="false">REGISTER</a>
-                        </div>
-                    </nav>
-                    <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-login" role="tabpanel"
-                            aria-labelledby="nav-login-tab">
-                            <div class="modal_left">
-                                <img src="img/login.png" alt=""></div>
-                            <div class="modal_right">
-                                <form id="loginForm" class="login_form">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email" required>
-                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password" required>
-                                    </div>
-                                    <div class="forgot_pass">
-                                        <a href="" data-toggle="modal" data-target="#modal_forgot_password" data-dismiss="modal">Forgot your password?</a>
-                                    </div>
-                                    <button onclick="view.login(event)" id ="loginBtn" type="submit" class="btn btn-primary">SIGN IN</button>
-                                    <div class="login_api">
-                                        <ul>
-                                            <li>
-                                                <a onclick="model.loginWithFacebook()" ><i class="fab fa-facebook-square"></i></a>
-                                            </li>
-                                            <li>
-                                                <a onclick="model.loginGoogleAccount()" ><i class="fab fa-google"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href=""><i class="fab fa-github"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <div class="register tab-pane fade" id="nav-register" role="tabpanel"
-                            aria-labelledby="nav-register-tab">
-                            <div class="modal_left_register">
-                                <img src="img/login.png" alt="">
-                            </div>
-                            <form id="registerForm">
-                                <div class="modal_right_register">
-                                    <div class="input-group mb-3">
-                                        <span>Full Name :</span>
-                                        <input name="name" type="text" class="form-control" placeholder="Fullname" aria-label="Fullname" aria-describedby="basic-addon1">
-                                        <div class="error" id="name-error"></div>
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <span>Phone :</span>
-                                        <input name="phone" type="text" class="form-control" placeholder="Numberphone" aria-label="Numberphone"aria-describedby="basic-addon1">
-                                        <div class="error" id="phone-error"></div>
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <span>Email :</span>
-                                        <input name="email" type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
-                                        <div class="error" id="email-error"></div>
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <span>Address:</span>
-                                        <input name="address" type="text" class="form-control" placeholder="Address" aria-label="Address" aria-describedby="basic-addon1">
-                                        <div class="error" id="address-error"></div>
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <span>Date Of Birth:</span>
-                                        <input name="dob" type="date" class="form-control" aria-describedby="basic-addon1">
-                                        <div class="error" id="dob-error"></div>
-                                    </div>
-                                    <div class=" input-group mb-3">
-                                        <span>Gender:</span>
-                                        <select>
-                                            <option value=""></option>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
-                                        </select>
-                                        <div class="error" id="gender-error"></div>
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <span>Password:</span>
-                                        <input name="password" type="text" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
-                                        <div class="error" id="password-error"></div>
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <span>Retype Password:</span>
-                                        <input name="confirmPw" type="text" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
-                                        <div class="error" id="confirmPw-error"></div>
-                                    </div>
-                                    <button id="registerBtn" class="btn btn-warning" onclick="view.register(event)" type="button" >REGISTER</button>
-                                </div>
-                            </form>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal forgot password-->
-    <div class="modal fade" id="modal_forgot_password" tabindex="-1" role="dialog" aria-labelledby="forgot_password" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content edit_modal_forgot_password">
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group forgot_pass_body">
-                            <img src="img/fgpass.jpg" alt="">
-                            <p>Confirm email to change password</p>
-                            <input type="email" class="form-control" id="confirmEmail" placeholder="Enter your email...">
-                        </div>
-                </div>
-                </form>
-                <div class="modal-footer footer_modal_update_addrs">
-                    <button id="confirmBtn" type="button" class="btn btn-warning btn_forgot_password ">CONFIRM</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end modal forgot password --> 
-    <!-- end modal login -->
-
-
-    <footer class="footer">
-    <div class="footer_title">
-        <div class="row">
-            <div class="col-sm-6 ">
-                <h1>BTEC STORE</h1>
-                <ul>
-                    <li>
-                        <a href=""><i class="fas fa-map-marker-alt"></i><span>107 Nguyen Phong Sac, Dich Vong Hau,
-                                Cau Giay, Ha Noi.</span></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="fas fa-mobile-alt"></i><span>0387798072</span></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="far fa-envelope"></i><span>BTECSTORE@GMAIL.COM</span></a>
-                    </li>
-                </ul>
-
-            </div>
-            <div class="col-sm-3 ">
-                <h1>Customer Support</h1>
-                <ul>
-                    <li>
-                        <a href=""><i class="far fa-question-circle"></i><span> Shopping Guide</span></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="far fa-question-circle"></i><span> Payment Guide</span></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="far fa-question-circle"></i><span> Return Policy</span></a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-sm-3 ">
-                <h1>Payment Methods</h1>
-                <ul>
-                    <li>
-                        <a href=""><i class="fas fa-money-bill"></i><span> Cash On Delivery</span></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="fab fa-cc-paypal"></i><span> Payment Via Paypal</span></a>
-                    </li>
-                    <li>
-                        <a href=""><img src="https://goccuaphu.com/wp-content/uploads/2017/10/huong-dan-tao-tai-khoan-paypal-cho-nguoi-moi-tu-a-z.png" alt=""></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="socialNetwork">
-            <div class="row d-flex justify-content-center">
-                <div class="col d-flex justify-content-center my-5 pt-1">
-                    <a class="fb-ic" href="">
-                        <i class="fab fa-facebook-f fa-lg white-text mx-3 mx-md-4 fa-2x"> </i>
-                    </a>
-                    <a class="tw-ic" href="">
-                        <i class="fab fa-twitter fa-lg white-text mx-3 mx-md-4 fa-2x"> </i>
-                    </a>
-                    <a class="gplus-ic" href="">
-                        <i class="fab fa-google-plus-g fa-lg white-text mx-3 mx-md-4 fa-2x"> </i>
-                    </a>
-                    <a class="li-ic" href="">
-                        <i class="fab fa-linkedin-in fa-lg white-text mx-3 mx-md-4 fa-2x"> </i>
-                    </a>
-                    <a class="ins-ic" href="">
-                        <i class="fab fa-instagram fa-lg white-text mx-3 mx-md-4 fa-2x"> </i>
-                    </a>
-                    <a class="pin-ic" href="">
-                        <i class="fab fa-pinterest fa-lg white-text mx-3 mx-md-4 fa-2x"> </i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-</div>
-
-`;
-
 component.detailProduct = `
 <section class="main_page">
     <!--bath-->
     <nav class="bath" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="bath_edit breadcrumb-item"><a onclick ="view.setScreenBtn('homePage')" href="">Home</a></li>
+            <li class="bath_edit breadcrumb-item"><a onclick ="view.setScreenBtn('homePage')" >Home</a></li>
             <li class="breadcrumb-item"><a href="#">Products</a></li>
             <li class="breadcrumb-item active" aria-current="page"></li>
         </ol>
@@ -786,7 +797,7 @@ component.profilePage = `
                                 alt="">
                         </div>
                         <div class="funtion_account_header-title">
-                            <h5>Tung Tran</h5>
+                            <h5 id="username">Tung Tran</h5>
                             <span><i class="fas fa-user-edit"></i>EDIT INFORMATION</span>
                         </div>
                     </div>
@@ -805,7 +816,7 @@ component.profilePage = `
                                 <h5>Manage profile information for account security.</h5>
                             </div>
                             <div class="avatar_account">
-                                <img class="userAvt" src=""
+                                <img id="userAvt" 
                                     alt="">
                                 <input type="file" id="profile_img" name="profile_img" accept=".jpg,.jpeg,.png">
                             </div>
@@ -1064,4 +1075,109 @@ component.billPage = `
         </div>
     </div>
 </div>  
+`;
+
+
+component.aboutUs = `
+    <section class="main_page">
+    <!--bath-->
+    <nav class="bath" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="bath_edit breadcrumb-item"><a >Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Abouts Us</li>
+        </ol>
+    </nav>
+    <div class="about_us_infor">
+        <div class="about_us_title">
+            <h5>WHO ARE WE</h5>
+            <h3>WELCOME TO BTEC STORE</h3>
+            <h6>With the motto "All for customers", BTEC STORE always strives to improve the quality of services and products, thereby providing a complete shopping experience for customers with fast delivery service in 2 hours and the next day BTECNOW
+                for the first time in Southeast Asia, together with a commitment to provide genuine goods with a 111% refund policy if found counterfeit goods.</h6>
+        </div>
+    </div>
+    <div class="about_product">
+        <div class="list_brand container">
+            <div class="row">
+                <div class="about_brand col-sm">
+                    <div class="brand_img"> <img src="./img/iphonebrand.png" alt="">
+                    </div>
+                    <div class="title_brand"><span><h1>IPHONE</h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, magni. Quam molestias labore sequi deserunt quae aliquid? Maxime consectetur natus necessitatibus laudantium quo eum, officia accusantium architecto blanditiis voluptatibus vel.</span>
+                    </div>
+                </div>
+                <div class="about_brand col-sm">
+                    <div class="brand_img"> <img src="./img/samsungbrand.png" alt="">
+                    </div>
+                    <div class="title_brand"><span><h1>SAMSUNG</h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, magni. Quam molestias labore sequi deserunt quae aliquid? Maxime consectetur natus necessitatibus laudantium quo eum, officia accusantium architecto blanditiis voluptatibus vel.</span>
+                    </div>
+                </div>
+                <div class="about_brand col-sm">
+                    <div class="brand_img"> <img src="./img/vsmartbrand.png" alt="">
+                    </div>
+                    <div class="title_brand"><span><h1>VSMART</h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, magni. Quam molestias labore sequi deserunt quae aliquid? Maxime consectetur natus necessitatibus laudantium quo eum, officia accusantium architecto blanditiis voluptatibus vel.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="about_us_teamMember">
+        <div class="container">
+            <div class="row">
+                <div class="team_btec col col-lg-2">
+                    3 of 3
+                </div>
+                <div class="team_btec col col-lg-2">
+                    3 of 3
+                </div>
+                <div class="team_btec col col-lg-2">
+                    3 of 3
+                </div>
+                <div class="team_btec col col-lg-2">
+                    3 of 3
+                </div>
+            </div>
+        </div>
+    </section>
+`;
+
+component.contact = `
+<section class="main_page">
+        <!--bath-->
+        <nav class="bath" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="bath_edit breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Contact</a></li>
+            </ol>
+        </nav>
+        <!--end bath-->
+        <div class="contact">
+            <h1>OUR BRANCHES IN VIETNAM</h1>
+            <table class="infor_contact table">
+                <thead>
+                    <tr>
+                        <th>BTEC STORE HA NOI</th>
+                        <th>BTEC STORE DA NANG</th>
+                        <th>BTEC STORE HO CHI MINH</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0981 090 513</td>
+                        <td>0905 888 535</td>
+                        <td>0931 31 33 29</td>
+                    </tr>
+                    <tr>
+                        <td>BTECSTORE.HN@FPT.EDU.VN</td>
+                        <td>BTECSTORE.DN@FPT.EDU.VN</td>
+                        <td>BTECSTORE.HCM@FPT.EDU.VN</td>
+                    </tr>
+                    <tr>
+                        <td><a href="">107 Nguyen Phong Sac, Dich Vong Hau, Cau Giay, Ha Noi.</a></td>
+                        <td><a href="">66 Vo Van Tan, Chinh Gian, Thanh Khe, Da Nang.</a></td>
+                        <td><a href="">275 Nguyen Van Dau,Phuong 11, Binh Thanh, Thanh Pho Ho Chi Minh.</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <img src="./img/maps.png" alt="">
+        </div>
+    </section>
 `;

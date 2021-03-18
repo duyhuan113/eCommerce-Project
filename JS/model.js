@@ -1,16 +1,8 @@
 const model = {};
-// biến này để lấy vị trí trang hiện tại trên local về
-model.currentLocationScreen = localStorage.getItem('currentLocationScreen');
 // biến này để lưu ng dùng hiện tại là ai?
 model.currentUser = undefined;
 
-// biến này để lưu sản phẩm vừa đc chọn để xem chi tiết là sp nào
-if (model.currentLocationScreen == 'detailProductHome') {
-    model.chosenProduct = localStorage.getItem('detailProduct');
-    model.chosenProduct = JSON.parse(model.chosenProduct);
-} else {
-    model.chosenProduct = undefined;
-}
+
 // array này lưu tất cả dữ liệu của toàn bộ sp
 model.productData = undefined;
 
@@ -62,7 +54,6 @@ model.newUser = (data) => {
 model.getCurrentUserData = async (email) => {
     const response = await firebase.firestore().collection("users").doc(email).get()
      model.currentUser = await response.data();
-    console.log(model.currentUser);
     return model.currentUser
 }
 
@@ -128,9 +119,10 @@ model.getProductsData = async () => {
 };
 
 model.getProductsDataByCategory = async (category) => {
-    console.log(category);
+    
     const response = await firebase.firestore().collection("products").where("category", "==", category).get();
     let data = model.productData = getDataFromDocs(response.docs);
+    console.log(data);
     return data
 }
 
@@ -140,7 +132,7 @@ model.getCollectionData = async (collection) => {
 };
 
 //func này lấy ra 1 product bằng id.
-model.getProductsDataById = async (id) => {
+model.getProductDataById = async (id) => {
     const response = await firebase.firestore().collection("products").where("id", "==", id).get();
     return getDataFromDocs(response.docs);
 }
@@ -154,7 +146,7 @@ model.getOrdersDatabyId = async (id) => {
 
 // function này lưu product vừa đc chọn để lưu lên local, sau đó gọi lại để load ra màn hình detail.
 model.tickProduct = async (id) => {
-    let data = await model.getProductsDataById(id);
+    let data = await model.getProductDataById(id);
     console.log(data);
     // đoạn này update location screen.
     localStorage.setItem('currentLocationScreen', 'detailProduct');
@@ -170,19 +162,22 @@ model.newBill = async (data) => {
     try {
         await firebase.firestore().collection('orders').doc(data.id).set(data);
         for (let item of dataItem) {
-            await model.updateProductData(item.id, item.inCart);
+            await model.updateProductAvailable(item.id, item.inCart);
         }
     } catch (err) {
         console.log(err);
     }
 };
 
-model.updateProductData = async (id, inCart) => {
-    let data = await model.getProductsDataById(id);
+model.updateProductAvailable = async (id, inCart) => {
+    let data = await model.getProductDataById(id);
     await firebase.firestore().collection('products').doc(id).update({
         availableQuantity: Number(data[0].availableQuantity) - inCart
     });
 };
+
+
+
 //function này cập nhật thông tin memberShip cho thành viên.
 model.updateUserData = async (email, total) => {
     let userData = model.currentUser;

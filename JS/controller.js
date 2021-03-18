@@ -10,7 +10,7 @@ controller.register = (data) => {
         view.setErrorMessage('email-error', 'Please Enter Your Email')
 
     } else {
-        if (validateEmail(data.email) == true) {
+        if (controller.validateEmail(data.email) == true) {
             view.setErrorMessage('email-error', '')
             document.getElementById('email-error').innerHTML = '';
         } else {
@@ -66,7 +66,7 @@ controller.addressForm = (data) => {
 
 
 
-function validateEmail(email) {
+controller.validateEmail=(email)=> {
     const emailFomat = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return emailFomat.test(String(email).toLowerCase());
 };
