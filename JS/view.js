@@ -1287,6 +1287,6 @@ view.loadingScreen = (value) => {
   document.getElementById("loading").style.display = value;
 };
 
-// (function () {
-//   view.setScreenBtn("homePage");
-// })();
+(function () {
+  view.setScreenBtn("homePage");
+})();
