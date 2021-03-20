@@ -119,6 +119,7 @@ model.getProductsData = async () => {
 };
 
 model.getProductsDataByCategory = async (category) => {
+    console.log(category);
     
     const response = await firebase.firestore().collection("products").where("category", "==", category).get();
     let data = model.productData = getDataFromDocs(response.docs);

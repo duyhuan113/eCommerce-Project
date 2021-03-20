@@ -1,3 +1,5 @@
+/*--my account--*/
+
 .infor_account {
     float: left;
     width: 80%;
@@ -14,25 +16,32 @@
 
 .funtion_account_header {
     float: left;
-    display: flex;
+    width: 100%;
 }
 
 .funtion_account_header-img {
     float: left;
-    width: 20%;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background-color: white;
+    overflow: hidden;
 }
 
 .funtion_account_header img {
-    border-radius: 50%;
-    width: 80%;
+    width: 100%;
+    height: 100%;
 }
 
 .funtion_account_header-title {
     float: left;
+    padding-left: 10px;
+    padding-top: 4px;
     width: 80%;
 }
 
 .funtion_account_header-title span {
+    width: 100%;
     font-weight: 600;
     color: #95a5a6;
     font-size: 13px;
@@ -58,6 +67,41 @@
     color: #7f8c8d;
     text-transform: uppercase;
 }
+
+
+/*---modal change pass----*/
+
+.modal_change_edit {
+    width: 400px !important;
+}
+
+.header_changePass {
+    float: left;
+}
+
+.header_changePass h5 {
+    float: left;
+    width: 100%;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: center;
+}
+
+.footer_changePass {
+    width: 100%;
+}
+
+.footer_changePass button {
+    margin-left: 0!important;
+    width: 30% !important;
+}
+
+.btn_change {
+    margin-right: 37% !important;
+}
+
+
+/*---end modal change pass----*/
 
 #gender label {
     margin-right: 2rem;
@@ -94,6 +138,11 @@
     float: left;
     margin-top: 1rem;
     background-color: white;
+    /* -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px); */
 }
 
 .changePass a {
@@ -241,7 +290,6 @@ li.add_new_address:hover {
 .show_infor_account button {
     width: 78%;
     margin-left: 21%;
-    margin-top: 1rem;
     font-weight: 600;
 }
 
@@ -373,40 +421,80 @@ li.add_new_address:hover {
     margin: 0 auto !important;
 }
 
-.changePassword{
-    display: none;
-}
 
-/*---modal change pass----*/
+/*--my account--*/
 
-.modal_change_edit {
-    width: 400px !important;
-}
 
-.header_changePass {
-    float: left;
-}
+/* modal_addnew_address */
 
-.header_changePass h5 {
-    float: left;
+.footer_modal_addnew_addrs {
     width: 100%;
-    text-transform: uppercase;
+}
+
+.footer_modal_addnew_addrs button {
+    min-width: 7rem;
+}
+
+.btn_cancel_add_adrs {
+    float: left;
+    margin-right: 14rem!important;
+}
+
+.btn_add_adrs {
+    float: right;
+}
+
+
+/* end  modal_addnew_address */
+
+
+/* modal_update_address */
+
+#update_addressLabel {
     width: 100%;
     text-align: center;
 }
 
-.footer_changePass {
+.footer_modal_update_addrs {
     width: 100%;
 }
 
-.footer_changePass button {
-    margin-left: 0!important;
-    width: 30% !important;
+.footer_modal_update_addrs button {
+    min-width: 7rem;
 }
 
-.btn_change {
-    margin-right: 37% !important;
+.btn_cls_addrs {
+    float: left;
+    margin-right: 14rem!important;
+}
+
+.btn_update_addrs {
+    float: right;
 }
 
 
-/*---end modal change pass----*/
+/* end_modal_update */
+
+#editInforModalTitle {
+    width: 100%;
+    text-align: center;
+}
+
+.modal_footer-editInfor {
+    width: 100%;
+}
+
+.modal_footer-editInfor button {
+    width: 150px;
+    padding: 5px 5px;
+}
+
+.btn_cls-exitInfor {
+    float: left;
+    margin: 0 0 0 -2rem!important;
+}
+
+.btn_submit-infor {
+    float: left;
+    margin: 0 0 0 10.5rem!important;
+}

@@ -118,17 +118,21 @@
 }
 
 .scroll_table_img {
-    width: 10%;
+    width: 5rem;
 }
 
 .scroll_table_name {
-    width: 100%;
-    line-height: 45px;
     float: left;
+    width: 25rem;
+    line-height: 100px;
+    text-transform: uppercase;
 }
 
 .scroll_table_quantity {
-    width: 15%;
+    float: left;
+    margin-top: 2.5rem;
+    width: 6rem;
+    margin-left: 1.1rem;
 }
 
 .scroll_table_quantity input {
@@ -139,7 +143,25 @@
 }
 
 .scroll_table_price {
-    width: 10%;
+    float: left;
+    margin-top: 2.5rem;
+    margin-left: 0.2rem;
+    width: 5rem;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    border: 2px solid #555555;
 }
 
 .scroll_table_price span {
@@ -156,19 +178,20 @@
 
 .product_title_order {
     float: left;
+    margin-left: 0.7rem;
     font-weight: 600;
 }
 
 .quantity_title_order {
     float: left;
     font-weight: 600;
-    margin-left: 18rem;
+    margin-left: 26.6rem;
 }
 
 .total_title_order {
     float: left;
     font-weight: 600;
-    margin-left: 3.8rem;
+    margin-left: 5rem;
 }
 
 .scroll_table table tr td img {
@@ -190,16 +213,16 @@
     font-weight: 600;
     font-size: 16px;
     margin-top: 1.6rem;
-    margin-right: 0.2rem;
+    margin-right: -0.2rem;
 }
 
 .shipping_order span {
-    padding-left: 12.7rem;
-    padding-right: 1.7rem;
+    width: 150px;
+    padding: 0 3.2rem 0 1.5rem;
 }
 
 .total_order {
-    float: left;
+    float: right;
     width: 100%;
 }
 
@@ -208,14 +231,34 @@
     font-weight: 500;
     font-size: 16px;
     margin-top: 0.3rem;
-    margin-right: -1.2rem;
+    margin-right: 0.1rem;
 }
 
 .total_order span {
-    padding-left: 10rem;
-    padding-right: 3.1rem;
+    width: 150px;
+    padding: 0 3rem 0 1.5rem;
     font-weight: 600;
     color: red;
+}
+
+.distotal_order p {
+    float: right;
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 0.3rem;
+    margin-right: 1rem;
+}
+
+.distotal_order p {
+    margin: 0;
+}
+
+.distotal_order span {
+    padding: 0 3rem 0 1.5rem;
+}
+
+#discountPercent {
+    padding: 0 0;
 }
 
 .payment {
@@ -236,13 +279,14 @@
 }
 
 .payment ul li button {
-    width: 15rem;
+    width: 18.8rem;
     font-weight: 500;
 }
 
 .order_checkout {
     float: left;
     width: 100%;
+    padding-bottom: 5rem;
 }
 
 .order_checkout button {

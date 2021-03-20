@@ -65,7 +65,7 @@ view.setActiveScreen = async (screenName, otherInfo) => {
       break;
     case "profilePage":
       main.innerHTML = component.profilePage;
-
+      onChangeAvatar()
       view.loadingScreen("block");
       view.showProfilePage();
       view.loadingScreen("none");
@@ -158,11 +158,12 @@ view.showHomePage = async () => {
   let newProductData = await view.getNewProductData();
   let topSellerProductData = await view.getTopSellerProductData();
   // đoạn này xử lí xem show ra bnh sản phẩm
-
-  // đoạn này load ra sp new và bestSeller
+  // đoạn này load ra sp new và bestSeller  
+  
   for (let i = 0; i < 8; i++) {
     newItem[i].innerHTML += view.htmlItemProduct(newProductData[i]);
-    topItem[i].innerHTML += view.htmlItemProduct(topSellerProductData[i]);
+    // topItem[i].innerHTML += view.htmlItemProduct(topSellerProductData[i]);
+
   }
 };
 
@@ -1016,8 +1017,8 @@ view.showProfilePage = async () => {
 
   // document.querySelectorAll(".username").innerHTML = model.currentUser.name;
   console.log(document.querySelectorAll("username"));
-  let avatar = (document.getElementById("userAvt").src =
-    model.currentUser.avatar);
+  // let avatar = (document.getElementById("userAvt").src =
+  //   model.currentUser.avatar);
 
   document.getElementById("v-pills-order-tab").addEventListener("click", () => {
     listOrders.innerHTML = "";
@@ -1287,6 +1288,25 @@ view.loadingScreen = (value) => {
   document.getElementById("loading").style.display = value;
 };
 
-// (function () {
-//   view.setScreenBtn("homePage");
-// })();
+(function () {
+  view.setScreenBtn("homePage");
+})();
+
+function onChangeAvatar() {
+  const file = document.querySelector('#file')
+
+  file.onchange = function(e) {
+      showPreview(e.target.files[0])
+  }
+
+  function showPreview(file) {
+      if (file) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+              console.log(e.target.result)
+              img.src = e.target.result
+          }
+          reader.readAsDataURL(file); // convert to base64 string
+      }
+  }
+}

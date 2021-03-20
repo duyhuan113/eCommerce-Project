@@ -4,6 +4,7 @@
     box-sizing: border-box;
     text-decoration: none;
     list-style: none;
+    outline: none;
 }
 
 html {
@@ -87,6 +88,7 @@ body {
     min-width: 7rem;
     margin-left: -1rem;
     padding-right: 8%;
+    cursor: pointer;
 }
 
 .logo_img img {
@@ -157,12 +159,12 @@ body {
 
 .header_funtion {
     float: right;
-    margin-right: -5%;
+    margin-right: -32%;
 }
 
 .header_funtion_title {
     float: left;
-    margin-left: 1.5rem;
+    margin-left: 2rem;
     cursor: pointer;
 }
 
@@ -235,6 +237,7 @@ body {
 
 .modal_left img {
     width: 100%;
+    margin-left: 2rem;
     margin-top: 0.4rem;
 }
 
@@ -386,7 +389,7 @@ body {
 .header_product a {
     width: 100%;
     float: left;
-    height: 5rem;
+    height: 6rem;
 }
 
 .header_product a:hover .header_delete_product {
@@ -408,7 +411,7 @@ body {
 .header_delete_product i {
     width: 140%;
     text-align: center;
-    color: black;
+    color: #b2bec3;
     transition: 0.3s;
     margin-left: 1rem;
 }
@@ -426,6 +429,7 @@ body {
 
 .item-name {
     width: 53%;
+    text-transform: uppercase;
     margin-top: 1rem!important;
     font-size: 15px !important;
     color: black !important;
@@ -495,7 +499,7 @@ body {
 .main_nav {
     float: left;
     margin-top: -0.8rem !important;
-    margin-left: 6.5% !important;
+    margin-left: 7.15% !important;
 }
 
 .main_nav_title li {
@@ -513,6 +517,7 @@ body {
 
 .main_nav_title li a {
     font-weight: 500;
+    color: black!important;
     text-decoration: none;
     position: relative;
     transition: .3s ease;
@@ -541,13 +546,13 @@ body {
 
 
 /*---end header---*
+
 /*--main_page--*/
 
 .main_page {
     float: left;
     width: 100%;
     margin-top: 10.4rem;
-    ;
     background-color: #f8f9fa;
 }
 
@@ -573,13 +578,15 @@ body {
 /*--end bath--*/
 
 .item {
-    max-height: 24rem;
+    height: 26rem;
+    width: 90%;
     background-color: white;
     border-radius: 8px;
     border: 2px solid #ecf0f1;
     transition: 0.3s linear;
     overflow: hidden;
     margin-top: 0.5rem;
+    cursor: pointer;
 }
 
 .item:hover {
@@ -590,11 +597,13 @@ body {
 .item_img {
     float: left;
     width: 100%;
-    height: 17rem;
+    height: 18rem;
+    overflow: hidden;
 }
 
 .item_img img {
-    margin-top: 0.5rem;
+    width: 100%;
+    margin-top: 1rem;
     margin-left: auto;
     margin-right: auto;
     display: block;
@@ -617,6 +626,7 @@ body {
     text-decoration: none;
     font-size: 18px;
     font-weight: 600;
+    text-transform: uppercase;
 }
 
 .item_title a:hover {
@@ -731,46 +741,47 @@ body {
     color: orange;
 }
 
-.disableddiv{
-    opacity: 0.5;
-    pointer-events: none;
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
 }
 
+#scroll_bar_edit::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
 
-/* loading */
-.loader {
-    position: fixed;
-    width: 120px;
-    height: 120px;
-    border: 16px solid #f3f3f3;
-    /* Light grey */
-    border-top: 16px solid #3498db;
-    /* Blue */
-    border-radius: 50%;
-    top: 40%;
-    left: 50%;
-    /* transform: translate(-250%, 50%); */
-    animation: spin 1s linear infinite;
-    z-index: 2;
-  }
-  
-  .overLay {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(99, 83, 83, 0.4);
-    z-index: 1;
-  }
-  
-  @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-  
-    100% {
-        transform: rotate(360deg);
-    }
-  }
-  
+#scroll_bar_edit::-webkit-scrollbar-thumb {
+    background-color: #6b6565;
+    border: 2px solid #555555;
+}
+
+#forgot_password {
+    width: 100%;
+    text-align: center;
+}
+
+.btn_forgot_password {
+    width: 100%;
+}
+
+.edit_modal_forgot_password {
+    width: 350px !important;
+    margin-left: 4rem!important;
+}
+
+.forgot_pass_body img {
+    width: 100%;
+}
+
+.forgot_pass_body p {
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: white!important;
+}

@@ -754,13 +754,13 @@ component.checkoutPage = `
                         </table>
                     </div>
                     <div class="shipping_order">
-                        <p>Shipping: <span>$ 0</span></p>
+                        <p>Shipping : <span>$ 0</span></p>
                     </div>
                     <div class="total_order">
-                        <p>Grand Total: <span class="cartTotal">$ 0</span></p>
+                        <p>Grand Total :<span class="cartTotal">$ 0</span></p>
                     </div>
-                    <div class="total_order">
-                        <p>Discount Total <span id="discountPercent"></span>: <span id="discountTotal">$ 0</span></p>
+                    <div class="distotal_order total_order">
+                        <p>Discount Total :<span id="discountPercent"></span><span id="discountTotal">$ 0</span></p>
                     </div>
                     <div class="payment">
                         <ul>
@@ -793,8 +793,7 @@ component.profilePage = `
                 <div class="funtion_account col-3">
                     <div class="funtion_account_header">
                         <div class="funtion_account_header-img">
-                            <img src="https://scontent.fhan3-1.fna.fbcdn.net/v/t1.0-9/49339024_2125777764330744_62499324709306368_n.jpg?_nc_cat=102&ccb=2&_nc_sid=174925&_nc_ohc=Iok9No9uZCgAX-ztA89&_nc_oc=AQm8o1E-NKwLkgXljqHrd89GDktZfSZ703pK_PChZe358yk1F3EjJ5zBLPUBqq3OwBk&_nc_ht=scontent.fhan3-1.fna&oh=94008b741b4264d07e631fbece092b98&oe=6007E6AB"
-                                alt="">
+                            <img src="https://scontent.fhan5-6.fna.fbcdn.net/v/t1.0-9/45268829_2092077554367432_2119947624822865920_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=0diHxc9LNuAAX8MdE-o&_nc_ht=scontent.fhan5-6.fna&oh=578e8becc9a246ebd8a5074aa2414cd1&oe=607847E2" alt="">
                         </div>
                         <div class="funtion_account_header-title">
                             <h5 id="username">Tung Tran</h5>
@@ -810,109 +809,161 @@ component.profilePage = `
                 <div class="show_funtion_account col-9">
                     <div class="tab-content" id="v-pills-tabContent">
 
-                        <div class="tab-pane fade show active" id="v-pills-account" role="tabpanel" aria-labelledby="v-pills-account-tab">
-                            <div class="show_funtion_header">
-                                <h3>MY ACCOUNT</h3>
-                                <h5>Manage profile information for account security.</h5>
+                    <div class="tab-pane fade show active" id="v-pills-account" role="tabpanel" aria-labelledby="v-pills-account-tab">
+                    <div class="show_funtion_header">
+                        <h3>MY ACCOUNT</h3>
+                        <h5>Manage profile information for account security.</h5>
+                    </div>
+                    <div class="avatar_account">
+                    <img id="img" src="" />
+                    <input id="file" type="file">
+                    </div>
+                    <div class="show_infor_account mt-3 ">
+                        <div class="input-group mb-3 ">
+                            <div class="input-group-prepend ">
+                                <span class="input-group">Username:</span>
                             </div>
-                            <div class="avatar_account">
-                                <img id="userAvt" 
-                                    alt="">
-                                <input type="file" id="profile_img" name="profile_img" accept=".jpg,.jpeg,.png">
+                            <input type="text" class="form-control " placeholder="Username " id="usr " name="username ">
+                        </div>
+                        <div class="input-group mb-3 ">
+                            <div class="input-group-prepend ">
+                                <span class="input-group">Phonenumber:</span>
                             </div>
-                            <div class="show_infor_account mt-3 ">
-                                <div class="input-group mb-3 ">
-                                    <div class="input-group-prepend ">
-                                        <span class="input-group">Username:</span>
-                                    </div>
-                                    <input type="text" class="form-control " placeholder="Username " id="usr " name="username ">
-                                </div>
-                                <div class="input-group mb-3 ">
-                                    <div class="input-group-prepend ">
-                                        <span class="input-group">Phonenumber:</span>
-                                    </div>
-                                    <input type="text" class="form-control " placeholder="Phonenumber " id="phone " name="Phonenumber">
-                                </div>
-                                <div class="input-group mb-3 ">
-                                    <div class="input-group-prepend ">
-                                        <span class="input-group">Email:</span>
-                                    </div>
-                                    <input type="text " class="form-control " placeholder="Email " id="email " name="Email ">
-                                </div>
-                                <div class="input-group mb-3 ">
-                                    <div class="input-group-prepend ">
-                                        <span class="input-group">Date Of Birth:</span>
-                                    </div>
-                                    <input type="date" class="form-control " placeholder="Date Of Birth " id="dateOfBirth" name="birth ">
-                                </div>
-                                <div class="input-group mb-3 ">
-                                    <div class="input-group-prepend ">
-                                        <span class="input-group">Gender:</span>
-                                    </div>
-                                    <form id="gender">
-                                        <input type="radio" id="male" name="gender" value="male">
-                                        <label for="male">Male</label>
-                                        <input type="radio" id="female" name="gender" value="female">
-                                        <label for="female">Female</label>
-                                        <input type="radio" id="other" name="gender" value="other">
-                                        <label for="other">Other</label>
-                                    </form>
-                                </div>
-                                <div class="changePass">
-                                    <a onclick="changePassword()">Change Password!</a>
-                                    <div class="ChangePassword" id="ChangePassword">
-                                        <div class="input-group mb-3 ">
-                                            <div class="input-group-prepend ">
-                                                <span class="input-group">Old Password:</span>
-                                            </div>
-                                            <input type="text" class="form-control " placeholder="Enter old password." id="oldPass" name="oldP">
+                            <input type="text" class="form-control " placeholder="Phonenumber " id="phone " name="Phonenumber">
+                        </div>
+                        <div class="input-group mb-3 ">
+                            <div class="input-group-prepend ">
+                                <span class="input-group">Email:</span>
+                            </div>
+                            <input type="text " class="form-control " placeholder="Email " id="email " name="Email ">
+                        </div>
+                        <div class="input-group mb-3 ">
+                            <div class="input-group-prepend ">
+                                <span class="input-group">Date Of Birth:</span>
+                            </div>
+                            <input type="date" class="form-control " placeholder="Date Of Birth " id="dateOfBirth" name="birth ">
+                        </div>
+                        <div class="input-group mb-3 ">
+                            <div class="input-group-prepend ">
+                                <span class="input-group">Gender:</span>
+                            </div>
+                            <form id="gender">
+                                <input type="radio" id="male" name="gender" value="male">
+                                <label for="male">Male</label>
+                                <input type="radio" id="female" name="gender" value="female">
+                                <label for="female">Female</label>
+                                <input type="radio" id="other" name="gender" value="other">
+                                <label for="other">Other</label>
+                            </form>
+                        </div>
+                        <div class="editInfor">
+                            <a href=""></a>
+                        </div>
+                        <div class="changePass">
+                            <a href="" data-toggle="modal" data-target="#changePassModal">Change Password!</a>
+                            <!-- Modal change pass-->
+                            <div class="modal fade" id="changePassModal" tabindex="-1" role="dialog" aria-labelledby="changePassModalLabel" aria-hidden="true">
+                                <div class="modal-dialog " role="document">
+                                    <div class="modal-content modal_change_edit">
+                                        <div class="modal-header header_changePass">
+                                            <h5 class="modal-title" id="changePassModalLabel">Change Your Account Password</h5>
                                         </div>
-                                        <div class="input-group mb-3 ">
-                                            <div class="input-group-prepend ">
-                                                <span class="input-group">New Password:</span>
+                                        <div class="modal-body body_changePass">
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" id="oldPass" placeholder="ENTER OLD PASSWORD!">
                                             </div>
-                                            <input type="text" class="form-control " placeholder="Enter new password." id="newPass" name="newP">
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" id="newPass" placeholder="ENTER NEW PASSWORD!">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" id="retypePass" placeholder="RETYPE NEW PASSWORD!">
+                                            </div>
                                         </div>
-                                        <div class="input-group mb-3 ">
-                                            <div class="input-group-prepend ">
-                                                <span class="input-group">Retype Password:</span>
-                                            </div>
-                                            <input type="text" class="form-control " placeholder="Retype new password." id="ReNewPass" name="ReNP">
+                                        <div class="modal-footer footer_changePass">
+                                            <button type="button" class="btn btn-danger btn_change">CHANGE</button>
+                                            <button type="button" class="btn btn-warning btn_clsCh" data-dismiss="modal">CLOSE</button>
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-secondary">SUBMIT</button>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="v-pills-address" role="tabpanel" aria-labelledby="v-pills-address-tab">
-                            <ul class="address_account ">
-                                <div class="show_funtion_header">
-                                    <h3>MY ADDRESS</h3>
-                                    <h5>Manage address information for shipping.</h5>
-                                </div>
-                                <li class="add_new_address" data-toggle="modal" data-target="#add_newAddress"><i class="far fa-plus-square "></i><span>ADD NEW ADDRESS</span>
-                                    <div class="modal fade" id="add_newAddress" tabindex="-1" role="dialog" aria-labelledby="addNew_address" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="addNew_address">ADD NEW ADDRESS</h5>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form action="">
-                                                        <input type="text" class="form-control" id="inputName" placeholder="Name">
-                                                        <input type="text" class="form-control" id="inputEmail" placeholder="Email">
-                                                        <input type="text" class="form-control" id="inputPhonenumber" placeholder="Phonenumber">
-                                                        <input type="text" class="form-control" id="inputAddress" placeholder="Address">
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary">CONFIRM</button>
-                                                </div>
-                                            </div>
+
+                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editInforModal">CHANGE THE INFORMATION</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="editInforModal" tabindex="-1" role="dialog" aria-labelledby="editInforModalTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editInforModalTitle">CHANGE INFORMATION</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" placeholder="Phonenumber" aria-label="Phonenumber" aria-describedby="basic-addon1">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input type="date" class="form-control" placeholder="Date Of Birth" aria-label="dateOfBirth" aria-describedby="basic-addon1">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <form id="gender">
+                                                <input type="radio" id="male" name="gender" value="male">
+                                                <label for="male">Male</label>
+                                                <input type="radio" id="female" name="gender" value="female">
+                                                <label for="female">Female</label>
+                                                <input type="radio" id="other" name="gender" value="other">
+                                                <label for="other">Other</label>
+                                            </form>
                                         </div>
                                     </div>
 
-                                </li>
+                                    <div class="modal-footer modal_footer-editInfor">
+                                        <button type="button" class="btn btn-secondary btn_cls-exitInfor" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary btn_submit-infor">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        <div class="tab-pane fade" id="v-pills-address" role="tabpanel" aria-labelledby="v-pills-address-tab">
+                            <ul class="address_account ">
+                                <div class="show_funtion_header ">
+                                    <h3>MY ADDRESS</h3>
+                                    <h5>Manage address information for shipping.</h5>
+                                </div>
+                                <li class="add_new_address" data-toggle="modal" data-target="#add_newAddress"><i class="far fa-plus-square"></i><span>ADD NEW ADDRESS</span></li>
+                                <div class="modal fade" id="add_newAddress" tabindex="-1 " role="dialog" aria-labelledby="addNew_address" aria-hidden="true ">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="update_addressLabel">ADD NEW ADDRESS</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="addName" placeholder="Enter your name">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="addNumberphone" placeholder="Enter your phonenumber">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="addAddress" placeholder="Enter your address">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer footer_modal_addnew_addrs">
+                                                <button type="button" class="btn btn-secondary btn_cancel_add_adrs" data-dismiss="modal">CANCEL</button>
+                                                <button type="button" class="btn btn-primary btn_add_adrs">CONFIRM</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <li class="default_address list_address ">
                                     <div class="infor_address ">
                                         <h1>TRAN THANH TUNG <span><i class="far fa-check-circle "></i>DEFAULT ADDRESS</span></h1>
@@ -929,9 +980,36 @@ component.profilePage = `
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="function_address">
-                                        <button type="button" class="btn btn-warning">UPDATE</button>
-                                        <button type="button" class="btn btn-danger">DELETE</button>
+                                    <div class="function_address ">
+                                        <button type="button" class="btn btn-warning " data-toggle="modal" data-target="#modal_update_address">UPDATE</button>
+                                        <!-- Modal update address-->
+                                        <div class="modal fade" id="modal_update_address" tabindex="-1" role="dialog" aria-labelledby="update_addressLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="update_addressLabel">UPDATE ADDRESS</h5>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form>
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" id="inputName" placeholder="Enter your name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" id="inputNumberphone" placeholder="Enter your phonenumber">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" id="inputAddress" placeholder="Enter your address">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer footer_modal_update_addrs">
+                                                        <button type="button" class="btn btn-secondary btn_cls_addrs" data-dismiss="modal">CANCEL</button>
+                                                        <button type="button" class="btn btn-primary btn_update_addrs">UPDATE</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button " class="btn btn-danger ">DELETE</button>
                                     </div>
                                 </li>
                                 <li class="list_address ">
@@ -950,9 +1028,36 @@ component.profilePage = `
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="function_address">
-                                        <button type="button" class="btn btn-warning">UPDATE</button>
-                                        <button type="button" class="btn btn-danger">DELETE</button>
+                                    <div class="function_address ">
+                                        <button type="button" class="btn btn-warning " data-toggle="modal" data-target="#modal_update_address">UPDATE</button>
+                                        <!-- Modal update address-->
+                                        <div class="modal fade" id="modal_update_address" tabindex="-1" role="dialog" aria-labelledby="update_addressLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="update_addressLabel">UPDATE ADDRESS</h5>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form>
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" id="inputName" placeholder="Enter your name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" id="inputNumberphone" placeholder="Enter your phonenumber">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" id="inputAddress" placeholder="Enter your address">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer footer_modal_update_addrs">
+                                                        <button type="button" class="btn btn-secondary btn_cls_addrs" data-dismiss="modal">CANCEL</button>
+                                                        <button type="button" class="btn btn-primary btn_update_addrs">UPDATE</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button " class="btn btn-danger ">DELETE</button>
                                     </div>
                                 </li>
                                 <li class="list_address ">
@@ -971,9 +1076,36 @@ component.profilePage = `
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="function_address">
-                                        <button type="button" class="btn btn-warning">UPDATE</button>
-                                        <button type="button" class="btn btn-danger">DELETE</button>
+                                    <div class="function_address ">
+                                        <button type="button" class="btn btn-warning " data-toggle="modal" data-target="#modal_update_address">UPDATE</button>
+                                        <!-- Modal update address-->
+                                        <div class="modal fade" id="modal_update_address" tabindex="-1" role="dialog" aria-labelledby="update_addressLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="update_addressLabel">UPDATE ADDRESS</h5>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form>
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" id="inputName" placeholder="Enter your name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" id="inputNumberphone" placeholder="Enter your phonenumber">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" id="inputAddress" placeholder="Enter your address">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer footer_modal_update_addrs">
+                                                        <button type="button" class="btn btn-secondary btn_cls_addrs" data-dismiss="modal">CANCEL</button>
+                                                        <button type="button" class="btn btn-primary btn_update_addrs">UPDATE</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button " class="btn btn-danger ">DELETE</button>
                                     </div>
                                 </li>
                             </ul>
@@ -1079,64 +1211,48 @@ component.billPage = `
 
 
 component.aboutUs = `
-    <section class="main_page">
-    <!--bath-->
-    <nav class="bath" aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="bath_edit breadcrumb-item"><a >Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Abouts Us</li>
-        </ol>
-    </nav>
-    <div class="about_us_infor">
-        <div class="about_us_title">
-            <h5>WHO ARE WE</h5>
-            <h3>WELCOME TO BTEC STORE</h3>
-            <h6>With the motto "All for customers", BTEC STORE always strives to improve the quality of services and products, thereby providing a complete shopping experience for customers with fast delivery service in 2 hours and the next day BTECNOW
-                for the first time in Southeast Asia, together with a commitment to provide genuine goods with a 111% refund policy if found counterfeit goods.</h6>
-        </div>
+<section class="main_page">
+<!--bath-->
+<nav class="bath" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="bath_edit breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Abouts Us</li>
+    </ol>
+</nav>
+<div class="about_us_infor">
+    <div class="about_us_title">
+        <h5>WHO ARE WE</h5>
+        <h3>WELCOME TO BTEC STORE</h3>
+        <h6>With the motto "All for customers", BTEC STORE always strives to improve the quality of services and products, thereby providing a complete shopping experience for customers with fast delivery service in 2 hours and the next day BTECNOW
+            for the first time in Southeast Asia, together with a commitment to provide genuine goods with a 111% refund policy if found counterfeit goods.</h6>
     </div>
-    <div class="about_product">
-        <div class="list_brand container">
-            <div class="row">
-                <div class="about_brand col-sm">
-                    <div class="brand_img"> <img src="./img/iphonebrand.png" alt="">
-                    </div>
-                    <div class="title_brand"><span><h1>IPHONE</h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, magni. Quam molestias labore sequi deserunt quae aliquid? Maxime consectetur natus necessitatibus laudantium quo eum, officia accusantium architecto blanditiis voluptatibus vel.</span>
-                    </div>
+</div>
+<div class="about_product">
+    <div class="container">
+        <div class="list_brand row">
+            <div class="about_brand col">
+                <div class="brand_img"> <img src="/IMG/iphonebrand.png" alt="">
                 </div>
-                <div class="about_brand col-sm">
-                    <div class="brand_img"> <img src="./img/samsungbrand.png" alt="">
-                    </div>
-                    <div class="title_brand"><span><h1>SAMSUNG</h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, magni. Quam molestias labore sequi deserunt quae aliquid? Maxime consectetur natus necessitatibus laudantium quo eum, officia accusantium architecto blanditiis voluptatibus vel.</span>
-                    </div>
+                <div class="title_brand"><span><h1>IPHONE</h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, magni. Quam molestias labore sequi deserunt quae aliquid? Maxime consectetur natus necessitatibus laudantium quo eum, officia accusantium architecto blanditiis voluptatibus vel.</span>
                 </div>
-                <div class="about_brand col-sm">
-                    <div class="brand_img"> <img src="./img/vsmartbrand.png" alt="">
-                    </div>
-                    <div class="title_brand"><span><h1>VSMART</h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, magni. Quam molestias labore sequi deserunt quae aliquid? Maxime consectetur natus necessitatibus laudantium quo eum, officia accusantium architecto blanditiis voluptatibus vel.</span>
-                    </div>
+            </div>
+            <div class="about_brand col">
+                <div class="brand_img"> <img src="/IMG/samsungbrand.png" alt="">
+                </div>
+                <div class="title_brand"><span><h1>SAMSUNG</h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, magni. Quam molestias labore sequi deserunt quae aliquid? Maxime consectetur natus necessitatibus laudantium quo eum, officia accusantium architecto blanditiis voluptatibus vel.</span>
+                </div>
+            </div>
+            <div class="about_brand col">
+                <div class="brand_img"> <img src="/IMG/vsmartbrand.png" alt="">
+                </div>
+                <div class="title_brand"><span><h1>VSMART</h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, magni. Quam molestias labore sequi deserunt quae aliquid? Maxime consectetur natus necessitatibus laudantium quo eum, officia accusantium architecto blanditiis voluptatibus vel.</span>
                 </div>
             </div>
         </div>
     </div>
-    <div class="about_us_teamMember">
-        <div class="container">
-            <div class="row">
-                <div class="team_btec col col-lg-2">
-                    3 of 3
-                </div>
-                <div class="team_btec col col-lg-2">
-                    3 of 3
-                </div>
-                <div class="team_btec col col-lg-2">
-                    3 of 3
-                </div>
-                <div class="team_btec col col-lg-2">
-                    3 of 3
-                </div>
-            </div>
-        </div>
-    </section>
+</div>
+
+</section>
 `;
 
 component.contact = `
