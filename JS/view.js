@@ -47,7 +47,6 @@ view.setActiveScreen = async (screenName, otherInfo) => {
       view.loadingScreen("none");
 
       break;
-      x;
     case "productPage":
       main.innerHTML = component.productPage;
 
@@ -65,7 +64,8 @@ view.setActiveScreen = async (screenName, otherInfo) => {
       break;
     case "profilePage":
       main.innerHTML = component.profilePage;
-      onChangeAvatar()
+
+      onChangeAvatar();
       view.loadingScreen("block");
       view.showProfilePage();
       view.loadingScreen("none");
@@ -157,13 +157,11 @@ view.showHomePage = async () => {
   let topItem = document.getElementsByClassName("topItem");
   let newProductData = await view.getNewProductData();
   let topSellerProductData = await view.getTopSellerProductData();
-  // đoạn này xử lí xem show ra bnh sản phẩm
-  // đoạn này load ra sp new và bestSeller  
-  
+  // đoạn này load ra sp new và bestSeller
+
   for (let i = 0; i < 8; i++) {
     newItem[i].innerHTML += view.htmlItemProduct(newProductData[i]);
-    // topItem[i].innerHTML += view.htmlItemProduct(topSellerProductData[i]);
-
+    topItem[i].innerHTML += view.htmlItemProduct(topSellerProductData[i]);
   }
 };
 
@@ -383,8 +381,8 @@ view.loadMoreItem = (loaded, loading) => {
 view.showDetailProduct = async (id) => {
   let productId = id;
 
-  let dataArray = await model.getProductDataById(productId);
-  let data = dataArray[0];
+  let data = await model.getProductDataById(productId);
+  console.log(data);
   let dataDetail = data.detail;
 
   const { video, des } = data;
@@ -398,15 +396,28 @@ view.showDetailProduct = async (id) => {
   descriptionDetail.innerHTML = `
         <h3>DESCRIPTION OF PRODUCT</h3>
         <div class="description_infor">
-            ${video}
+          <iframe width="100%" height="400px"
+            src="${video}">
+          </iframe> 
             <p> ${des}</p>
         </div>`;
-
-  let itemRelate = document.getElementsByClassName("itemRelate");
   let dataRelateProduct = await model.getProductsDataByCategory(data.category);
+
   console.log(dataRelateProduct);
-  for (let i = 0; i < dataRelateProduct.length; i++) {
-    itemRelate[i].innerHTML += view.htmlItemProduct(dataRelateProduct[i]);
+  if (dataRelateProduct.length > 4) {
+    view.loadRelateProduct(dataRelateProduct, 4);
+  } else if (dataRelateProduct.length == 1) {
+    view.loadRelateProduct(dataRelateProduct, 1);
+  } else {
+    view.loadRelateProduct(dataRelateProduct, dataRelateProduct.length);
+  }
+};
+
+view.loadRelateProduct = (data, n) => {
+  let itemRelate = document.getElementsByClassName("itemRelate");
+
+  for (let i = 0; i < n; i++) {
+    itemRelate[i].innerHTML += view.htmlItemProduct(data[i]);
   }
 };
 
@@ -713,7 +724,6 @@ view.showCheckoutPage = (e) => {
       // This function captures the funds from the transaction.
       return actions.order.capture().then(function (details) {
         // This function shows a transaction success message to your buyer.
-        console.log(details);
         alert(
           "Transaction completed by " +
             details.payer.name.given_name +
@@ -1014,11 +1024,12 @@ view.htmlItemBill = (data) => {
 view.showProfilePage = async () => {
   let dataOrders = await model.getOrdersDatabyId(model.currentUser.email);
   let listOrders = document.getElementById("listOrders");
+  console.log(model.currentUser);
+  view.loadUserInfo(model.currentUser);
 
-  // document.querySelectorAll(".username").innerHTML = model.currentUser.name;
-  console.log(document.querySelectorAll("username"));
-  // let avatar = (document.getElementById("userAvt").src =
-  //   model.currentUser.avatar);
+  document.getElementById("updateProfileBtn").addEventListener("click", () => {
+    view.showUpdateProfileModal();
+  });
 
   document.getElementById("v-pills-order-tab").addEventListener("click", () => {
     listOrders.innerHTML = "";
@@ -1043,6 +1054,19 @@ view.showProfilePage = async () => {
     }
     view.loadMoreItem(3, 3);
   });
+};
+
+view.loadUserInfo = ({ email, name, phone, gender, dob, avatar }) => {
+  document.querySelector(".username").textContent = name;
+  document.getElementById("name").placeholder = name;
+  document.getElementById("phone").placeholder = phone;
+  document.getElementById("email").placeholder = email;
+  document.getElementById("dateOfBirth").placeholder = dob;
+  document.getElementById("gender").placeholder = gender;
+  avatarUrl = document.getElementsByClassName("avatar");
+  for (let i = 0; i < avatarUrl.length; i++) {
+    avatarUrl[i].src = avatar;
+  }
 };
 
 view.showOrder = (index) => {
@@ -1288,25 +1312,25 @@ view.loadingScreen = (value) => {
   document.getElementById("loading").style.display = value;
 };
 
-(function () {
-  view.setScreenBtn("homePage");
-})();
+// (function () {
+//   view.setScreenBtn("homePage");
+// })();
 
 function onChangeAvatar() {
-  const file = document.querySelector('#file')
+  const file = document.querySelector("#file");
 
-  file.onchange = function(e) {
-      showPreview(e.target.files[0])
-  }
+  file.onchange = function (e) {
+    showPreview(e.target.files[0]);
+  };
 
   function showPreview(file) {
-      if (file) {
-          var reader = new FileReader();
-          reader.onload = function(e) {
-              console.log(e.target.result)
-              img.src = e.target.result
-          }
-          reader.readAsDataURL(file); // convert to base64 string
-      }
+    if (file) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        console.log(e.target.result);
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file); // convert to base64 string
+    }
   }
 }

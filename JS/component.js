@@ -209,12 +209,12 @@ component.headerAndFooter = `
                                     </div>
                                     <div class="input-group mb-3">
                                         <span>Password:</span>
-                                        <input name="password" type="text" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                                        <input name="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
                                         <div class="error" id="password-error"></div>
                                     </div>
                                     <div class="input-group mb-3">
                                         <span>Retype Password:</span>
-                                        <input name="confirmPw" type="text" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                                        <input name="confirmPw" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
                                         <div class="error" id="confirmPw-error"></div>
                                     </div>
                                     <button id="registerBtn" class="btn btn-warning" onclick="view.register(event)" type="button" >REGISTER</button>
@@ -793,10 +793,10 @@ component.profilePage = `
                 <div class="funtion_account col-3">
                     <div class="funtion_account_header">
                         <div class="funtion_account_header-img">
-                            <img src="https://scontent.fhan5-6.fna.fbcdn.net/v/t1.0-9/45268829_2092077554367432_2119947624822865920_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=0diHxc9LNuAAX8MdE-o&_nc_ht=scontent.fhan5-6.fna&oh=578e8becc9a246ebd8a5074aa2414cd1&oe=607847E2" alt="">
+                            <img class="avatar" src="" alt="">
                         </div>
                         <div class="funtion_account_header-title">
-                            <h5 id="username">Tung Tran</h5>
+                            <h5 class="username"></h5>
                             <span><i class="fas fa-user-edit"></i>EDIT INFORMATION</span>
                         </div>
                     </div>
@@ -815,46 +815,41 @@ component.profilePage = `
                         <h5>Manage profile information for account security.</h5>
                     </div>
                     <div class="avatar_account">
-                    <img id="img" src="" />
+                    <img id="img" class="avatar" src="" />
                     <input id="file" type="file">
                     </div>
                     <div class="show_infor_account mt-3 ">
                         <div class="input-group mb-3 ">
                             <div class="input-group-prepend ">
-                                <span class="input-group">Username:</span>
+                                <span class="input-group">Name:</span>
                             </div>
-                            <input type="text" class="form-control " placeholder="Username " id="usr " name="username ">
+                            <input id="name"  type="text" class="form-control " placeholder="Name "   disabled >
                         </div>
                         <div class="input-group mb-3 ">
                             <div class="input-group-prepend ">
                                 <span class="input-group">Phonenumber:</span>
                             </div>
-                            <input type="text" class="form-control " placeholder="Phonenumber " id="phone " name="Phonenumber">
+                            <input id="phone" type="text" class="form-control " placeholder="Phonenumber "  name="Phonenumber" disabled>
                         </div>
                         <div class="input-group mb-3 ">
                             <div class="input-group-prepend ">
                                 <span class="input-group">Email:</span>
                             </div>
-                            <input type="text " class="form-control " placeholder="Email " id="email " name="Email ">
+                            <input id="email" type="text " class="form-control " placeholder="Email "  name="Email" disabled>
                         </div>
                         <div class="input-group mb-3 ">
                             <div class="input-group-prepend ">
                                 <span class="input-group">Date Of Birth:</span>
                             </div>
-                            <input type="date" class="form-control " placeholder="Date Of Birth " id="dateOfBirth" name="birth ">
+                            <input id="dateOfBirth" type="text" class="form-control " placeholder="Date Of Birth "  name="birth " disabled>
                         </div>
                         <div class="input-group mb-3 ">
                             <div class="input-group-prepend ">
                                 <span class="input-group">Gender:</span>
                             </div>
-                            <form id="gender">
-                                <input type="radio" id="male" name="gender" value="male">
-                                <label for="male">Male</label>
-                                <input type="radio" id="female" name="gender" value="female">
-                                <label for="female">Female</label>
-                                <input type="radio" id="other" name="gender" value="other">
-                                <label for="other">Other</label>
-                            </form>
+                            <input id="gender" type="text" class="form-control " placeholder="Gender "  name="gender " disabled>
+
+                            
                         </div>
                         <div class="editInfor">
                             <a href=""></a>
@@ -888,7 +883,7 @@ component.profilePage = `
                             </div>
                         </div>
 
-                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editInforModal">CHANGE THE INFORMATION</button>
+                        <button id="updateProfileBtn" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editInforModal">CHANGE THE INFORMATION</button>
                         <!-- Modal -->
                         <div class="modal fade" id="editInforModal" tabindex="-1" role="dialog" aria-labelledby="editInforModalTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -898,16 +893,16 @@ component.profilePage = `
                                     </div>
                                     <div class="modal-body">
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                            <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">
                                         </div>
                                         <div class="input-group mb-3">
                                             <input type="text" class="form-control" placeholder="Phonenumber" aria-label="Phonenumber" aria-describedby="basic-addon1">
                                         </div>
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+                                            <input type="date" class="form-control" placeholder="Date Of Birth" aria-label="dateOfBirth" aria-describedby="basic-addon1">
                                         </div>
                                         <div class="input-group mb-3">
-                                            <input type="date" class="form-control" placeholder="Date Of Birth" aria-label="dateOfBirth" aria-describedby="basic-addon1">
+                                            <input type="text" class="form-control" placeholder="Address" aria-label="address" aria-describedby="basic-addon1">
                                         </div>
                                         <div class="input-group mb-3">
                                             <form id="gender">
