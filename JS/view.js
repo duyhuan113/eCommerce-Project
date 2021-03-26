@@ -238,12 +238,13 @@ view.htmlItemProduct = (data) => {
 //function này thêm sp vừa đc chọn vào giỏ hàng.
 view.addCart = async (id, num, multi = true) => {
   let data = await model.getProductDataById(id);
-  data = data[0];
+  console.log(data);
+  const { availableQuantity } = data;
   let cartItems = localStorage.getItem("productInCart");
   cartItems = JSON.parse(cartItems);
   flag = true;
   if (num !== 0) {
-    if (data.availableQuantity !== 0) {
+    if (Number(availableQuantity) !== 0) {
       if (cartItems != null) {
         if (cartItems[data.id] == undefined) {
           data.inCart = num;
@@ -252,7 +253,7 @@ view.addCart = async (id, num, multi = true) => {
             [data.id]: data,
           };
         } else {
-          if (data.availableQuantity < cartItems[data.id].inCart) {
+          if (Number(availableQuantity) < cartItems[data.id].inCart) {
             alert("The number of available products is not sufficient!");
             flag = false;
           } else {
@@ -516,7 +517,7 @@ view.htmlDetailProduct = (data, dataDetail) => {
             </table>
         </div>
         <div class="add_to_cart">
-            <button id="addBtn" onclick="view.addCart('${data.id}',1)" type="button" class="btn btn-danger">ADD TO CART</button>
+            <button id="addBtn" onclick="view.addCart('${data.id}',1,false)" type="button" class="btn btn-danger">ADD TO CART</button>
         </div>
     </div>
     `;

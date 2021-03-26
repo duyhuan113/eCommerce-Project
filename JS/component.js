@@ -537,7 +537,7 @@ component.detailProduct = `
     <div id="descriptionDetail" class="description_product">
         <h3>DESCRIPTION OF PRODUCT</h3>
         <div class="description_infor">
-            
+        <img src="" alt="">
         </div>
     </div>
 
